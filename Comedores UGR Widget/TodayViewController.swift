@@ -18,7 +18,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var label: UILabel!
     
-    let fetcher = WeekMenuFetcher()
+    private let fetcher = WeekMenuFetcher()
     
     var weekMenu: [DayMenu] = {
         if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey("weekMenu"),
@@ -42,6 +42,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     private func updateUI() {
         label.text = weekMenu.todayMenu?.dishes.reduce("", combine: { $0! + $1 + "\n\n" }) ?? "No Menu"
+    }
+    
+    
+    @IBAction func openApp(sender: AnyObject) {
+        extensionContext?.openURL(NSURL(string: "comedoresugr://")!, completionHandler: nil)
     }
     
     
