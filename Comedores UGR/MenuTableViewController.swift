@@ -11,6 +11,7 @@ import UIKit
 // TODO: refresh data
 // TODO: Watch glance
 // TODO: Improve UI
+// TODO: Localization
 class MenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let fetcher = WeekMenuFetcher()

@@ -57,20 +57,20 @@ extension CollectionType where Self: Indexable, Index == Int, Generator.Element 
         
         let calendar = NSCalendar.currentCalendar()
         
-        // Try to match NSDate to today
         for menu in self {
             if let date = menu.processedDate where calendar.isDateInToday(date) {
                 return menu
             }
         }
+        return nil
 
-        // In case this fails, use current day of the week and collection index
-        let weekDay = calendar.component(.Weekday, fromDate: NSDate())
-        let index = weekDay - 2     // Mon is weekday 2, supposed to have index 0 in collection
-        if index < 0 || index >= self.count {
-            return nil
-        }
-        return self[index]
+//        // In case this fails, use current day of the week and collection index
+//        let weekDay = calendar.component(.Weekday, fromDate: NSDate())
+//        let index = weekDay - 2     // Mon is weekday 2, supposed to have index 0 in collection
+//        if index < 0 || index >= self.count {
+//            return nil
+//        }
+//        return self[index]
     }
 }
 
