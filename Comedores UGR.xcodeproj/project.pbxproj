@@ -14,6 +14,7 @@
 		33837D3B1C9066540095E395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33837D391C9066540095E395 /* LaunchScreen.storyboard */; };
 		33837D431C9097AE0095E395 /* DishTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D421C9097AE0095E395 /* DishTableViewCell.swift */; };
 		33837D451C90A1360095E395 /* WeekMenuFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D441C90A1360095E395 /* WeekMenuFetcher.swift */; };
+		33C7905A1CA55EE1008ACFF2 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */; };
 		A04F0F94A2C3F9F7B0DB509E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45D3C10D18E5E1925E17412 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -27,6 +28,7 @@
 		33837D3C1C9066540095E395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33837D421C9097AE0095E395 /* DishTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishTableViewCell.swift; sourceTree = "<group>"; };
 		33837D441C90A1360095E395 /* WeekMenuFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekMenuFetcher.swift; sourceTree = "<group>"; };
+		33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		7E6BA74AD7A8B0D41EE9405E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B45D3C10D18E5E1925E17412 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B679D0C5174D735F49427568 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				33837D321C9066540095E395 /* MenuTableViewController.swift */,
 				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
 				33837D421C9097AE0095E395 /* DishTableViewCell.swift */,
+				33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */,
 				33837D341C9066540095E395 /* Main.storyboard */,
 				33837D371C9066540095E395 /* Assets.xcassets */,
 				33837D391C9066540095E395 /* LaunchScreen.storyboard */,
@@ -123,12 +126,13 @@
 		33837D251C9066540095E395 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0720;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Daniel Barros";
 				TargetAttributes = {
 					33837D2C1C9066540095E395 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = A66AUV6B49;
 					};
 				};
 			};
@@ -218,6 +222,7 @@
 			files = (
 				33837D431C9097AE0095E395 /* DishTableViewCell.swift in Sources */,
 				33837D331C9066540095E395 /* MenuTableViewController.swift in Sources */,
+				33C7905A1CA55EE1008ACFF2 /* GlobalFunctions.swift in Sources */,
 				33837D451C90A1360095E395 /* WeekMenuFetcher.swift in Sources */,
 				33837D311C9066540095E395 /* AppDelegate.swift in Sources */,
 			);
@@ -331,10 +336,15 @@
 			baseConfigurationReference = 7E6BA74AD7A8B0D41EE9405E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Comedores UGR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -344,10 +354,14 @@
 			baseConfigurationReference = B679D0C5174D735F49427568 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Comedores UGR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
