@@ -11,21 +11,33 @@ import UIKit
 // TODO: refresh data
 // TODO: Watch glance
 // TODO: Notification center widget
-// TODO: Persist data
 // TODO: Improve UI
 class MenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let fetcher = WeekMenuFetcher()
-    var weekMenu = [DayMenu]()
+    
+    var weekMenu: [DayMenu] = {
+        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey("weekMenu"),
+            menu = NSKeyedUnarchiver.unarchiveObjectWithData(archivedMenu) as? [DayMenu] {
+            return menu
+        } else {
+            return [DayMenu]()
+        }
+        }() {
+        didSet {
+            let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(weekMenu)
+            NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: "weekMenu")
+        }
+    }
     
     @IBOutlet var tableView: UITableView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.estimatedRowHeight = 44
         
-        fetcher.fetchMenu(completionHandler: { menu in
+        fetcher.fetchMenuAsync(completionHandler: { menu in
             self.weekMenu = menu
             mainQueue {
                 self.tableView.reloadData()
@@ -55,7 +67,7 @@ class MenuTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return cell
     }
     
-
+    
     func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return weekMenu[section].date
     }
