@@ -14,6 +14,7 @@
 		3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D441C90A1360095E395 /* WeekMenuFetcher.swift */; };
 		336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
+		336E35D51CA5B10800093C3C /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */; };
 		33837D311C9066540095E395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D301C9066540095E395 /* AppDelegate.swift */; };
 		33837D331C9066540095E395 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D321C9066540095E395 /* MenuTableViewController.swift */; };
 		33837D361C9066540095E395 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33837D341C9066540095E395 /* Main.storyboard */; };
@@ -104,11 +105,23 @@
 			path = "Comedores UGR Widget";
 			sourceTree = "<group>";
 		};
+		336E35D41CA5B0FA00093C3C /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
+				336E35D11CA5AECA00093C3C /* DayMenu.swift */,
+				33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */,
+			);
+			name = Common;
+			path = "Comedores UGR";
+			sourceTree = "<group>";
+		};
 		33837D241C9066540095E395 = {
 			isa = PBXGroup;
 			children = (
 				33837D2F1C9066540095E395 /* Comedores UGR */,
 				3303C0B31CA59FFC006363AD /* Comedores UGR Widget */,
+				336E35D41CA5B0FA00093C3C /* Common */,
 				33837D2E1C9066540095E395 /* Products */,
 				4DF58F8A68660F8B644F26F7 /* Pods */,
 				A5975B684944498F5AB78B06 /* Frameworks */,
@@ -130,10 +143,7 @@
 				3303C0C21CA5A398006363AD /* Comedores UGR.entitlements */,
 				33837D301C9066540095E395 /* AppDelegate.swift */,
 				33837D321C9066540095E395 /* MenuTableViewController.swift */,
-				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
-				336E35D11CA5AECA00093C3C /* DayMenu.swift */,
 				33837D421C9097AE0095E395 /* DishTableViewCell.swift */,
-				33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */,
 				33837D341C9066540095E395 /* Main.storyboard */,
 				33837D371C9066540095E395 /* Assets.xcassets */,
 				33837D391C9066540095E395 /* LaunchScreen.storyboard */,
@@ -327,6 +337,7 @@
 			files = (
 				3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */,
 				336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */,
+				336E35D51CA5B10800093C3C /* GlobalFunctions.swift in Sources */,
 				3303C0B51CA59FFC006363AD /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

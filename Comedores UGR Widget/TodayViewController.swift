@@ -10,6 +10,10 @@ import UIKit
 import NotificationCenter
 
 // TODO: Improve UI
+// TODO: Differentiate between a connection error and no menu today
+// TODO: Create a Tomorrow Menu widget too
+// TODO: Fix Autolayout constraints error
+// TODO: Tap on widget should open the app
 class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var label: UILabel!
@@ -37,7 +41,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     
     private func updateUI() {
-        label.text = weekMenu.todayMenu?.dishes.reduce("", combine: { $0! + $1 + "\n" }) ?? "No Data"
+        label.text = weekMenu.todayMenu?.dishes.reduce("", combine: { $0! + $1 + "\n\n" }) ?? "No Menu"
     }
     
     
