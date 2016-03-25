@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Comedores UGR Widget.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 		<key>Comedores UGR.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -12,6 +17,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>3303C0AF1CA59FFC006363AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>33837D2C1C9066540095E395</key>
 		<dict>
 			<key>primary</key>

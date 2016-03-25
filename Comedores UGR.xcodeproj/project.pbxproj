@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3303C0B21CA59FFC006363AD /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3303C0B11CA59FFC006363AD /* NotificationCenter.framework */; };
+		3303C0B51CA59FFC006363AD /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3303C0B41CA59FFC006363AD /* TodayViewController.swift */; };
+		3303C0B81CA59FFC006363AD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3303C0B61CA59FFC006363AD /* MainInterface.storyboard */; };
+		3303C0BC1CA59FFC006363AD /* Comedores UGR Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D441C90A1360095E395 /* WeekMenuFetcher.swift */; };
 		33837D311C9066540095E395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D301C9066540095E395 /* AppDelegate.swift */; };
 		33837D331C9066540095E395 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D321C9066540095E395 /* MenuTableViewController.swift */; };
 		33837D361C9066540095E395 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33837D341C9066540095E395 /* Main.storyboard */; };
@@ -18,7 +23,38 @@
 		A04F0F94A2C3F9F7B0DB509E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45D3C10D18E5E1925E17412 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		3303C0BA1CA59FFC006363AD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33837D251C9066540095E395 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3303C0AF1CA59FFC006363AD;
+			remoteInfo = "Comedores UGR Widget";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3303C0C01CA59FFC006363AD /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				3303C0BC1CA59FFC006363AD /* Comedores UGR Widget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Comedores UGR Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3303C0B11CA59FFC006363AD /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		3303C0B41CA59FFC006363AD /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
+		3303C0B71CA59FFC006363AD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		3303C0B91CA59FFC006363AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3303C0C21CA5A398006363AD /* Comedores UGR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Comedores UGR.entitlements"; sourceTree = "<group>"; };
+		3303C0C31CA5A3A6006363AD /* Comedores UGR Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Comedores UGR Widget.entitlements"; sourceTree = "<group>"; };
 		33837D2D1C9066540095E395 /* Comedores UGR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comedores UGR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33837D301C9066540095E395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33837D321C9066540095E395 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
@@ -35,6 +71,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		3303C0AD1CA59FFC006363AD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3303C0B21CA59FFC006363AD /* NotificationCenter.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33837D2A1C9066540095E395 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -46,10 +90,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3303C0B31CA59FFC006363AD /* Comedores UGR Widget */ = {
+			isa = PBXGroup;
+			children = (
+				3303C0C31CA5A3A6006363AD /* Comedores UGR Widget.entitlements */,
+				3303C0B41CA59FFC006363AD /* TodayViewController.swift */,
+				3303C0B61CA59FFC006363AD /* MainInterface.storyboard */,
+				3303C0B91CA59FFC006363AD /* Info.plist */,
+			);
+			path = "Comedores UGR Widget";
+			sourceTree = "<group>";
+		};
 		33837D241C9066540095E395 = {
 			isa = PBXGroup;
 			children = (
 				33837D2F1C9066540095E395 /* Comedores UGR */,
+				3303C0B31CA59FFC006363AD /* Comedores UGR Widget */,
 				33837D2E1C9066540095E395 /* Products */,
 				4DF58F8A68660F8B644F26F7 /* Pods */,
 				A5975B684944498F5AB78B06 /* Frameworks */,
@@ -60,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				33837D2D1C9066540095E395 /* Comedores UGR.app */,
+				3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -67,6 +124,7 @@
 		33837D2F1C9066540095E395 /* Comedores UGR */ = {
 			isa = PBXGroup;
 			children = (
+				3303C0C21CA5A398006363AD /* Comedores UGR.entitlements */,
 				33837D301C9066540095E395 /* AppDelegate.swift */,
 				33837D321C9066540095E395 /* MenuTableViewController.swift */,
 				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
@@ -93,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				B45D3C10D18E5E1925E17412 /* Pods.framework */,
+				3303C0B11CA59FFC006363AD /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -100,6 +159,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		3303C0AF1CA59FFC006363AD /* Comedores UGR Widget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3303C0BF1CA59FFC006363AD /* Build configuration list for PBXNativeTarget "Comedores UGR Widget" */;
+			buildPhases = (
+				3303C0AC1CA59FFC006363AD /* Sources */,
+				3303C0AD1CA59FFC006363AD /* Frameworks */,
+				3303C0AE1CA59FFC006363AD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Comedores UGR Widget";
+			productName = "Comedores UGR Widget";
+			productReference = 3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		33837D2C1C9066540095E395 /* Comedores UGR */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33837D3F1C9066540095E395 /* Build configuration list for PBXNativeTarget "Comedores UGR" */;
@@ -110,10 +186,12 @@
 				33837D2B1C9066540095E395 /* Resources */,
 				CF3995FF494A958CF8EA521C /* Embed Pods Frameworks */,
 				64FD7AAA62E5AE5F1718436B /* Copy Pods Resources */,
+				3303C0C01CA59FFC006363AD /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				3303C0BB1CA59FFC006363AD /* PBXTargetDependency */,
 			);
 			name = "Comedores UGR";
 			productName = "Comedores UGR";
@@ -130,9 +208,23 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Daniel Barros";
 				TargetAttributes = {
+					3303C0AF1CA59FFC006363AD = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = A66AUV6B49;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					33837D2C1C9066540095E395 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = A66AUV6B49;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -150,11 +242,20 @@
 			projectRoot = "";
 			targets = (
 				33837D2C1C9066540095E395 /* Comedores UGR */,
+				3303C0AF1CA59FFC006363AD /* Comedores UGR Widget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		3303C0AE1CA59FFC006363AD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3303C0B81CA59FFC006363AD /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33837D2B1C9066540095E395 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -216,6 +317,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		3303C0AC1CA59FFC006363AD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */,
+				3303C0B51CA59FFC006363AD /* TodayViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33837D291C9066540095E395 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -230,7 +340,23 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		3303C0BB1CA59FFC006363AD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3303C0AF1CA59FFC006363AD /* Comedores UGR Widget */;
+			targetProxy = 3303C0BA1CA59FFC006363AD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		3303C0B61CA59FFC006363AD /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3303C0B71CA59FFC006363AD /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
 		33837D341C9066540095E395 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -250,6 +376,38 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		3303C0BD1CA59FFC006363AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "Comedores UGR Widget/Comedores UGR Widget.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Comedores UGR Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.Comedores-UGR-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		3303C0BE1CA59FFC006363AD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_ENTITLEMENTS = "Comedores UGR Widget/Comedores UGR Widget.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = "Comedores UGR Widget/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.Comedores-UGR-Widget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		33837D3D1C9066540095E395 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -337,8 +495,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Comedores UGR/Comedores UGR.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Comedores UGR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR";
@@ -355,8 +515,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Comedores UGR/Comedores UGR.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Comedores UGR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR";
@@ -369,6 +531,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		3303C0BF1CA59FFC006363AD /* Build configuration list for PBXNativeTarget "Comedores UGR Widget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3303C0BD1CA59FFC006363AD /* Debug */,
+				3303C0BE1CA59FFC006363AD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		33837D281C9066540095E395 /* Build configuration list for PBXProject "Comedores UGR" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
