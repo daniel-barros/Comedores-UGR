@@ -10,7 +10,6 @@ import UIKit
 
 // TODO: refresh data
 // TODO: Watch glance
-// TODO: Notification center widget
 // TODO: Improve UI
 class MenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     

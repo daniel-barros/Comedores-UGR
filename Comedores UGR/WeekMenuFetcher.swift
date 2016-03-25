@@ -10,28 +10,6 @@ import Foundation
 import HTMLReader
 
 
-class DayMenu: NSObject, NSCoding {
-    let date: String    // TODO: Use NSDate instead?
-    let dishes: [String]
-    
-    init(date: String, dishes: [String]) {
-        self.date = date
-        self.dishes = dishes
-    }
-    
-    required convenience init?(coder aDecoder: NSCoder) {
-        let date = aDecoder.decodeObjectForKey("date") as! String
-        let dishes = aDecoder.decodeObjectForKey("dishes") as! [String]
-        self.init(date: date, dishes: dishes)
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(date, forKey: "date")
-        aCoder.encodeObject(dishes, forKey: "dishes")
-    }
-}
-
-
 struct WeekMenuFetcher {
     
     private static let url = NSURL(string: "http://comedoresugr.tcomunica.org")!

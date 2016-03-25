@@ -10,9 +10,8 @@ import UIKit
 import NotificationCenter
 
 // TODO: Improve UI
-// TODO: Show menu for current day
 class TodayViewController: UIViewController, NCWidgetProviding {
-        
+    
     @IBOutlet weak var label: UILabel!
     
     let fetcher = WeekMenuFetcher()
@@ -38,7 +37,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     
     private func updateUI() {
-        label.text = weekMenu.first?.dishes.reduce("", combine: { $0 + $1 + "\n" }) ?? "No Data"
+        label.text = weekMenu.todayMenu?.dishes.reduce("", combine: { $0! + $1 + "\n" }) ?? "No Data"
     }
     
     
@@ -48,17 +47,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.weekMenu = menu
             self.updateUI()
             completionHandler(.NewData)
-        }, errorHandler: { error in
-            // TODO: Handle error
-            print(error)
-            completionHandler(.Failed)
+            }, errorHandler: { error in
+                // TODO: Handle error
+                print(error)
+                completionHandler(.Failed)
         })
         
         // TODO: If there's no update required, use NCUpdateResult.NoData
     }
     
     
-//    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-//        
-//    }
+    //    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+    //
+    //    }
 }
