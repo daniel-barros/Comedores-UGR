@@ -29,6 +29,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         }() {
         didSet {
+            guard weekMenu.isEmpty == false else {
+                return
+            }
             let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(weekMenu)
             NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: "weekMenu")
         }
@@ -41,7 +44,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     
     private func updateUI() {
-        label.text = weekMenu.todayMenu?.dishes.reduce("", combine: { $0! + $1 + "\n\n" }) ?? "No Menu"
+        label.text = weekMenu.todayMenu?.allDishes ?? "No Menu"
     }
     
     
@@ -52,6 +55,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         
+        // TODO: Sure you should to it synchronously here?
         fetcher.fetchMenuSync(completionHandler: { menu in
             self.weekMenu = menu
             self.updateUI()

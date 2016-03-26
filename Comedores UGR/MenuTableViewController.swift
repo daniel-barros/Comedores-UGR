@@ -12,6 +12,10 @@ import UIKit
 // TODO: Watch glance
 // TODO: Improve UI
 // TODO: Localization
+// TODO: Add info and contact screen
+// TODO: Highlight today's menu
+// TODO: Icon
+// TODO: Launch screen
 class MenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     let fetcher = WeekMenuFetcher()
@@ -23,8 +27,11 @@ class MenuTableViewController: UIViewController, UITableViewDelegate, UITableVie
         } else {
             return [DayMenu]()
         }
-        }() {
+    }() {
         didSet {
+            guard weekMenu.isEmpty == false else {
+                return
+            }
             let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(weekMenu)
             NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: "weekMenu")
         }
@@ -32,10 +39,11 @@ class MenuTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet var tableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.estimatedRowHeight = 44
+        tableView.estimatedRowHeight = 150
         
         fetcher.fetchMenuAsync(completionHandler: { menu in
             self.weekMenu = menu
@@ -52,24 +60,14 @@ class MenuTableViewController: UIViewController, UITableViewDelegate, UITableVie
     // MARK: UITableViewDelegate and UITableViewDataSource
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weekMenu[section].dishes.count
-    }
-    
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return weekMenu.count
     }
     
-    
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("DishCell", forIndexPath: indexPath) as! DishTableViewCell
-        cell.title.text = weekMenu[indexPath.section].dishes[indexPath.row]
+        let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell
+        cell.configure(menu: weekMenu[indexPath.row])
         return cell
-    }
-    
-    
-    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return weekMenu[section].date
     }
 }
 

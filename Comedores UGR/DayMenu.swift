@@ -36,6 +36,52 @@ class DayMenu: NSObject, NSCoding {
         return nil
     }
     
+    
+    var month: String? {
+        let components = date.componentsSeparatedByString(" ")
+        return components.first
+    }
+    
+    
+    var dayNumber: String? {
+        let components = date.componentsSeparatedByString(" ")
+        guard components.count >= 2 else {
+            return nil
+        }
+
+        return components[1]
+    }
+    
+    
+    var dayName: String? {
+        let components = date.componentsSeparatedByString(" ")
+        guard components.count >= 3 else {
+            return nil
+        }
+        
+        return components[2]
+    }
+    
+    
+    var allDishes: String {
+        let string = dishes.reduce("", combine: { (total: String, dish: String) -> String in
+            total + dish + "\n\n"
+        })
+        if string.characters.count > 2 {
+            return string.substringToIndex(string.endIndex.advancedBy(-2))
+        }
+        return string
+    }
+    
+    
+    var isTodayMenu: Bool {
+        if let date = processedDate where NSCalendar.currentCalendar().isDateInToday(date) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
     // MARK: NSCoding
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -54,11 +100,8 @@ class DayMenu: NSObject, NSCoding {
 extension CollectionType where Self: Indexable, Index == Int, Generator.Element == DayMenu {
     
     var todayMenu: DayMenu? {
-        
-        let calendar = NSCalendar.currentCalendar()
-        
         for menu in self {
-            if let date = menu.processedDate where calendar.isDateInToday(date) {
+            if menu.isTodayMenu {
                 return menu
             }
         }
