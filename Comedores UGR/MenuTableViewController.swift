@@ -9,7 +9,7 @@
 import UIKit
 
 // TODO: Watch glance
-// TODO: Localization
+// TODO: Localization (including app name)
 // TODO: Add info and contact screen
 // TODO: Icon
 // TODO: Launch screen
