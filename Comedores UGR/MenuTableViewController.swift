@@ -9,7 +9,6 @@
 import UIKit
 
 // TODO: Watch glance
-// TODO: Localization (including app name)
 // TODO: Add info and contact screen
 // TODO: Scroll to make today's menu visible on tableView reload
 class MenuTableViewController: UITableViewController {
@@ -17,19 +16,13 @@ class MenuTableViewController: UITableViewController {
     let fetcher = WeekMenuFetcher()
     
     var weekMenu: [DayMenu] = {
-        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey(DefaultsWeekMenuKey),
-            menu = NSKeyedUnarchiver.unarchiveObjectWithData(archivedMenu) as? [DayMenu] {
-            return menu
-        } else {
-            return [DayMenu]()
-        }
+        return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? [DayMenu]()
     }() {
         didSet {
             guard weekMenu.isEmpty == false else {
                 return
             }
-            let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(weekMenu)
-            NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: DefaultsWeekMenuKey)
+            NSUserDefaults.standardUserDefaults().setMenu(weekMenu, forKey: DefaultsWeekMenuKey)
             NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdatedKey)
         }
     }
