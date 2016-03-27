@@ -11,8 +11,6 @@ import UIKit
 // TODO: Watch glance
 // TODO: Localization (including app name)
 // TODO: Add info and contact screen
-// TODO: Icon
-// TODO: Launch screen
 // TODO: Scroll to make today's menu visible on tableView reload
 class MenuTableViewController: UITableViewController {
     

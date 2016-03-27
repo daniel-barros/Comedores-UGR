@@ -5,10 +5,10 @@
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <string>comedoresugr</string>
-            </array>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>comedoresugr</string>
+			</array>
 			<key>CFBundleURLName</key>
 			<string>danielbarros.ComedoresUGR</string>
 		</dict>
@@ -23,6 +23,8 @@
 	<string>6.0</string>
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Menú UGR</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

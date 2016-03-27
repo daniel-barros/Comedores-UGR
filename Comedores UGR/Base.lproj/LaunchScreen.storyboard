@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,7 +17,45 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Artwork" translatesAutoresizingMaskIntoConstraints="NO" id="A0e-hg-avf">
+                                <rect key="frame" x="180" y="100" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="RSY-8F-jrA"/>
+                                    <constraint firstAttribute="width" secondItem="A0e-hg-avf" secondAttribute="height" multiplier="1:1" id="udD-Ph-dWP"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menú UGR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ufp-n4-Ozx">
+                                <rect key="frame" x="233" y="360" width="134.5" height="33.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daniel Barros" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H0i-yS-H4b">
+                                <rect key="frame" x="249" y="539" width="102" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menú semanal para los comedores universitarios de la Universidad de Granada" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QBG-Am-v1z">
+                                <rect key="frame" x="16" y="421" width="568" height="43"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QBG-Am-v1z" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="16" id="3yp-9Q-8O9"/>
+                            <constraint firstItem="A0e-hg-avf" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" constant="-80" id="8jS-pj-dYk"/>
+                            <constraint firstItem="Ufp-n4-Ozx" firstAttribute="top" secondItem="A0e-hg-avf" secondAttribute="bottom" constant="20" id="EtB-uQ-eKw"/>
+                            <constraint firstAttribute="trailing" secondItem="QBG-Am-v1z" secondAttribute="trailing" constant="16" id="NlZ-0P-T7G"/>
+                            <constraint firstItem="A0e-hg-avf" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="W7j-v0-5gM"/>
+                            <constraint firstItem="H0i-yS-H4b" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="pNM-99-mVI"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="H0i-yS-H4b" secondAttribute="bottom" constant="40" id="qVP-Uw-GDh"/>
+                            <constraint firstItem="QBG-Am-v1z" firstAttribute="top" secondItem="Ufp-n4-Ozx" secondAttribute="bottom" constant="28" id="qxg-9D-Jab"/>
+                            <constraint firstItem="Ufp-n4-Ozx" firstAttribute="centerX" secondItem="A0e-hg-avf" secondAttribute="centerX" id="uj0-gu-0cp"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -24,4 +63,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Artwork" width="512" height="512"/>
+    </resources>
 </document>
