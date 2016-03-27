@@ -63,7 +63,7 @@
 		3303C0C21CA5A398006363AD /* Comedores UGR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Comedores UGR.entitlements"; sourceTree = "<group>"; };
 		3303C0C31CA5A3A6006363AD /* Comedores UGR Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Comedores UGR Widget.entitlements"; sourceTree = "<group>"; };
 		336E35D11CA5AECA00093C3C /* DayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMenu.swift; sourceTree = "<group>"; };
-		33837D2D1C9066540095E395 /* Menú UGR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Menú UGR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33837D2D1C9066540095E395 /* Comedores UGR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comedores UGR.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33837D301C9066540095E395 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		33837D321C9066540095E395 /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		33837D351C9066540095E395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		33837D2E1C9066540095E395 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				33837D2D1C9066540095E395 /* Menú UGR.app */,
+				33837D2D1C9066540095E395 /* Comedores UGR.app */,
 				3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */,
 			);
 			name = Products;
@@ -217,7 +217,7 @@
 			);
 			name = "Comedores UGR";
 			productName = "Comedores UGR";
-			productReference = 33837D2D1C9066540095E395 /* Menú UGR.app */;
+			productReference = 33837D2D1C9066540095E395 /* Comedores UGR.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -531,7 +531,7 @@
 				INFOPLIST_FILE = "Comedores UGR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR";
-				PRODUCT_NAME = "Menú UGR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -551,7 +551,7 @@
 				INFOPLIST_FILE = "Comedores UGR/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR";
-				PRODUCT_NAME = "Menú UGR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
