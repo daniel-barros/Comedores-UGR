@@ -133,10 +133,10 @@
 			children = (
 				33A9EAA91CA7A859004E9645 /* Keys.swift */,
 				339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */,
-				33808C2E1CA7D1A900AB4912 /* Localizable.strings */,
 				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
 				336E35D11CA5AECA00093C3C /* DayMenu.swift */,
 				33A9EA9C1CA77FE8004E9645 /* Common.swift */,
+				33808C2E1CA7D1A900AB4912 /* Localizable.strings */,
 			);
 			name = Common;
 			path = "Comedores UGR";

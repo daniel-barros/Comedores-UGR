@@ -44,14 +44,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
-    private func updateUI(error error: ErrorType? = nil) {
+    private func updateUI(error error: FetcherError? = nil) {
         if let dishes = weekMenu.todayMenu?.allDishes {
             label.text = dishes
         } else if alreadyFetchedToday == false {
             label.text = NSLocalizedString("Loading...", comment: "")
         } else if let error = error {
-            // TODO: Handle error
-            label.text = "Error: \(error)"
+            switch error {
+            case .NoInternetConnection:
+                label.text = NSLocalizedString("No Connection", comment: "")
+            case .Other:
+                label.text = NSLocalizedString("Error", comment: "")
+            }
         } else {
             label.text = NSLocalizedString("No Menu", comment: "")
 //            label.text = weekMenu.first?.allDishes

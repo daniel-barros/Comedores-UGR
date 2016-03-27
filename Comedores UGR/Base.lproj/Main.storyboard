@@ -100,6 +100,69 @@
                                     <outlet property="monthLabel" destination="qF7-MR-PXg" id="Vbf-UO-pQg"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoConnectionCell" rowHeight="44" id="pfg-uu-GiD">
+                                <rect key="frame" x="0.0" y="236" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfg-uu-GiD" id="pWL-AG-PRe">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="No Internet Connection" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-k6-fGZ">
+                                            <rect key="frame" x="107.5" y="14" width="160" height="15.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="cIg-k6-fGZ" firstAttribute="top" secondItem="pWL-AG-PRe" secondAttribute="top" constant="14" id="j2V-Fa-kpZ"/>
+                                        <constraint firstItem="cIg-k6-fGZ" firstAttribute="centerX" secondItem="pWL-AG-PRe" secondAttribute="centerX" id="ts9-aF-Qeq"/>
+                                        <constraint firstAttribute="bottom" secondItem="cIg-k6-fGZ" secondAttribute="bottom" constant="14" id="udz-le-pfE"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UnknownErrorCell" rowHeight="44" id="7Oj-wh-Zsv">
+                                <rect key="frame" x="0.0" y="280" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Oj-wh-Zsv" id="H95-wI-jvc">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Uknown error. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvB-nv-O40">
+                                            <rect key="frame" x="64.5" y="14" width="247" height="15.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="uvB-nv-O40" firstAttribute="top" secondItem="H95-wI-jvc" secondAttribute="top" constant="14" id="Ovl-mj-V5m"/>
+                                        <constraint firstItem="uvB-nv-O40" firstAttribute="centerX" secondItem="H95-wI-jvc" secondAttribute="centerX" id="gOS-sv-pHX"/>
+                                        <constraint firstAttribute="bottom" secondItem="uvB-nv-O40" secondAttribute="bottom" constant="14" id="v46-A2-gc3"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoDataCell" rowHeight="44" id="AmZ-XB-CHK">
+                                <rect key="frame" x="0.0" y="324" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AmZ-XB-CHK" id="GPp-OO-zC7">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="No data to show. Check again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVb-1F-CTA">
+                                            <rect key="frame" x="67.5" y="14" width="241" height="15.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="CVb-1F-CTA" secondAttribute="bottom" constant="14" id="HM6-lL-J41"/>
+                                        <constraint firstItem="CVb-1F-CTA" firstAttribute="top" secondItem="GPp-OO-zC7" secondAttribute="top" constant="14" id="Okb-xS-8mW"/>
+                                        <constraint firstItem="CVb-1F-CTA" firstAttribute="centerX" secondItem="GPp-OO-zC7" secondAttribute="centerX" id="ais-M0-goF"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="05Y-7Q-F2S" id="UnC-XA-aom"/>

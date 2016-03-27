@@ -28,3 +28,10 @@
 
 /* Class = "UILabel"; text = "Lunes"; ObjectID = "wlf-K7-LY2"; */
 "wlf-K7-LY2.text" = "Lunes";
+
+/* Class = "UILabel"; text = "No Internet Connection"; ObjectID = "cIg-k6-fGZ"; */
+"cIg-k6-fGZ.text" = "No hay conexión a internet";
+
+"uvB-nv-O40.text" = "Error desconocido. Inténtalo de nuevo.";
+
+"CVb-1F-CTA.text" = "No datos que mostrar. Vuelve más tarde.";

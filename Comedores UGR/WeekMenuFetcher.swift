@@ -10,13 +10,19 @@ import Foundation
 import HTMLReader
 
 
+enum FetcherError: ErrorType {
+    case NoInternetConnection
+    case Other
+}
+
+
 class WeekMenuFetcher {
     
     private static let url = NSURL(string: "http://comedoresugr.tcomunica.org")!
     
     var isFetching = false
     
-    func fetchMenuAsync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: ErrorType -> ()) {
+    func fetchMenuAsync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
         isFetching = true
         NSURLSession.sharedSession().dataTaskWithURL(WeekMenuFetcher.url, completionHandler: {
             data, response, error in
@@ -25,14 +31,18 @@ class WeekMenuFetcher {
                 let menu = self.parseHTML(htmlString)
                 completionHandler(menu)
             } else if let error = error {
-                errorHandler(error)
+                if error.code == NSURLErrorNotConnectedToInternet {
+                    errorHandler(.NoInternetConnection)
+                } else {
+                    errorHandler(.Other)
+                }
             }
             self.isFetching = false
         }).resume()
     }
     
     
-    func fetchMenuSync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: ErrorType -> ()) {
+    func fetchMenuSync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
         isFetching = true
         defer {
             isFetching = false
@@ -42,7 +52,11 @@ class WeekMenuFetcher {
             let menu = parseHTML(htmlString)
             completionHandler(menu)
         } catch {
-            errorHandler(error)
+            if (error as NSError).code == NSURLErrorNotConnectedToInternet {
+                errorHandler(.NoInternetConnection)
+            } else {
+                errorHandler(.Other)
+            }
         }
     }
     
