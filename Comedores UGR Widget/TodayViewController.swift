@@ -54,12 +54,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if let dishes = weekMenu.todayMenu?.allDishes {
             label.text = dishes
         } else if alreadyFetchedToday == false {
-            label.text = "Cargando..."
+            label.text = NSLocalizedString("Loading...", comment: "")
         } else if let error = error {
             // TODO: Handle error
             label.text = "Error: \(error)"
         } else {
-            label.text = "No hay menú"
+            label.text = NSLocalizedString("No Menu", comment: "")
 //            label.text = weekMenu.first?.allDishes
         }
     }

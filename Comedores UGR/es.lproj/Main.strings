@@ -1,0 +1,30 @@
+
+/* Class = "UILabel"; text = "14"; ObjectID = "8DA-Vn-UJS"; */
+"8DA-Vn-UJS.text" = "14";
+
+/* Class = "UINavigationItem"; title = "Menú Comedores UGR"; ObjectID = "FC0-IN-DxI"; */
+"FC0-IN-DxI.title" = "Menú Comedores UGR";
+
+/* Class = "UIBarButtonItem"; title = "Menú Semanal"; ObjectID = "FyJ-dk-GpI"; */
+"FyJ-dk-GpI.title" = "Menú Semanal";
+
+/* Class = "UINavigationItem"; title = "Pedir Menú Para Llevar"; ObjectID = "Hlg-gx-Suc"; */
+"Hlg-gx-Suc.title" = "Pedir Menú Para Llevar";
+
+/* Class = "UILabel"; text = "Pan, Vino Tinto y Manzana"; ObjectID = "O5n-Re-0wy"; */
+"O5n-Re-0wy.text" = "Pan, Vino Tinto y Manzana";
+
+/* Class = "UIBarButtonItem"; title = "Para Llevar"; ObjectID = "cbT-7a-htc"; */
+"cbT-7a-htc.title" = "Para Llevar";
+
+/* Class = "UILabel"; text = "Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas"; ObjectID = "i57-Ln-jMI"; */
+"i57-Ln-jMI.text" = "Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas";
+
+/* Class = "UILabel"; text = "Arroz Montañés"; ObjectID = "pie-cH-zf5"; */
+"pie-cH-zf5.text" = "Arroz Montañés";
+
+/* Class = "UILabel"; text = "Marzo"; ObjectID = "qF7-MR-PXg"; */
+"qF7-MR-PXg.text" = "Marzo";
+
+/* Class = "UILabel"; text = "Lunes"; ObjectID = "wlf-K7-LY2"; */
+"wlf-K7-LY2.text" = "Lunes";
