@@ -72,7 +72,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    // MARK: UITableViewDelegate and UITableViewDataSource
+    // MARK: UITableViewDataSource
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekMenu.count

@@ -9,9 +9,8 @@
 import UIKit
 import NotificationCenter
 
-// TODO: Improve UI
-// TODO: Differentiate between a connection error and no menu today
 // TODO: Create a Tomorrow Menu widget too
+// TODO: Hide from NC in some cases (Sundays, holidays?): use setHasContent(_:forWidgetWithBundleIdentifier:) and a local notification that triggers the call in the parent app
 // TODO: Fix Autolayout constraints error
 class TodayViewController: UIViewController, NCWidgetProviding {
     
@@ -26,7 +25,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         } else {
             return [DayMenu]()
         }
-        }() {
+    }() {
         didSet {
             guard weekMenu.isEmpty == false else {
                 return
@@ -51,8 +50,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
-    private func updateUI() {
-        label.text = weekMenu.todayMenu?.allDishes ?? "No Hay Menú"
+    private func updateUI(error error: ErrorType? = nil) {
+        if let dishes = weekMenu.todayMenu?.allDishes {
+            label.text = dishes
+        } else if alreadyFetchedToday == false {
+            label.text = "Cargando..."
+        } else if let error = error {
+            // TODO: Handle error
+            label.text = "Error: \(error)"
+        } else {
+            label.text = "No hay menú"
+//            label.text = weekMenu.first?.allDishes
+        }
     }
     
     
@@ -73,20 +82,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 self.updateUI()
                 completionHandler(.NewData)
             }, errorHandler: { error in
-                print(error)
-                if self.weekMenu.isEmpty {
-                    // TODO: Handle error
-                    print(error)
-                } else {
-                    self.updateUI()
-                }
+                self.updateUI(error: error)
                 completionHandler(.Failed)
             })
         }
     }
     
     
-    //    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-    //
-    //    }
+    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        var insets = defaultMarginInsets
+        insets.top = 14
+        return insets
+    }
 }
