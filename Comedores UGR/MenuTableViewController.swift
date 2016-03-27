@@ -8,15 +8,13 @@
 
 import UIKit
 
-// TODO: refresh data
 // TODO: Watch glance
-// TODO: Improve UI
 // TODO: Localization
 // TODO: Add info and contact screen
-// TODO: Highlight today's menu
 // TODO: Icon
 // TODO: Launch screen
-class MenuTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+// TODO: Scroll to make today's menu visible on tableView reload
+class MenuTableViewController: UITableViewController {
     
     let fetcher = WeekMenuFetcher()
     
@@ -36,35 +34,53 @@ class MenuTableViewController: UIViewController, UITableViewDelegate, UITableVie
             NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: "weekMenu")
         }
     }
-    
-    @IBOutlet var tableView: UITableView!
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
+        tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
         
-        fetcher.fetchMenuAsync(completionHandler: { menu in
-            self.weekMenu = menu
-            mainQueue {
-                self.tableView.reloadData()
-            }
-        }, errorHandler: { error in
-            // TODO: Handle error
-            print(error)
-        })
+        refreshControl = UIRefreshControl()
+        refreshControl!.addTarget(self, action: #selector(fetchData), forControlEvents: .ValueChanged)
+        
+        fetchData()
+    }
+    
+    
+    func fetchData() {
+        if fetcher.isFetching == false {
+            fetcher.fetchMenuAsync(completionHandler: { menu in
+                self.weekMenu = menu
+                mainQueue {
+                    self.refreshControl?.endRefreshing()
+                    self.tableView.reloadData()
+                }
+            }, errorHandler: { error in
+                mainQueue {
+                    self.refreshControl?.endRefreshing()
+                }
+                // TODO: Handle error
+                print(error)
+            })
+        }
+    }
+    
+    
+    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+        
     }
     
     
     // MARK: UITableViewDelegate and UITableViewDataSource
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return weekMenu.count
     }
     
 
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell
         cell.configure(menu: weekMenu[indexPath.row])
         return cell

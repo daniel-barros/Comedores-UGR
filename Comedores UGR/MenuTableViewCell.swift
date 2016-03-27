@@ -17,6 +17,10 @@ class MenuTableViewCell: UITableViewCell {
     @IBOutlet weak var dishLabel2: UILabel!
     @IBOutlet weak var dishLabel3: UILabel!
     
+    private var dateLabels: [UILabel!] {
+        return [monthLabel, dayNumberLabel, dayNameLabel]
+    }
+    
     func configure(menu menu: DayMenu) {
         monthLabel.text = menu.month
         dayNumberLabel.text = menu.dayNumber
@@ -25,15 +29,19 @@ class MenuTableViewCell: UITableViewCell {
         dishLabel2.text = menu.dishes.second
         dishLabel3.text = menu.dishes.third
         
-        // TODO: Use proper colors and font weights
         if menu.isTodayMenu {
-            monthLabel.textColor = UIColor.redColor()
-            dayNumberLabel.textColor = UIColor.redColor()
-            dayNameLabel.textColor = UIColor.redColor()
+            dateLabels.forEach {
+                $0.textColor = UIColor.customRedColor()
+                let fontWeight = $0 == dayNumberLabel ? UIFontWeightLight : UIFontWeightMedium
+                $0.font = UIFont.systemFontOfSize($0.font.pointSize, weight: fontWeight)
+            }
         } else {
-            monthLabel.textColor = UIColor.blackColor()
-            dayNumberLabel.textColor = UIColor.blackColor()
-            dayNameLabel.textColor = UIColor.blackColor()
+            dateLabels.forEach {
+                $0.textColor = UIColor.blackColor()
+                let fontWeight = $0 == dayNumberLabel ? UIFontWeightLight : UIFontWeightRegular
+                $0.font = UIFont.systemFontOfSize($0.font.pointSize, weight: fontWeight)
+            }
         }
     }
 }
+

@@ -10,13 +10,14 @@ import Foundation
 import HTMLReader
 
 
-struct WeekMenuFetcher {
+class WeekMenuFetcher {
     
     private static let url = NSURL(string: "http://comedoresugr.tcomunica.org")!
     
+    var isFetching = false
     
     func fetchMenuAsync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: ErrorType -> ()) {
-        
+        isFetching = true
         NSURLSession.sharedSession().dataTaskWithURL(WeekMenuFetcher.url, completionHandler: {
             data, response, error in
             
@@ -26,11 +27,16 @@ struct WeekMenuFetcher {
             } else if let error = error {
                 errorHandler(error)
             }
+            self.isFetching = false
         }).resume()
     }
     
     
     func fetchMenuSync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: ErrorType -> ()) {
+        isFetching = true
+        defer {
+            isFetching = false
+        }
         do {
             let htmlString = try String(contentsOfURL: WeekMenuFetcher.url, encoding: NSISOLatin1StringEncoding)
             let menu = parseHTML(htmlString)
