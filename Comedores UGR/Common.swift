@@ -35,3 +35,20 @@ enum QueueQualityOfService {
 func concurrentQueue(qos: QueueQualityOfService, closure: dispatch_block_t) {
     dispatch_async(dispatch_get_global_queue(qos.GCDValue, 0), closure)
 }
+
+
+extension Array {
+    var second: Generator.Element? {
+        guard count >= 2 else {
+            return nil
+        }
+        return self[1]
+    }
+    
+    var third: Generator.Element? {
+        guard count >= 3 else {
+            return nil
+        }
+        return self[2]
+    }
+}

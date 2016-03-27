@@ -14,15 +14,15 @@
 		3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D441C90A1360095E395 /* WeekMenuFetcher.swift */; };
 		336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
-		336E35D51CA5B10800093C3C /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */; };
 		33837D311C9066540095E395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D301C9066540095E395 /* AppDelegate.swift */; };
 		33837D331C9066540095E395 /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D321C9066540095E395 /* MenuTableViewController.swift */; };
 		33837D361C9066540095E395 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33837D341C9066540095E395 /* Main.storyboard */; };
 		33837D381C9066540095E395 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33837D371C9066540095E395 /* Assets.xcassets */; };
 		33837D3B1C9066540095E395 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33837D391C9066540095E395 /* LaunchScreen.storyboard */; };
 		33837D451C90A1360095E395 /* WeekMenuFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D441C90A1360095E395 /* WeekMenuFetcher.swift */; };
-		33BBA7CC1CA70F28009435C9 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33BBA7CB1CA70F28009435C9 /* MenuTableViewCell.swift */; };
-		33C7905A1CA55EE1008ACFF2 /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */; };
+		33A9EA9B1CA77DE4004E9645 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EA9A1CA77DE4004E9645 /* MenuTableViewCell.swift */; };
+		33A9EA9D1CA77FE8004E9645 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EA9C1CA77FE8004E9645 /* Common.swift */; };
+		33A9EA9E1CA77FE8004E9645 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EA9C1CA77FE8004E9645 /* Common.swift */; };
 		A04F0F94A2C3F9F7B0DB509E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45D3C10D18E5E1925E17412 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,8 +67,8 @@
 		33837D3A1C9066540095E395 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		33837D3C1C9066540095E395 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33837D441C90A1360095E395 /* WeekMenuFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekMenuFetcher.swift; sourceTree = "<group>"; };
-		33BBA7CB1CA70F28009435C9 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
-		33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
+		33A9EA9A1CA77DE4004E9645 /* MenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuTableViewCell.swift; sourceTree = "<group>"; };
+		33A9EA9C1CA77FE8004E9645 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		7E6BA74AD7A8B0D41EE9405E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B45D3C10D18E5E1925E17412 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B679D0C5174D735F49427568 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -110,7 +110,7 @@
 			children = (
 				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
 				336E35D11CA5AECA00093C3C /* DayMenu.swift */,
-				33C790591CA55EE1008ACFF2 /* GlobalFunctions.swift */,
+				33A9EA9C1CA77FE8004E9645 /* Common.swift */,
 			);
 			name = Common;
 			path = "Comedores UGR";
@@ -143,7 +143,7 @@
 				3303C0C21CA5A398006363AD /* Comedores UGR.entitlements */,
 				33837D301C9066540095E395 /* AppDelegate.swift */,
 				33837D321C9066540095E395 /* MenuTableViewController.swift */,
-				33BBA7CB1CA70F28009435C9 /* MenuTableViewCell.swift */,
+				33A9EA9A1CA77DE4004E9645 /* MenuTableViewCell.swift */,
 				33837D341C9066540095E395 /* Main.storyboard */,
 				33837D371C9066540095E395 /* Assets.xcassets */,
 				33837D391C9066540095E395 /* LaunchScreen.storyboard */,
@@ -337,7 +337,7 @@
 			files = (
 				3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */,
 				336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */,
-				336E35D51CA5B10800093C3C /* GlobalFunctions.swift in Sources */,
+				33A9EA9E1CA77FE8004E9645 /* Common.swift in Sources */,
 				3303C0B51CA59FFC006363AD /* TodayViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,10 +346,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33A9EA9D1CA77FE8004E9645 /* Common.swift in Sources */,
 				336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */,
-				33BBA7CC1CA70F28009435C9 /* MenuTableViewCell.swift in Sources */,
+				33A9EA9B1CA77DE4004E9645 /* MenuTableViewCell.swift in Sources */,
 				33837D331C9066540095E395 /* MenuTableViewController.swift in Sources */,
-				33C7905A1CA55EE1008ACFF2 /* GlobalFunctions.swift in Sources */,
 				33837D451C90A1360095E395 /* WeekMenuFetcher.swift in Sources */,
 				33837D311C9066540095E395 /* AppDelegate.swift in Sources */,
 			);

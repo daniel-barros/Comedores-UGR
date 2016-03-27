@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="23v-rq-iFT">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="23v-rq-iFT">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -14,91 +14,101 @@
                         <viewControllerLayoutGuide type="bottom" id="mYn-1m-Otk"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="aEZ-5a-nqS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JjZ-XF-iu2">
-                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                                 <items>
                                     <navigationItem title="Menú Comedores UGR" id="gay-fC-18N"/>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="b8s-Xs-RZp">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="150" id="TyD-Lt-lfa" customClass="MenuTableViewCell" customModule="Comedores_UGR" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="150"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" rowHeight="144" id="5at-2h-qOE" customClass="MenuTableViewCell">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="144"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TyD-Lt-lfa" id="SLg-of-1aZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="149.5"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5at-2h-qOE" id="x5v-KA-WLI">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="143.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="M1K-I6-OOK">
-                                                    <rect key="frame" x="10" y="32" width="66" height="86"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="qnt-tv-boS">
+                                                    <rect key="frame" x="14" y="14" width="345" height="116"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Marzo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hc9-6L-BWP">
-                                                            <rect key="frame" x="14" y="0.0" width="39" height="17"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="14" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1eB-Oh-4Fg">
-                                                            <rect key="frame" x="13" y="17" width="41" height="49"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="light" pointSize="40"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Lunes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="PBD-c3-AdC">
-                                                            <rect key="frame" x="10" y="65" width="48" height="21"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
-                                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="lastBaseline" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="o8K-LE-Tis">
+                                                            <rect key="frame" x="0.0" y="0.0" width="345" height="24"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Marzo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="aa2-Cd-3It">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="74" height="18"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="74" id="aTo-Id-Fug"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arroz Montañés" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yyV-Gt-bmd">
+                                                                    <rect key="frame" x="102" y="0.0" width="243" height="18"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="cf0-qt-pno">
+                                                            <rect key="frame" x="0.0" y="24" width="345" height="68"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwO-MG-pBR">
+                                                                    <rect key="frame" x="0.0" y="9" width="74" height="51"/>
+                                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="42"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fp9-8J-5qP">
+                                                                    <rect key="frame" x="102" y="16" width="243" height="36"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="firstBaseline" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="4KM-Vw-M7N">
+                                                            <rect key="frame" x="0.0" y="92" width="345" height="24"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lunes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ttc-or-hJr">
+                                                                    <rect key="frame" x="0.0" y="6" width="74" height="18"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pan, Vino Tinto y Manzana" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O8z-sX-hbZ">
+                                                                    <rect key="frame" x="102" y="6" width="243" height="18"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="66" id="O6I-ah-9mA"/>
-                                                        <constraint firstAttribute="height" constant="86" id="Rr7-iG-KJi"/>
+                                                        <constraint firstItem="TwO-MG-pBR" firstAttribute="width" secondItem="aa2-Cd-3It" secondAttribute="width" id="RJ6-vq-jev"/>
+                                                        <constraint firstItem="ttc-or-hJr" firstAttribute="width" secondItem="aa2-Cd-3It" secondAttribute="width" id="zRF-Y1-vI1"/>
                                                     </constraints>
                                                 </stackView>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2sC-5n-Zng" userLabel="Separator">
-                                                    <rect key="frame" x="86" y="10" width="0.5" height="129.5"/>
-                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="0.5" id="Iqr-oE-REK"/>
-                                                    </constraints>
-                                                </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="64l-fi-qaZ">
-                                                    <rect key="frame" x="100" y="10" width="416.5" height="129.5"/>
-                                                    <string key="text">Arroz Montañés
-
-Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas
-
-Pan, Vino Tinto y Manzana</string>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="M1K-I6-OOK" secondAttribute="bottom" constant="10" id="2ZK-9G-qJf"/>
-                                                <constraint firstItem="64l-fi-qaZ" firstAttribute="top" secondItem="2sC-5n-Zng" secondAttribute="top" id="34w-dJ-622"/>
-                                                <constraint firstItem="2sC-5n-Zng" firstAttribute="leading" secondItem="M1K-I6-OOK" secondAttribute="trailing" constant="10" id="Og2-hg-aS7"/>
-                                                <constraint firstItem="M1K-I6-OOK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="SLg-of-1aZ" secondAttribute="top" constant="10" id="PS9-yt-kdW"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="64l-fi-qaZ" secondAttribute="trailing" constant="10" id="fTu-Mo-gD0"/>
-                                                <constraint firstItem="64l-fi-qaZ" firstAttribute="leading" secondItem="2sC-5n-Zng" secondAttribute="trailing" constant="14" id="iid-P3-5ac"/>
-                                                <constraint firstItem="M1K-I6-OOK" firstAttribute="leading" secondItem="SLg-of-1aZ" secondAttribute="leading" constant="10" id="l1X-tZ-DUd"/>
-                                                <constraint firstAttribute="bottom" secondItem="2sC-5n-Zng" secondAttribute="bottom" constant="10" id="n0w-qr-gSe"/>
-                                                <constraint firstItem="2sC-5n-Zng" firstAttribute="top" secondItem="SLg-of-1aZ" secondAttribute="top" constant="10" id="uMo-6b-MyB"/>
-                                                <constraint firstItem="64l-fi-qaZ" firstAttribute="bottom" secondItem="2sC-5n-Zng" secondAttribute="bottom" id="uwX-bZ-fut"/>
-                                                <constraint firstItem="M1K-I6-OOK" firstAttribute="centerY" secondItem="SLg-of-1aZ" secondAttribute="centerY" id="xce-Ub-5ar"/>
+                                                <constraint firstItem="qnt-tv-boS" firstAttribute="leading" secondItem="x5v-KA-WLI" secondAttribute="leading" constant="14" id="W0Y-af-gwv"/>
+                                                <constraint firstAttribute="bottom" secondItem="qnt-tv-boS" secondAttribute="bottom" constant="14" id="Zdv-Kh-aL7"/>
+                                                <constraint firstAttribute="trailing" secondItem="qnt-tv-boS" secondAttribute="trailing" constant="16" id="oBv-td-hHq"/>
+                                                <constraint firstItem="qnt-tv-boS" firstAttribute="top" secondItem="x5v-KA-WLI" secondAttribute="top" constant="14" id="zXR-Yg-NsA"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="dayNameLabel" destination="PBD-c3-AdC" id="tLK-sD-KwU"/>
-                                            <outlet property="dayNumberLabel" destination="1eB-Oh-4Fg" id="Qek-97-Qgp"/>
-                                            <outlet property="dishesLabel" destination="64l-fi-qaZ" id="dCM-rl-kkQ"/>
-                                            <outlet property="monthLabel" destination="hc9-6L-BWP" id="uls-Jf-NUI"/>
+                                            <outlet property="dayNameLabel" destination="ttc-or-hJr" id="nKE-q7-6US"/>
+                                            <outlet property="dayNumberLabel" destination="TwO-MG-pBR" id="CbX-M5-LkM"/>
+                                            <outlet property="dishLabel1" destination="yyV-Gt-bmd" id="tQh-Lm-iUb"/>
+                                            <outlet property="dishLabel2" destination="Fp9-8J-5qP" id="KlN-Yj-fwF"/>
+                                            <outlet property="dishLabel3" destination="O8z-sX-hbZ" id="wNe-pE-HzR"/>
+                                            <outlet property="monthLabel" destination="aa2-Cd-3It" id="hip-2i-1dd"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -119,6 +129,7 @@ Pan, Vino Tinto y Manzana</string>
                             <constraint firstAttribute="trailing" secondItem="b8s-Xs-RZp" secondAttribute="trailing" id="sAe-rB-CEn"/>
                         </constraints>
                     </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="tableView" destination="b8s-Xs-RZp" id="JMh-Sz-B3F"/>
                     </connections>
