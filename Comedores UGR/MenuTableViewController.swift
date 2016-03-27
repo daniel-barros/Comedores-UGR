@@ -19,7 +19,7 @@ class MenuTableViewController: UITableViewController {
     let fetcher = WeekMenuFetcher()
     
     var weekMenu: [DayMenu] = {
-        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey("weekMenu"),
+        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey(DefaultsWeekMenuKey),
             menu = NSKeyedUnarchiver.unarchiveObjectWithData(archivedMenu) as? [DayMenu] {
             return menu
         } else {
@@ -31,7 +31,8 @@ class MenuTableViewController: UITableViewController {
                 return
             }
             let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(weekMenu)
-            NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: "weekMenu")
+            NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: DefaultsWeekMenuKey)
+            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdatedKey)
         }
     }
 

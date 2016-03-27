@@ -13,7 +13,6 @@ import NotificationCenter
 // TODO: Differentiate between a connection error and no menu today
 // TODO: Create a Tomorrow Menu widget too
 // TODO: Fix Autolayout constraints error
-// TODO: Tap on widget should open the app
 class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var label: UILabel!
@@ -21,7 +20,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private let fetcher = WeekMenuFetcher()
     
     var weekMenu: [DayMenu] = {
-        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey("weekMenu"),
+        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey(DefaultsWeekMenuKey),
             menu = NSKeyedUnarchiver.unarchiveObjectWithData(archivedMenu) as? [DayMenu] {
             return menu
         } else {
@@ -33,7 +32,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 return
             }
             let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(weekMenu)
-            NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: "weekMenu")
+            NSUserDefaults.standardUserDefaults().setObject(archivedMenu, forKey: DefaultsWeekMenuKey)
+            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdatedKey)
         }
     }
     
@@ -43,8 +43,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
+    var alreadyFetchedToday: Bool {
+        if let lastUpdated = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdatedKey) as? NSDate where NSCalendar.currentCalendar().isDateInToday(lastUpdated) {
+            return true
+        }
+        return false
+    }
+    
+    
     private func updateUI() {
-        label.text = weekMenu.todayMenu?.allDishes ?? "No Menu"
+        label.text = weekMenu.todayMenu?.allDishes ?? "No Hay Menú"
     }
     
     
@@ -55,18 +63,26 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         
-        // TODO: Sure you should to it synchronously here?
-        fetcher.fetchMenuSync(completionHandler: { menu in
-            self.weekMenu = menu
-            self.updateUI()
-            completionHandler(.NewData)
+        if alreadyFetchedToday {
+            updateUI()
+            completionHandler(.NoData)
+        } else {
+            // TODO: Sure you should to it synchronously here?
+            fetcher.fetchMenuSync(completionHandler: { menu in
+                self.weekMenu = menu
+                self.updateUI()
+                completionHandler(.NewData)
             }, errorHandler: { error in
-                // TODO: Handle error
                 print(error)
+                if self.weekMenu.isEmpty {
+                    // TODO: Handle error
+                    print(error)
+                } else {
+                    self.updateUI()
+                }
                 completionHandler(.Failed)
-        })
-        
-        // TODO: If there's no update required, use NCUpdateResult.NoData
+            })
+        }
     }
     
     
