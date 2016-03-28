@@ -10,3 +10,7 @@
 "Loading..." = "Cargando...";
 "No Connection" = "Sin Conexión";
 "Error" = "Error";
+"No Internet Connection" = "No hay conexión a internet";
+"Uknown error. Please try again later." = "Error desconocido. Inténtalo de nuevo.";
+"No data to show. Check again later." = "No hay datos que mostrar. Vuelve más tarde.";
+"Last Update:" = "Últ. Actualización:";

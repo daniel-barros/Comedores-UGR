@@ -14,8 +14,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LastUpdateCell" rowHeight="44" id="S9p-1G-DQz" customClass="LastUpdateTableViewCell" customModule="Comedores_UGR" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S9p-1G-DQz" id="bZG-wp-dO3">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Last Update: Today at 4:13 PM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIq-0y-viC">
+                                            <rect key="frame" x="82" y="14" width="210" height="15.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="fIq-0y-viC" firstAttribute="centerX" secondItem="bZG-wp-dO3" secondAttribute="centerX" id="AHy-vN-Zj5"/>
+                                        <constraint firstItem="fIq-0y-viC" firstAttribute="top" secondItem="bZG-wp-dO3" secondAttribute="top" constant="14" id="dCR-0i-5V1"/>
+                                        <constraint firstAttribute="bottom" secondItem="fIq-0y-viC" secondAttribute="bottom" constant="14" id="jH3-8m-8ro"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="fIq-0y-viC" id="Ka8-Nk-MLA"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="xSv-hp-2u9" customClass="MenuTableViewCell" customModule="Comedores_UGR" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="144"/>
+                                <rect key="frame" x="0.0" y="136" width="375" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xSv-hp-2u9" id="i0m-YW-fs6">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="143.5"/>
@@ -100,8 +124,8 @@
                                     <outlet property="monthLabel" destination="qF7-MR-PXg" id="Vbf-UO-pQg"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoConnectionCell" rowHeight="44" id="pfg-uu-GiD">
-                                <rect key="frame" x="0.0" y="236" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ErrorCell" rowHeight="44" id="pfg-uu-GiD" customClass="ErrorTableViewCell" customModule="Comedores_UGR" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="280" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfg-uu-GiD" id="pWL-AG-PRe">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -120,48 +144,9 @@
                                         <constraint firstAttribute="bottom" secondItem="cIg-k6-fGZ" secondAttribute="bottom" constant="14" id="udz-le-pfE"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UnknownErrorCell" rowHeight="44" id="7Oj-wh-Zsv">
-                                <rect key="frame" x="0.0" y="280" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Oj-wh-Zsv" id="H95-wI-jvc">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Uknown error. Please try again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uvB-nv-O40">
-                                            <rect key="frame" x="64.5" y="14" width="247" height="15.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="uvB-nv-O40" firstAttribute="top" secondItem="H95-wI-jvc" secondAttribute="top" constant="14" id="Ovl-mj-V5m"/>
-                                        <constraint firstItem="uvB-nv-O40" firstAttribute="centerX" secondItem="H95-wI-jvc" secondAttribute="centerX" id="gOS-sv-pHX"/>
-                                        <constraint firstAttribute="bottom" secondItem="uvB-nv-O40" secondAttribute="bottom" constant="14" id="v46-A2-gc3"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoDataCell" rowHeight="44" id="AmZ-XB-CHK">
-                                <rect key="frame" x="0.0" y="324" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AmZ-XB-CHK" id="GPp-OO-zC7">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="No data to show. Check again later." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CVb-1F-CTA">
-                                            <rect key="frame" x="67.5" y="14" width="241" height="15.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="CVb-1F-CTA" secondAttribute="bottom" constant="14" id="HM6-lL-J41"/>
-                                        <constraint firstItem="CVb-1F-CTA" firstAttribute="top" secondItem="GPp-OO-zC7" secondAttribute="top" constant="14" id="Okb-xS-8mW"/>
-                                        <constraint firstItem="CVb-1F-CTA" firstAttribute="centerX" secondItem="GPp-OO-zC7" secondAttribute="centerX" id="ais-M0-goF"/>
-                                    </constraints>
-                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="label" destination="cIg-k6-fGZ" id="AdD-GQ-LHD"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

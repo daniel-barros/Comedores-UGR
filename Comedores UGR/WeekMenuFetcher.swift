@@ -107,7 +107,6 @@ extension String {
     }
     
     
-    // TODO: Get encoding to work properly instead of doing this!
     var stringByEscapingStrangeCharacters: String {
         return stringByReplacingOccurrencesOfString("Ã¡", withString: "á")
             .stringByReplacingOccurrencesOfString("Ã³", withString: "ó")

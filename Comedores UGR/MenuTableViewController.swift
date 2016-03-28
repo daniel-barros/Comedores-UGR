@@ -8,10 +8,7 @@
 
 import UIKit
 
-// TODO: Watch glance
-// TODO: Add info and contact screen
-// TODO: Scroll to make today's menu visible on tableView reload
-// TOOD: Show last updated
+
 class MenuTableViewController: UITableViewController {
     
     let fetcher = WeekMenuFetcher()
@@ -30,12 +27,16 @@ class MenuTableViewController: UITableViewController {
 
     var error: FetcherError?
     
+    private let lastUpdateRowHeight: CGFloat = 46
     
     override func viewDidLoad() {
         super.viewDidLoad()
                 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
+        if weekMenu.isEmpty == false {
+            tableView.contentOffset.y = lastUpdateRowHeight + 0.45   // Hides "last update" row
+        }
         
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(fetchData), forControlEvents: .ValueChanged)
@@ -48,16 +49,28 @@ class MenuTableViewController: UITableViewController {
         if fetcher.isFetching == false {
             fetcher.fetchMenuAsync(completionHandler: { menu in
                 self.error = nil
+                let menuChanged = menu.first?.processedDate != self.weekMenu.first?.processedDate && menu.first?.processedDate != nil
                 self.weekMenu = menu
                 mainQueue {
                     self.refreshControl?.endRefreshing()
-                    self.tableView.reloadData()
+                    if menuChanged {
+                        self.tableView.reloadData()
+                    } else {
+                        self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
+                    }
+                    if menu.isEmpty == false {
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: !menuChanged)
+                    }
                 }
             }, errorHandler: { error in
                 self.error = error
                 mainQueue {
                     self.refreshControl?.endRefreshing()
-                    self.tableView.reloadData()
+                    if self.weekMenu.isEmpty {
+                        self.tableView.reloadData()
+                    } else {
+                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
+                    }
                 }
             })
         }
@@ -75,34 +88,40 @@ class MenuTableViewController: UITableViewController {
         if weekMenu.isEmpty {
             return 1
         }
-        return weekMenu.count
+        return weekMenu.count + 1
     }
     
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if weekMenu.isEmpty == false {
-            let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell
-            cell.configure(menu: weekMenu[indexPath.row])
-            return cell
-        } else {
-            let identifier: String
-            if let error = error {
-                switch error {
-                case .NoInternetConnection:
-                    identifier = "NoConnectionCell"
-                case .Other:
-                    identifier = "UnknownErrorCell"
-                }
+            if indexPath.row == 0 {
+                let cell = tableView.dequeueReusableCellWithIdentifier("LastUpdateCell", forIndexPath: indexPath) as! LastUpdateTableViewCell
+                cell.configure()
+                return cell
             } else {
-                identifier = "NoDataCell"
+                let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell
+                cell.configure(menu: weekMenu[indexPath.row - 1])
+                return cell
             }
-            return tableView.dequeueReusableCellWithIdentifier(identifier, forIndexPath: indexPath)
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("ErrorCell", forIndexPath: indexPath) as! ErrorTableViewCell
+            cell.configure(error: error)
+            return cell
         }
+    }
+    
+    
+    // MARK: UIScrollViewDelegate
+    
+    // Avoids "last update" row scrolling down to first dish row
+    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
+        let offset = navigationController!.navigationBar.frame.height + UIApplication.sharedApplication().statusBarFrame.height
         
-        
-        
+        if weekMenu.isEmpty == false && tableView.contentOffset.y < lastUpdateRowHeight - offset {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
+        }
     }
 }
 

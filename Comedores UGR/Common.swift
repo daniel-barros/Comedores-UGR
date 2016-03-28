@@ -52,3 +52,8 @@ extension Array {
         return self[2]
     }
 }
+
+
+func NSLocalizedString(string: String) -> String {
+    return NSLocalizedString(string, comment: "")
+}

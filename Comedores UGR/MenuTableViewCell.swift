@@ -21,7 +21,6 @@ class MenuTableViewCell: UITableViewCell {
         return [monthLabel, dayNumberLabel, dayNameLabel]
     }
     
-    
     func configure(menu menu: DayMenu) {
         monthLabel.text = menu.month
         dayNumberLabel.text = menu.dayNumber

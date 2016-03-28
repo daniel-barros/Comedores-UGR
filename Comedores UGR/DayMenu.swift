@@ -10,7 +10,7 @@ import Foundation
 
 
 class DayMenu: NSObject, NSCoding {
-    let date: String    // TODO: Use NSDate instead?
+    let date: String
     let dishes: [String]
     
     init(date: String, dishes: [String]) {
@@ -97,7 +97,7 @@ class DayMenu: NSObject, NSCoding {
 }
 
 
-extension CollectionType where Self: Indexable, Index == Int, Generator.Element == DayMenu {
+extension CollectionType where Generator.Element == DayMenu {
     
     var todayMenu: DayMenu? {
         for menu in self {
@@ -106,14 +106,6 @@ extension CollectionType where Self: Indexable, Index == Int, Generator.Element 
             }
         }
         return nil
-
-//        // In case this fails, use current day of the week and collection index
-//        let weekDay = calendar.component(.Weekday, fromDate: NSDate())
-//        let index = weekDay - 2     // Mon is weekday 2, supposed to have index 0 in collection
-//        if index < 0 || index >= self.count {
-//            return nil
-//        }
-//        return self[index]
     }
 }
 

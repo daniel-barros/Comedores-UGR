@@ -9,8 +9,6 @@
 import UIKit
 import NotificationCenter
 
-// TODO: Create a Tomorrow Menu widget too
-// TODO: Hide from NC in some cases (Sundays, holidays?): use setHasContent(_:forWidgetWithBundleIdentifier:) and a local notification that triggers the call in the parent app
 // TODO: Fix Autolayout constraints error
 class TodayViewController: UIViewController, NCWidgetProviding {
     
@@ -48,16 +46,16 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if let dishes = weekMenu.todayMenu?.allDishes {
             label.text = dishes
         } else if alreadyFetchedToday == false {
-            label.text = NSLocalizedString("Loading...", comment: "")
+            label.text = NSLocalizedString("Loading...")
         } else if let error = error {
             switch error {
             case .NoInternetConnection:
-                label.text = NSLocalizedString("No Connection", comment: "")
+                label.text = NSLocalizedString("No Connection")
             case .Other:
-                label.text = NSLocalizedString("Error", comment: "")
+                label.text = NSLocalizedString("Error")
             }
         } else {
-            label.text = NSLocalizedString("No Menu", comment: "")
+            label.text = NSLocalizedString("No Menu")
 //            label.text = weekMenu.first?.allDishes
         }
     }
