@@ -11,6 +11,7 @@ import UIKit
 // TODO: Watch glance
 // TODO: Add info and contact screen
 // TODO: Scroll to make today's menu visible on tableView reload
+// TOOD: Show last updated
 class MenuTableViewController: UITableViewController {
     
     let fetcher = WeekMenuFetcher()
