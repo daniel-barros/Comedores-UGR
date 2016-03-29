@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MenuTableViewController.swift
 //  Comedores UGR
 //
 //  Created by Daniel Barros López on 3/9/16.

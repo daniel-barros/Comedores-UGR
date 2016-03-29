@@ -19,7 +19,7 @@ enum FetcherError: ErrorType {
 }
 
 
-/// Fetching the menu saves it to user defaults under the key DefaultsWeekMenuKey.
+/// Fetching the menu saves it to user defaults under the key DefaultsWeekMenuKey (for sharing with widget).
 /// It also records the date of the last update under the key DefaultsLastUpdateKey
 class WeekMenuFetcher {
     

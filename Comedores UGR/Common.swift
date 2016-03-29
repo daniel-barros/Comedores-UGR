@@ -1,5 +1,5 @@
 //
-//  GlobalFunctions.swift
+//  Common.swift
 //
 //  Created by Daniel Barros López on 1/16/16.
 //  Copyright © 2016 Daniel Barros López. All rights reserved.
