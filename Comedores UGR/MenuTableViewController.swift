@@ -41,7 +41,7 @@ class MenuTableViewController: UITableViewController {
         if fetcher.isFetching == false {
             fetcher.fetchMenu(completionHandler: { menu in
                 self.error = nil
-                let menuChanged = self.weekMenu.containsSameWeekMenuAs(menu)
+                let menuChanged = !self.weekMenu.containsSameWeekMenuAs(menu)
                 self.weekMenu = menu
                 mainQueue {
                     self.refreshControl!.endRefreshing()

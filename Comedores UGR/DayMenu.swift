@@ -110,7 +110,7 @@ extension CollectionType where Generator.Element == DayMenu {
     
     
     func containsSameWeekMenuAs(menuCollection: Self) -> Bool {
-        return self.first?.processedDate != menuCollection.first?.processedDate && self.first?.processedDate != nil
+        return self.first?.processedDate == menuCollection.first?.processedDate && self.first?.processedDate != nil
     }
 }
 
