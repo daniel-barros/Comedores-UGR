@@ -107,6 +107,11 @@ extension CollectionType where Generator.Element == DayMenu {
         }
         return nil
     }
+    
+    
+    func containsSameWeekMenuAs(menuCollection: Self) -> Bool {
+        return self.first?.processedDate != menuCollection.first?.processedDate && self.first?.processedDate != nil
+    }
 }
 
 private let monthsDict = ["Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,

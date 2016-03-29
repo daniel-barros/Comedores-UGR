@@ -10,17 +10,29 @@ import Foundation
 import HTMLReader
 
 
+let DefaultsWeekMenuKey = "DefaultsWeekMenuKey"
+let DefaultsLastUpdateKey = "DefaultsLastUpdatedKey"
+
 enum FetcherError: ErrorType {
     case NoInternetConnection
     case Other
 }
 
 
+/// Fetching the menu saves it to user defaults under the key DefaultsWeekMenuKey.
+/// It also records the date of the last update under the key DefaultsLastUpdateKey
 class WeekMenuFetcher {
     
     private static let url = NSURL(string: "http://comedoresugr.tcomunica.org")!
     
     var isFetching = false
+    
+    var hasAlreadyFetchedToday: Bool {
+        if let lastUpdated = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdateKey) as? NSDate where NSCalendar.currentCalendar().isDateInToday(lastUpdated) {
+            return true
+        }
+        return false
+    }
     
     func fetchMenuAsync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
         isFetching = true
@@ -29,6 +41,8 @@ class WeekMenuFetcher {
             
             if let data = data, htmlString = String(data: data, encoding: NSISOLatin1StringEncoding) {
                 let menu = self.parseHTML(htmlString)
+                NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
+                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
                 completionHandler(menu)
             } else if let error = error {
                 if error.code == NSURLErrorNotConnectedToInternet {
@@ -50,6 +64,8 @@ class WeekMenuFetcher {
         do {
             let htmlString = try String(contentsOfURL: WeekMenuFetcher.url, encoding: NSISOLatin1StringEncoding)
             let menu = parseHTML(htmlString)
+            NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
+            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
             completionHandler(menu)
         } catch {
             if (error as NSError).code == NSURLErrorNotConnectedToInternet {

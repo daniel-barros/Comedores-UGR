@@ -13,7 +13,7 @@ class LastUpdateTableViewCell: UITableViewCell {
     @IBOutlet weak var label: UILabel!
     
     func configure() {
-        if let date = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdatedKey) as? NSDate {
+        if let date = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdateKey) as? NSDate {
             let formatter = NSDateFormatter()
             formatter.dateStyle = .ShortStyle
             formatter.timeStyle = .ShortStyle

@@ -15,19 +15,11 @@ class MenuTableViewController: UITableViewController {
     
     var weekMenu: [DayMenu] = {
         return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? [DayMenu]()
-    }() {
-        didSet {
-            guard weekMenu.isEmpty == false else {
-                return
-            }
-            NSUserDefaults.standardUserDefaults().setMenu(weekMenu, forKey: DefaultsWeekMenuKey)
-            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdatedKey)
-        }
-    }
+    }()
 
     var error: FetcherError?
     
-    private let lastUpdateRowHeight: CGFloat = 46
+    private let lastUpdateRowHeight: CGFloat = 46.45
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +27,7 @@ class MenuTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
         if weekMenu.isEmpty == false {
-            tableView.contentOffset.y = lastUpdateRowHeight + 0.45   // Hides "last update" row
+            tableView.contentOffset.y = lastUpdateRowHeight   // Hides "last update" row
         }
         
         refreshControl = UIRefreshControl()
@@ -49,10 +41,10 @@ class MenuTableViewController: UITableViewController {
         if fetcher.isFetching == false {
             fetcher.fetchMenuAsync(completionHandler: { menu in
                 self.error = nil
-                let menuChanged = menu.first?.processedDate != self.weekMenu.first?.processedDate && menu.first?.processedDate != nil
+                let menuChanged = self.weekMenu.containsSameWeekMenuAs(menu)
                 self.weekMenu = menu
                 mainQueue {
-                    self.refreshControl?.endRefreshing()
+                    self.refreshControl!.endRefreshing()
                     if menuChanged {
                         self.tableView.reloadData()
                     } else {
@@ -65,7 +57,7 @@ class MenuTableViewController: UITableViewController {
             }, errorHandler: { error in
                 self.error = error
                 mainQueue {
-                    self.refreshControl?.endRefreshing()
+                    self.refreshControl!.endRefreshing()
                     if self.weekMenu.isEmpty {
                         self.tableView.reloadData()
                     } else {

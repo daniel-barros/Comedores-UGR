@@ -18,15 +18,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     var weekMenu: [DayMenu] = {
         return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? [DayMenu]()
-    }() {
-        didSet {
-            guard weekMenu.isEmpty == false else {
-                return
-            }
-            NSUserDefaults.standardUserDefaults().setMenu(weekMenu, forKey: DefaultsWeekMenuKey)
-            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdatedKey)
-        }
-    }
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +27,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
-    var alreadyFetchedToday: Bool {
-        if let lastUpdated = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdatedKey) as? NSDate where NSCalendar.currentCalendar().isDateInToday(lastUpdated) {
+    /// Loads week menu from user defaults.
+    /// Returns `true` if the menu changed.
+    private func updateMenu() -> Bool {
+        if let newMenu = NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
+            where weekMenu.containsSameWeekMenuAs(newMenu) == false {
+            weekMenu = newMenu
             return true
         }
         return false
@@ -45,7 +42,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private func updateUI(error error: FetcherError? = nil) {
         if let dishes = weekMenu.todayMenu?.allDishes {
             label.text = dishes
-        } else if alreadyFetchedToday == false {
+        } else if fetcher.hasAlreadyFetchedToday == false {
             label.text = NSLocalizedString("Loading...")
         } else if let error = error {
             switch error {
@@ -68,9 +65,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         
-        if alreadyFetchedToday {
-            updateUI()
-            completionHandler(.NoData)
+        if fetcher.hasAlreadyFetchedToday {
+            if updateMenu() {
+                updateUI()
+                completionHandler(.NewData)
+            } else {
+                updateUI()
+                completionHandler(.NoData)
+            }
         } else {
             // TODO: Sure you should to it synchronously here?
             fetcher.fetchMenuSync(completionHandler: { menu in
@@ -85,9 +87,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
-    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-        var insets = defaultMarginInsets
-        insets.top = 14
-        return insets
-    }
+//    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+//        var insets = defaultMarginInsets
+////        insets.top = 14
+//        return insets
+//    }
 }
