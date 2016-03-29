@@ -27,8 +27,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
-    /// Loads week menu from user defaults.
-    /// Returns `true` if the menu changed.
+    /// Updates `weekMenu` from current user defaults value.
+    /// Returns `true` if the menu changed, `false otherwise.
     private func updateMenu() -> Bool {
         if let newMenu = NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
             where weekMenu.containsSameWeekMenuAs(newMenu) == false {
@@ -58,10 +58,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
+    /// Opens parent app.
     @IBAction func openApp(sender: AnyObject) {
         extensionContext?.openURL(NSURL(string: "comedoresugr://")!, completionHandler: nil)
     }
     
+    
+    // MARK: NCWidgetProviding
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         
@@ -70,19 +73,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 updateUI()
                 completionHandler(.NewData)
             } else {
-                updateUI()
                 completionHandler(.NoData)
             }
         } else {
             // TODO: Sure you should to it synchronously here?
-            fetcher.fetchMenuSync(completionHandler: { menu in
-                self.weekMenu = menu
-                self.updateUI()
+            do {
+                weekMenu = try fetcher.fetchMenu()
+                updateUI()
                 completionHandler(.NewData)
-            }, errorHandler: { error in
-                self.updateUI(error: error)
+            } catch {
+                updateUI(error: (error as! FetcherError))
                 completionHandler(.Failed)
-            })
+            }
         }
     }
     

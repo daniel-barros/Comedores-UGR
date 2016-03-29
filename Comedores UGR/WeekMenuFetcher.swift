@@ -34,15 +34,16 @@ class WeekMenuFetcher {
         return false
     }
     
-    func fetchMenuAsync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
+    
+    /// Fetches week menu **asynchronously**.
+    func fetchMenu(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
         isFetching = true
         NSURLSession.sharedSession().dataTaskWithURL(WeekMenuFetcher.url, completionHandler: {
             data, response, error in
             
             if let data = data, htmlString = String(data: data, encoding: NSISOLatin1StringEncoding) {
                 let menu = self.parseHTML(htmlString)
-                NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
-                NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
+                self.persistMenu(menu)
                 completionHandler(menu)
             } else if let error = error {
                 if error.code == NSURLErrorNotConnectedToInternet {
@@ -56,22 +57,19 @@ class WeekMenuFetcher {
     }
     
     
-    func fetchMenuSync(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
-        isFetching = true
-        defer {
-            isFetching = false
-        }
+    /// Fetches week menu **synchronously**.
+    /// If it fails it throws an error of type `FetcherError`.
+    func fetchMenu() throws -> [DayMenu] {
         do {
             let htmlString = try String(contentsOfURL: WeekMenuFetcher.url, encoding: NSISOLatin1StringEncoding)
             let menu = parseHTML(htmlString)
-            NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
-            NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
-            completionHandler(menu)
+            persistMenu(menu)
+            return menu
         } catch {
             if (error as NSError).code == NSURLErrorNotConnectedToInternet {
-                errorHandler(.NoInternetConnection)
+                throw FetcherError.NoInternetConnection
             } else {
-                errorHandler(.Other)
+                throw FetcherError.Other
             }
         }
     }
@@ -105,6 +103,12 @@ class WeekMenuFetcher {
         }
         
         return weekMenu
+    }
+    
+    
+    private func persistMenu(menu: [DayMenu]) {
+        NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
     }
 }
 

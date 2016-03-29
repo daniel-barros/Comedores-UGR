@@ -39,7 +39,7 @@ class MenuTableViewController: UITableViewController {
     
     func fetchData() {
         if fetcher.isFetching == false {
-            fetcher.fetchMenuAsync(completionHandler: { menu in
+            fetcher.fetchMenu(completionHandler: { menu in
                 self.error = nil
                 let menuChanged = self.weekMenu.containsSameWeekMenuAs(menu)
                 self.weekMenu = menu
