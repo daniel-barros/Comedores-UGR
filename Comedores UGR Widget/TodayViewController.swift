@@ -16,13 +16,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     private let fetcher = WeekMenuFetcher()
     
-    var weekMenu: [DayMenu] = {
-        return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? [DayMenu]()
-    }()
+    var weekMenu = [DayMenu]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        weekMenu = NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? []
         updateUI()
     }
     
@@ -53,7 +52,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             }
         } else {
             label.text = NSLocalizedString("No Menu")
-//            label.text = weekMenu.first?.allDishes
         }
     }
     
