@@ -12,6 +12,15 @@
 		3303C0B81CA59FFC006363AD /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3303C0B61CA59FFC006363AD /* MainInterface.storyboard */; };
 		3303C0BC1CA59FFC006363AD /* Comedores UGR Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D441C90A1360095E395 /* WeekMenuFetcher.swift */; };
+		33276B411CABE72D00AE2721 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 33276B3F1CABE72D00AE2721 /* Interface.storyboard */; };
+		33276B431CABE72D00AE2721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33276B421CABE72D00AE2721 /* Assets.xcassets */; };
+		33276B4A1CABE72D00AE2721 /* Comedores UGR Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 33276B491CABE72D00AE2721 /* Comedores UGR Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		33276B511CABE72D00AE2721 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B501CABE72D00AE2721 /* InterfaceController.swift */; };
+		33276B531CABE72D00AE2721 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B521CABE72D00AE2721 /* ExtensionDelegate.swift */; };
+		33276B551CABE72D00AE2721 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B541CABE72D00AE2721 /* NotificationController.swift */; };
+		33276B571CABE72D00AE2721 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B561CABE72D00AE2721 /* GlanceController.swift */; };
+		33276B591CABE72D00AE2721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33276B581CABE72D00AE2721 /* Assets.xcassets */; };
+		33276B5D1CABE72D00AE2721 /* Comedores UGR Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 33276B3D1CABE72D00AE2721 /* Comedores UGR Watch.app */; };
 		336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		33808C2B1CA7D1A900AB4912 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33808C2E1CA7D1A900AB4912 /* Localizable.strings */; };
@@ -44,6 +53,20 @@
 			remoteGlobalIDString = 3303C0AF1CA59FFC006363AD;
 			remoteInfo = "Comedores UGR Widget";
 		};
+		33276B4B1CABE72D00AE2721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33837D251C9066540095E395 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33276B481CABE72D00AE2721;
+			remoteInfo = "Comedores UGR Watch Extension";
+		};
+		33276B5B1CABE72D00AE2721 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 33837D251C9066540095E395 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 33276B3C1CABE72C00AE2721;
+			remoteInfo = "Comedores UGR Watch";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -58,6 +81,28 @@
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33276B611CABE72D00AE2721 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				33276B4A1CABE72D00AE2721 /* Comedores UGR Watch Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33276B651CABE72D00AE2721 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				33276B5D1CABE72D00AE2721 /* Comedores UGR Watch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -69,6 +114,18 @@
 		3303C0C31CA5A3A6006363AD /* Comedores UGR Widget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Comedores UGR Widget.entitlements"; sourceTree = "<group>"; };
 		3321FB6A1CA7D98E00CCC5D9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3321FB6C1CA7D9BE00CCC5D9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33276B3D1CABE72D00AE2721 /* Comedores UGR Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Comedores UGR Watch.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33276B401CABE72D00AE2721 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		33276B421CABE72D00AE2721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33276B441CABE72D00AE2721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33276B491CABE72D00AE2721 /* Comedores UGR Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Comedores UGR Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33276B4F1CABE72D00AE2721 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		33276B501CABE72D00AE2721 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		33276B521CABE72D00AE2721 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		33276B541CABE72D00AE2721 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		33276B561CABE72D00AE2721 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
+		33276B581CABE72D00AE2721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		33276B5A1CABE72D00AE2721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		336E35D11CA5AECA00093C3C /* DayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMenu.swift; sourceTree = "<group>"; };
 		33808C251CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		33808C271CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -103,6 +160,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33276B461CABE72D00AE2721 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33837D2A1C9066540095E395 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -126,6 +190,38 @@
 			path = "Comedores UGR Widget";
 			sourceTree = "<group>";
 		};
+		33276B3E1CABE72D00AE2721 /* Comedores UGR Watch */ = {
+			isa = PBXGroup;
+			children = (
+				33276B3F1CABE72D00AE2721 /* Interface.storyboard */,
+				33276B421CABE72D00AE2721 /* Assets.xcassets */,
+				33276B441CABE72D00AE2721 /* Info.plist */,
+			);
+			path = "Comedores UGR Watch";
+			sourceTree = "<group>";
+		};
+		33276B4D1CABE72D00AE2721 /* Comedores UGR Watch Extension */ = {
+			isa = PBXGroup;
+			children = (
+				33276B501CABE72D00AE2721 /* InterfaceController.swift */,
+				33276B521CABE72D00AE2721 /* ExtensionDelegate.swift */,
+				33276B541CABE72D00AE2721 /* NotificationController.swift */,
+				33276B561CABE72D00AE2721 /* GlanceController.swift */,
+				33276B581CABE72D00AE2721 /* Assets.xcassets */,
+				33276B5A1CABE72D00AE2721 /* Info.plist */,
+				33276B4E1CABE72D00AE2721 /* Supporting Files */,
+			);
+			path = "Comedores UGR Watch Extension";
+			sourceTree = "<group>";
+		};
+		33276B4E1CABE72D00AE2721 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33276B4F1CABE72D00AE2721 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		336E35D41CA5B0FA00093C3C /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +242,8 @@
 				33837D2F1C9066540095E395 /* Comedores UGR */,
 				3303C0B31CA59FFC006363AD /* Comedores UGR Widget */,
 				336E35D41CA5B0FA00093C3C /* Common */,
+				33276B3E1CABE72D00AE2721 /* Comedores UGR Watch */,
+				33276B4D1CABE72D00AE2721 /* Comedores UGR Watch Extension */,
 				33837D2E1C9066540095E395 /* Products */,
 				4DF58F8A68660F8B644F26F7 /* Pods */,
 				A5975B684944498F5AB78B06 /* Frameworks */,
@@ -157,6 +255,8 @@
 			children = (
 				33837D2D1C9066540095E395 /* Comedores UGR.app */,
 				3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */,
+				33276B3D1CABE72D00AE2721 /* Comedores UGR Watch.app */,
+				33276B491CABE72D00AE2721 /* Comedores UGR Watch Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -217,6 +317,40 @@
 			productReference = 3303C0B01CA59FFC006363AD /* Comedores UGR Widget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		33276B3C1CABE72C00AE2721 /* Comedores UGR Watch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33276B621CABE72D00AE2721 /* Build configuration list for PBXNativeTarget "Comedores UGR Watch" */;
+			buildPhases = (
+				33276B3B1CABE72C00AE2721 /* Resources */,
+				33276B611CABE72D00AE2721 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				33276B4C1CABE72D00AE2721 /* PBXTargetDependency */,
+			);
+			name = "Comedores UGR Watch";
+			productName = "Comedores UGR Watch";
+			productReference = 33276B3D1CABE72D00AE2721 /* Comedores UGR Watch.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		33276B481CABE72D00AE2721 /* Comedores UGR Watch Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 33276B5E1CABE72D00AE2721 /* Build configuration list for PBXNativeTarget "Comedores UGR Watch Extension" */;
+			buildPhases = (
+				33276B451CABE72D00AE2721 /* Sources */,
+				33276B461CABE72D00AE2721 /* Frameworks */,
+				33276B471CABE72D00AE2721 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Comedores UGR Watch Extension";
+			productName = "Comedores UGR Watch Extension";
+			productReference = 33276B491CABE72D00AE2721 /* Comedores UGR Watch Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		33837D2C1C9066540095E395 /* Comedores UGR */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 33837D3F1C9066540095E395 /* Build configuration list for PBXNativeTarget "Comedores UGR" */;
@@ -228,11 +362,13 @@
 				CF3995FF494A958CF8EA521C /* Embed Pods Frameworks */,
 				64FD7AAA62E5AE5F1718436B /* Copy Pods Resources */,
 				3303C0C01CA59FFC006363AD /* Embed App Extensions */,
+				33276B651CABE72D00AE2721 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				3303C0BB1CA59FFC006363AD /* PBXTargetDependency */,
+				33276B5C1CABE72D00AE2721 /* PBXTargetDependency */,
 			);
 			name = "Comedores UGR";
 			productName = "Comedores UGR";
@@ -257,6 +393,13 @@
 								enabled = 1;
 							};
 						};
+					};
+					33276B3C1CABE72C00AE2721 = {
+						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = A66AUV6B49;
+					};
+					33276B481CABE72D00AE2721 = {
+						CreatedOnToolsVersion = 7.3;
 					};
 					33837D2C1C9066540095E395 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -285,6 +428,8 @@
 			targets = (
 				33837D2C1C9066540095E395 /* Comedores UGR */,
 				3303C0AF1CA59FFC006363AD /* Comedores UGR Widget */,
+				33276B3C1CABE72C00AE2721 /* Comedores UGR Watch */,
+				33276B481CABE72D00AE2721 /* Comedores UGR Watch Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -297,6 +442,23 @@
 				3303C0B81CA59FFC006363AD /* MainInterface.storyboard in Resources */,
 				339D79481CA7DAC80068AFA7 /* InfoPlist.strings in Resources */,
 				33808C2C1CA7D1A900AB4912 /* Localizable.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33276B3B1CABE72C00AE2721 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33276B431CABE72D00AE2721 /* Assets.xcassets in Resources */,
+				33276B411CABE72D00AE2721 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		33276B471CABE72D00AE2721 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33276B591CABE72D00AE2721 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +538,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		33276B451CABE72D00AE2721 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33276B551CABE72D00AE2721 /* NotificationController.swift in Sources */,
+				33276B531CABE72D00AE2721 /* ExtensionDelegate.swift in Sources */,
+				33276B511CABE72D00AE2721 /* InterfaceController.swift in Sources */,
+				33276B571CABE72D00AE2721 /* GlanceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		33837D291C9066540095E395 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -401,6 +574,16 @@
 			target = 3303C0AF1CA59FFC006363AD /* Comedores UGR Widget */;
 			targetProxy = 3303C0BA1CA59FFC006363AD /* PBXContainerItemProxy */;
 		};
+		33276B4C1CABE72D00AE2721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33276B481CABE72D00AE2721 /* Comedores UGR Watch Extension */;
+			targetProxy = 33276B4B1CABE72D00AE2721 /* PBXContainerItemProxy */;
+		};
+		33276B5C1CABE72D00AE2721 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 33276B3C1CABE72C00AE2721 /* Comedores UGR Watch */;
+			targetProxy = 33276B5B1CABE72D00AE2721 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -411,6 +594,14 @@
 				33808C271CA7CFC300AB4912 /* es */,
 			);
 			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+		33276B3F1CABE72D00AE2721 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33276B401CABE72D00AE2721 /* Base */,
+			);
+			name = Interface.storyboard;
 			sourceTree = "<group>";
 		};
 		33808C2E1CA7D1A900AB4912 /* Localizable.strings */ = {
@@ -487,6 +678,74 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.Comedores-UGR-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		33276B5F1CABE72D00AE2721 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "Comedores UGR Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		33276B601CABE72D00AE2721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = "Comedores UGR Watch Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Release;
+		};
+		33276B631CABE72D00AE2721 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Comedores_UGR_Watch_Extension;
+				INFOPLIST_FILE = "Comedores UGR Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
+			};
+			name = Debug;
+		};
+		33276B641CABE72D00AE2721 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NONNULL = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				IBSC_MODULE = Comedores_UGR_Watch_Extension;
+				INFOPLIST_FILE = "Comedores UGR Watch/Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
 		};
@@ -621,6 +880,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		33276B5E1CABE72D00AE2721 /* Build configuration list for PBXNativeTarget "Comedores UGR Watch Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33276B5F1CABE72D00AE2721 /* Debug */,
+				33276B601CABE72D00AE2721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		33276B621CABE72D00AE2721 /* Build configuration list for PBXNativeTarget "Comedores UGR Watch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				33276B631CABE72D00AE2721 /* Debug */,
+				33276B641CABE72D00AE2721 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		33837D281C9066540095E395 /* Build configuration list for PBXProject "Comedores UGR" */ = {
 			isa = XCConfigurationList;

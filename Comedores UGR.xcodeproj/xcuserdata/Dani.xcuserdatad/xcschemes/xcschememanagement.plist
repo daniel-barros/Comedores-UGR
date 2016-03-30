@@ -4,6 +4,21 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Comedores UGR Watch (Glance).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>8</integer>
+		</dict>
+		<key>Comedores UGR Watch (Notification).xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+		<key>Comedores UGR Watch.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>6</integer>
+		</dict>
 		<key>Comedores UGR Widget.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -18,6 +33,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>3303C0AF1CA59FFC006363AD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33276B3C1CABE72C00AE2721</key>
 		<dict>
 			<key>primary</key>
 			<true/>
