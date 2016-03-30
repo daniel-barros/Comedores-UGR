@@ -9,7 +9,7 @@
 import UIKit
 import NotificationCenter
 
-// TODO: Fix Autolayout constraints error
+
 class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var label: UILabel!
@@ -23,6 +23,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
         weekMenu = NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? []
         updateUI()
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        view.layoutSubviews()   // Fixes top margin glitch
     }
     
     
@@ -87,9 +93,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     }
     
     
-//    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
-//        var insets = defaultMarginInsets
-////        insets.top = 14
-//        return insets
-//    }
+    func widgetMarginInsetsForProposedMarginInsets(defaultMarginInsets: UIEdgeInsets) -> UIEdgeInsets {
+        var insets = defaultMarginInsets
+        insets.top = 14
+        return insets
+    }
 }
