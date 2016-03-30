@@ -105,15 +105,19 @@ class MenuTableViewController: UITableViewController {
     
     
     // MARK: UIScrollViewDelegate
-    
     // Avoids "last update" row scrolling down to first dish row
+    
     override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        
-        let offset = navigationController!.navigationBar.frame.height + UIApplication.sharedApplication().statusBarFrame.height
-        
-        if weekMenu.isEmpty == false && tableView.contentOffset.y < lastUpdateRowHeight - offset {
+        if lastUpdateRowIsVisible {
             self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
         }
+    }
+    
+    // MARK: Helpers
+    
+    private var lastUpdateRowIsVisible: Bool {
+        let offset = navigationController!.navigationBar.frame.height + UIApplication.sharedApplication().statusBarFrame.height
+        return weekMenu.isEmpty == false && tableView.contentOffset.y < lastUpdateRowHeight - offset
     }
 }
 
