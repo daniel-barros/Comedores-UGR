@@ -3,6 +3,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--UGR Dining Menu-->
@@ -46,37 +48,37 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Marzo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="qF7-MR-PXg">
-                                            <rect key="frame" x="8" y="14" width="74" height="18"/>
+                                            <rect key="frame" x="8" y="14" width="74" height="37.5"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="74" id="JfQ-QX-M1r"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DA-Vn-UJS">
-                                            <rect key="frame" x="8" y="46" width="74" height="51"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DA-Vn-UJS">
+                                            <rect key="frame" x="8" y="55.5" width="74" height="51"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="42"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i57-Ln-jMI">
-                                            <rect key="frame" x="108" y="44" width="255" height="56"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i57-Ln-jMI">
+                                            <rect key="frame" x="108" y="63.5" width="255" height="36"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Lunes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wlf-K7-LY2">
-                                            <rect key="frame" x="8" y="112" width="74" height="18"/>
+                                            <rect key="frame" x="8" y="111.5" width="74" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="Pan, Vino Tinto y Manzana" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5n-Re-0wy">
-                                            <rect key="frame" x="108" y="112" width="255" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Pan, Vino Tinto y Manzana" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O5n-Re-0wy">
+                                            <rect key="frame" x="108" y="111.5" width="255" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" ambiguous="YES" text="Arroz Montañés" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pie-cH-zf5">
-                                            <rect key="frame" x="108" y="14" width="255" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Arroz Montañés" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pie-cH-zf5">
+                                            <rect key="frame" x="108" y="33.5" width="255" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -86,11 +88,12 @@
                                         <constraint firstItem="i57-Ln-jMI" firstAttribute="top" secondItem="pie-cH-zf5" secondAttribute="bottom" constant="12" id="1kh-Ij-wfX"/>
                                         <constraint firstItem="pie-cH-zf5" firstAttribute="leading" secondItem="qF7-MR-PXg" secondAttribute="trailing" constant="26" id="2NN-zA-ClA"/>
                                         <constraint firstItem="wlf-K7-LY2" firstAttribute="trailing" secondItem="qF7-MR-PXg" secondAttribute="trailing" id="2kK-F4-xIj"/>
-                                        <constraint firstItem="i57-Ln-jMI" firstAttribute="leading" secondItem="8DA-Vn-UJS" secondAttribute="trailing" constant="24" id="5em-he-TKF"/>
-                                        <constraint firstItem="qF7-MR-PXg" firstAttribute="top" secondItem="pie-cH-zf5" secondAttribute="top" id="H6L-x8-0wG"/>
+                                        <constraint firstItem="qF7-MR-PXg" firstAttribute="baseline" secondItem="pie-cH-zf5" secondAttribute="firstBaseline" id="H6L-x8-0wG"/>
                                         <constraint firstItem="i57-Ln-jMI" firstAttribute="centerY" secondItem="8DA-Vn-UJS" secondAttribute="centerY" id="INf-nN-cCE"/>
+                                        <constraint firstItem="8DA-Vn-UJS" firstAttribute="baseline" secondItem="i57-Ln-jMI" secondAttribute="baseline" id="JqG-Wj-gTG"/>
                                         <constraint firstItem="i57-Ln-jMI" firstAttribute="leading" secondItem="pie-cH-zf5" secondAttribute="leading" id="Ma6-i9-WP1"/>
                                         <constraint firstAttribute="bottom" secondItem="wlf-K7-LY2" secondAttribute="bottom" constant="14" id="RXT-29-BYc"/>
+                                        <constraint firstItem="8DA-Vn-UJS" firstAttribute="top" secondItem="i57-Ln-jMI" secondAttribute="top" id="TXI-aA-hYF"/>
                                         <constraint firstItem="8DA-Vn-UJS" firstAttribute="trailing" secondItem="qF7-MR-PXg" secondAttribute="trailing" id="Vkb-3h-wWV"/>
                                         <constraint firstAttribute="trailing" secondItem="pie-cH-zf5" secondAttribute="trailing" constant="12" id="Vkf-F3-9MT"/>
                                         <constraint firstItem="O5n-Re-0wy" firstAttribute="top" secondItem="i57-Ln-jMI" secondAttribute="bottom" constant="12" id="aG4-jp-tkp"/>
@@ -98,26 +101,24 @@
                                         <constraint firstItem="O5n-Re-0wy" firstAttribute="leading" secondItem="pie-cH-zf5" secondAttribute="leading" id="eKk-fU-m2B"/>
                                         <constraint firstItem="O5n-Re-0wy" firstAttribute="baseline" secondItem="wlf-K7-LY2" secondAttribute="baseline" id="fHm-jX-1la"/>
                                         <constraint firstItem="i57-Ln-jMI" firstAttribute="trailing" secondItem="pie-cH-zf5" secondAttribute="trailing" id="g8c-W1-UBq"/>
-                                        <constraint firstItem="pie-cH-zf5" firstAttribute="baseline" secondItem="qF7-MR-PXg" secondAttribute="baseline" id="gaV-TH-puz"/>
-                                        <constraint firstItem="wlf-K7-LY2" firstAttribute="leading" secondItem="i0m-YW-fs6" secondAttribute="leading" constant="14" id="iwx-Ca-6kE"/>
                                         <constraint firstItem="wlf-K7-LY2" firstAttribute="width" secondItem="qF7-MR-PXg" secondAttribute="width" id="nyH-Tm-ei4"/>
-                                        <constraint firstItem="8DA-Vn-UJS" firstAttribute="leading" secondItem="i0m-YW-fs6" secondAttribute="leading" constant="14" id="pBz-A3-gEs"/>
                                         <constraint firstItem="qF7-MR-PXg" firstAttribute="leading" secondItem="i0m-YW-fs6" secondAttribute="leading" constant="8" id="q70-fc-j9G"/>
                                         <constraint firstItem="qF7-MR-PXg" firstAttribute="top" secondItem="i0m-YW-fs6" secondAttribute="top" constant="14" id="qLr-ch-cca"/>
                                         <constraint firstItem="O5n-Re-0wy" firstAttribute="trailing" secondItem="pie-cH-zf5" secondAttribute="trailing" id="vPh-sN-319"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
-                                            <exclude reference="pBz-A3-gEs"/>
-                                            <exclude reference="gaV-TH-puz"/>
-                                            <exclude reference="iwx-Ca-6kE"/>
-                                            <exclude reference="5em-he-TKF"/>
+                                            <exclude reference="JqG-Wj-gTG"/>
+                                            <exclude reference="TXI-aA-hYF"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="dayNameLabel" destination="wlf-K7-LY2" id="ree-Ef-X6j"/>
+                                    <outlet property="dayNumberBottomConstraint" destination="JqG-Wj-gTG" id="r2s-Gf-9Nd"/>
+                                    <outlet property="dayNumberCenterConstraint" destination="INf-nN-cCE" id="AgE-tX-CT7"/>
                                     <outlet property="dayNumberLabel" destination="8DA-Vn-UJS" id="EUd-bZ-F8D"/>
+                                    <outlet property="dayNumberTopConstraint" destination="TXI-aA-hYF" id="aqq-dD-Fgb"/>
                                     <outlet property="dishLabel1" destination="pie-cH-zf5" id="u1c-6J-hAN"/>
                                     <outlet property="dishLabel2" destination="i57-Ln-jMI" id="RkC-J3-38w"/>
                                     <outlet property="dishLabel3" destination="O5n-Re-0wy" id="9LL-Fj-LNQ"/>
