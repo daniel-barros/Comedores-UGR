@@ -9,8 +9,13 @@
 import UIKit
 
 extension UIColor {
+    
     class func customRedColor() -> UIColor {
         return UIColor(red: 0.996, green: 0.230, blue: 0.187, alpha: 1)
+    }
+    
+    class func customAlternateRedColor() -> UIColor {
+        return UIColor(red: 0.996, green: 0.330, blue: 0.287, alpha: 1)
     }
 }
 

@@ -148,7 +148,7 @@ class MenuTableViewController: UITableViewController {
             }
         })
         
-        rowAction.backgroundColor = UIColor.customRedColor()
+        rowAction.backgroundColor = UIColor.customAlternateRedColor()
         
         return [rowAction]
     }
