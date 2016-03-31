@@ -19,10 +19,15 @@ class MenuTableViewController: UITableViewController {
 
     var error: FetcherError?
     
+    var lastTimeTableViewReloaded: NSDate?
+    
     private let lastUpdateRowHeight: CGFloat = 46.45
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
                 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
@@ -37,12 +42,27 @@ class MenuTableViewController: UITableViewController {
     }
     
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+    
+    func appDidBecomeActive(notification: NSNotification) {
+        // This makes sure that only the date for today's menu is highlighted
+        if let lastReload = lastTimeTableViewReloaded
+            where NSCalendar.currentCalendar().isDateInToday(lastReload) == false {
+            tableView.reloadData()
+        }
+    }
+    
+    
     func fetchData() {
         if fetcher.isFetching == false {
             fetcher.fetchMenu(completionHandler: { menu in
                 self.error = nil
                 let menuChanged = !self.weekMenu.containsSameWeekMenuAs(menu)
                 self.weekMenu = menu
+                self.lastTimeTableViewReloaded = NSDate()
                 mainQueue {
                     self.refreshControl!.endRefreshing()
                     if menuChanged {
@@ -56,6 +76,7 @@ class MenuTableViewController: UITableViewController {
                 }
             }, errorHandler: { error in
                 self.error = error
+                self.lastTimeTableViewReloaded = NSDate()
                 mainQueue {
                     self.refreshControl!.endRefreshing()
                     if self.weekMenu.isEmpty {

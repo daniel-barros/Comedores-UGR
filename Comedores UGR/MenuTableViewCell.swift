@@ -54,7 +54,7 @@ class MenuTableViewCell: UITableViewCell {
     
     override func layoutSubviews() {
         // Text alignment
-        switch (dishLabelHasOnlyOneLine(dishLabel1), dishLabelHasOnlyOneLine(dishLabel2), dishLabelHasOnlyOneLine(dishLabel3)) {
+        switch (fixedWidthlabelHasOnlyOneLine(dishLabel1), fixedWidthlabelHasOnlyOneLine(dishLabel2), fixedWidthlabelHasOnlyOneLine(dishLabel3)) {
         case (false, true, true):
             dayNumberTopConstraint.active = false
             dayNumberCenterConstraint.active = false
@@ -74,7 +74,7 @@ class MenuTableViewCell: UITableViewCell {
     }
 
     
-    private func dishLabelHasOnlyOneLine(label: UILabel) -> Bool {
+    private func fixedWidthlabelHasOnlyOneLine(label: UILabel) -> Bool {
         if let text = label.text {
             let oneLineSize = (text as NSString).boundingRectWithSize(CGSize.max, options: [], attributes: [NSFontAttributeName: label.font], context: nil)
             if oneLineSize.width > label.frame.width {
