@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EventKitUI
 
 
 class MenuTableViewController: UITableViewController {
@@ -23,6 +24,8 @@ class MenuTableViewController: UITableViewController {
     
     private let lastUpdateRowHeight: CGFloat = 46.45
     
+    
+    // MARK: -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,7 +98,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    // MARK: UITableViewDataSource
+    // MARK: - UITableViewDataSource
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if weekMenu.isEmpty {
@@ -125,7 +128,78 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    // MARK: UIScrollViewDelegate
+    // MARK: - UITableViewDelegate
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        if weekMenu.isEmpty || indexPath.row == 0 {
+            return nil
+        }
+        
+        let rowAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Add to Calendar"), handler: { action, indexPath in
+            
+            let menu = self.weekMenu[indexPath.row - 1]
+            
+            switch EventManager.authorizationStatus {
+            case .Authorized: self.presentEventEditViewController(menu: menu)
+            case .Denied: self.presentAlertController(NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
+            case .NotDetermined: self.requestEventAccessPermission(menu: menu)
+            case .Restricted: self.presentAlertController(NSLocalizedString("Access Restricted"), message: NSLocalizedString("Access to calendars is restricted, possibly due to parental controls being in place."), showsGoToSettings: false)
+            }
+        })
+        
+        rowAction.backgroundColor = UIColor.customRedColor()
+        
+        return [rowAction]
+    }
+    
+    
+    // MARK: Helpers
+    
+    private func presentEventEditViewController(menu menu: DayMenu) {
+        let eventVC = EKEventEditViewController()
+        let eventStore = EKEventStore()
+        eventVC.eventStore = eventStore
+        eventVC.editViewDelegate = self
+        eventVC.event = EventManager.createEvent(inEventStore: eventStore, forMenu: menu)
+        self.presentViewController(eventVC, animated: true, completion: nil)
+    }
+    
+    
+    private func presentAlertController(title: String, message: String, showsGoToSettings: Bool) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel"), style: .Cancel, handler: { action in
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.tableView.editing = false
+        })
+        alertController.addAction(cancelAction)
+        
+        if showsGoToSettings {
+            let settingsAction = UIAlertAction(title: NSLocalizedString("Go to Settings"), style: .Default, handler: { action in
+                UIApplication.sharedApplication().openURL(NSURL(string:  UIApplicationOpenSettingsURLString)!)
+            })
+            alertController.addAction(settingsAction)
+            alertController.preferredAction = settingsAction
+        }
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
+    
+    
+    private func requestEventAccessPermission(menu menu: DayMenu) {
+        EventManager.requestAccessPermission { granted in
+            mainQueue {
+                if granted {
+                    self.presentEventEditViewController(menu: menu)
+                } else {
+                    self.tableView.editing = false
+                }
+            }
+        }
+    }
+
+    
+    // MARK: - UIScrollViewDelegate
     // Avoids "last update" row scrolling down to first dish row
     
     override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
@@ -142,3 +216,17 @@ class MenuTableViewController: UITableViewController {
     }
 }
 
+
+// MARK: - EKEventEditViewDelegate
+
+extension MenuTableViewController: EKEventEditViewDelegate {
+    
+    func eventEditViewController(controller: EKEventEditViewController, didCompleteWithAction action: EKEventEditViewAction) {
+        dismissViewControllerAnimated(true, completion: nil)
+        self.tableView.editing = false
+    }
+    
+//    func eventEditViewControllerDefaultCalendarForNewEvents(controller: EKEventEditViewController) -> EKCalendar {
+//        
+//    }
+}

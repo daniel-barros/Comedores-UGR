@@ -14,3 +14,12 @@
 "Uknown error. Please try again later." = "Uknown error. Please try again later.";
 "No data to show. Check again later." = "No data to show. Check again later.";
 "Last Update:" = "Last Update:";
+"Add to Calendar" = "Add to Calendar";
+"OK" = "OK";
+"Access Denied" = "Access Denied";
+"Please go to the app's settings and allow us to access your calendars." = "Please go to the app's settings and allow us to access your calendars.";
+"Access Restricted" = "Access Restricted";
+"Access to calendars is restricted, possibly due to parental controls being in place." = "Access to calendars is restricted, possibly due to parental controls being in place.";
+"Cancel" = "Cancel";
+"Go to Settings" = "Go to Settings";
+"Lunch" = "Lunch";

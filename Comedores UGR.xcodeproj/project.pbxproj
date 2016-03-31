@@ -21,6 +21,7 @@
 		33276B571CABE72D00AE2721 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B561CABE72D00AE2721 /* GlanceController.swift */; };
 		33276B591CABE72D00AE2721 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33276B581CABE72D00AE2721 /* Assets.xcassets */; };
 		33276B5D1CABE72D00AE2721 /* Comedores UGR Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 33276B3D1CABE72D00AE2721 /* Comedores UGR Watch.app */; };
+		33276B6B1CAD74DA00AE2721 /* EventManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B6A1CAD74DA00AE2721 /* EventManager.swift */; };
 		336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		33808C2B1CA7D1A900AB4912 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33808C2E1CA7D1A900AB4912 /* Localizable.strings */; };
@@ -126,6 +127,7 @@
 		33276B561CABE72D00AE2721 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		33276B581CABE72D00AE2721 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		33276B5A1CABE72D00AE2721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		33276B6A1CAD74DA00AE2721 /* EventManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventManager.swift; sourceTree = "<group>"; };
 		336E35D11CA5AECA00093C3C /* DayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMenu.swift; sourceTree = "<group>"; };
 		33808C251CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		33808C271CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -181,11 +183,9 @@
 		3303C0B31CA59FFC006363AD /* Comedores UGR Widget */ = {
 			isa = PBXGroup;
 			children = (
-				3303C0C31CA5A3A6006363AD /* Comedores UGR Widget.entitlements */,
 				3303C0B41CA59FFC006363AD /* TodayViewController.swift */,
 				3303C0B61CA59FFC006363AD /* MainInterface.storyboard */,
-				3321FB6C1CA7D9BE00CCC5D9 /* Info.plist */,
-				339D794A1CA7DAC80068AFA7 /* InfoPlist.strings */,
+				33276B681CAD737000AE2721 /* Supporting Files */,
 			);
 			path = "Comedores UGR Widget";
 			sourceTree = "<group>";
@@ -194,8 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				33276B3F1CABE72D00AE2721 /* Interface.storyboard */,
-				33276B421CABE72D00AE2721 /* Assets.xcassets */,
-				33276B441CABE72D00AE2721 /* Info.plist */,
+				33276B691CAD739100AE2721 /* Supporting Files */,
 			);
 			path = "Comedores UGR Watch";
 			sourceTree = "<group>";
@@ -207,8 +206,6 @@
 				33276B521CABE72D00AE2721 /* ExtensionDelegate.swift */,
 				33276B541CABE72D00AE2721 /* NotificationController.swift */,
 				33276B561CABE72D00AE2721 /* GlanceController.swift */,
-				33276B581CABE72D00AE2721 /* Assets.xcassets */,
-				33276B5A1CABE72D00AE2721 /* Info.plist */,
 				33276B4E1CABE72D00AE2721 /* Supporting Files */,
 			);
 			path = "Comedores UGR Watch Extension";
@@ -217,7 +214,49 @@
 		33276B4E1CABE72D00AE2721 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				33276B581CABE72D00AE2721 /* Assets.xcassets */,
+				33276B5A1CABE72D00AE2721 /* Info.plist */,
 				33276B4F1CABE72D00AE2721 /* PushNotificationPayload.apns */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33276B661CAD732900AE2721 /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				33A9EAA21CA782B6004E9645 /* MenuTableViewCell.swift */,
+				339D79561CA942FF0068AFA7 /* ErrorTableViewCell.swift */,
+				33A7596A1CA97B5B00D3BCA7 /* LastUpdateTableViewCell.swift */,
+			);
+			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		33276B671CAD735200AE2721 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33837D371C9066540095E395 /* Assets.xcassets */,
+				3303C0C21CA5A398006363AD /* Comedores UGR.entitlements */,
+				3321FB6A1CA7D98E00CCC5D9 /* Info.plist */,
+				339D794F1CA7DAEE0068AFA7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33276B681CAD737000AE2721 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3303C0C31CA5A3A6006363AD /* Comedores UGR Widget.entitlements */,
+				3321FB6C1CA7D9BE00CCC5D9 /* Info.plist */,
+				339D794A1CA7DAC80068AFA7 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		33276B691CAD739100AE2721 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				33276B421CABE72D00AE2721 /* Assets.xcassets */,
+				33276B441CABE72D00AE2721 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -264,17 +303,13 @@
 		33837D2F1C9066540095E395 /* Comedores UGR */ = {
 			isa = PBXGroup;
 			children = (
-				3303C0C21CA5A398006363AD /* Comedores UGR.entitlements */,
 				33837D301C9066540095E395 /* AppDelegate.swift */,
 				33837D321C9066540095E395 /* MenuTableViewController.swift */,
-				33A9EAA21CA782B6004E9645 /* MenuTableViewCell.swift */,
-				339D79561CA942FF0068AFA7 /* ErrorTableViewCell.swift */,
-				33A7596A1CA97B5B00D3BCA7 /* LastUpdateTableViewCell.swift */,
+				33276B6A1CAD74DA00AE2721 /* EventManager.swift */,
+				33276B661CAD732900AE2721 /* Table View Cells */,
 				33837D341C9066540095E395 /* Main.storyboard */,
-				33837D371C9066540095E395 /* Assets.xcassets */,
 				33837D391C9066540095E395 /* LaunchScreen.storyboard */,
-				3321FB6A1CA7D98E00CCC5D9 /* Info.plist */,
-				339D794F1CA7DAEE0068AFA7 /* InfoPlist.strings */,
+				33276B671CAD735200AE2721 /* Supporting Files */,
 			);
 			path = "Comedores UGR";
 			sourceTree = "<group>";
@@ -555,6 +590,7 @@
 			files = (
 				33A9EA9D1CA77FE8004E9645 /* Common.swift in Sources */,
 				339D79571CA942FF0068AFA7 /* ErrorTableViewCell.swift in Sources */,
+				33276B6B1CAD74DA00AE2721 /* EventManager.swift in Sources */,
 				336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */,
 				33A9EAA51CA7970F004E9645 /* AppCommon.swift in Sources */,
 				33A7596B1CA97B5B00D3BCA7 /* LastUpdateTableViewCell.swift in Sources */,
@@ -888,6 +924,7 @@
 				33276B601CABE72D00AE2721 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		33276B621CABE72D00AE2721 /* Build configuration list for PBXNativeTarget "Comedores UGR Watch" */ = {
 			isa = XCConfigurationList;
@@ -896,6 +933,7 @@
 				33276B641CABE72D00AE2721 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		33837D281C9066540095E395 /* Build configuration list for PBXProject "Comedores UGR" */ = {
 			isa = XCConfigurationList;

@@ -14,8 +14,8 @@
 /* Class = "UILabel"; text = "Pan, Vino Tinto y Manzana"; ObjectID = "O5n-Re-0wy"; */
 "O5n-Re-0wy.text" = "Pan, Vino Tinto y Manzana";
 
-/* Class = "UIBarButtonItem"; title = "Para Llevar"; ObjectID = "cbT-7a-htc"; */
-"cbT-7a-htc.title" = "Para Llevar";
+/* Class = "UIBarButtonItem"; title = "Info"; ObjectID = "cbT-7a-htc"; */
+"cbT-7a-htc.title" = "Info";
 
 /* Class = "UILabel"; text = "Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas"; ObjectID = "i57-Ln-jMI"; */
 "i57-Ln-jMI.text" = "Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas";

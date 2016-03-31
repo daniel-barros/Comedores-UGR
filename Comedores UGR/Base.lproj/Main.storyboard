@@ -156,44 +156,13 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="UGR Dining Menu" id="FC0-IN-DxI">
-                        <barButtonItem key="leftBarButtonItem" title="Takeaway" id="cbT-7a-htc">
-                            <connections>
-                                <segue destination="2GH-2S-U2e" kind="presentation" modalTransitionStyle="flipHorizontal" id="wCl-UV-XiK"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" title="Info" id="cbT-7a-htc"/>
                     </navigationItem>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNS-vx-VEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="189.5" y="109.5"/>
-        </scene>
-        <!--Order Takeaway Menu-->
-        <scene sceneID="r2y-qn-0Mu">
-            <objects>
-                <viewController id="Lbx-Ov-rvn" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Qgh-Wq-kz6"/>
-                        <viewControllerLayoutGuide type="bottom" id="rhT-hg-7Ra"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="czK-uo-Yn1">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Order Takeaway Menu" id="Hlg-gx-Suc">
-                        <barButtonItem key="leftBarButtonItem" title="Week Menu" id="FyJ-dk-GpI">
-                            <connections>
-                                <segue destination="4FP-Em-Sz7" kind="unwind" unwindAction="prepareForUnwind:" id="Rvk-gT-lDE"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QiG-Nd-G7g" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="4FP-Em-Sz7" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="189.5" y="919.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GMI-gm-OwH">
@@ -216,24 +185,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uF-Ij-4Ki" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-515" y="143"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="GHn-PL-RJt">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2GH-2S-U2e" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="nsW-1G-edC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="Lbx-Ov-rvn" kind="relationship" relationship="rootViewController" id="3cJ-ef-Xj3"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jnN-lm-f4H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-514.5" y="919.5"/>
         </scene>
     </scenes>
 </document>

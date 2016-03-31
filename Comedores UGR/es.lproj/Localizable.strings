@@ -14,3 +14,12 @@
 "Uknown error. Please try again later." = "Error desconocido. Inténtalo de nuevo.";
 "No data to show. Check again later." = "No hay datos que mostrar. Vuelve más tarde.";
 "Last Update:" = "Últ. Actualización:";
+"Add to Calendar" = "Añadir al Calendario";
+"OK" = "OK";
+"Access Denied" = "Acceso Denegado";
+"Please go to the app's settings and allow us to access your calendars." = "Por favor, ve a los ajustes de la aplicación y permítenos acceso a tus calendarios.";
+"Access Restricted" = "Acceso Restringido";
+"Access to calendars is restricted, possibly due to parental controls being in place." = "El acceso a tus calendarios está restringido, posiblemente debido a controles parentales de tu dispositivo.";
+"Cancel" = "Cancelar";
+"Go to Settings" = "Ir a Ajustes";
+"Lunch" = "Comida";
