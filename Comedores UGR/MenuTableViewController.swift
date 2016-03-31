@@ -228,8 +228,4 @@ extension MenuTableViewController: EKEventEditViewDelegate {
         dismissViewControllerAnimated(true, completion: nil)
         self.tableView.editing = false
     }
-    
-//    func eventEditViewControllerDefaultCalendarForNewEvents(controller: EKEventEditViewController) -> EKCalendar {
-//        
-//    }
 }
