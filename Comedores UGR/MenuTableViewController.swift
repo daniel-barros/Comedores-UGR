@@ -222,6 +222,9 @@ class MenuTableViewController: UITableViewController {
 extension MenuTableViewController: EKEventEditViewDelegate {
     
     func eventEditViewController(controller: EKEventEditViewController, didCompleteWithAction action: EKEventEditViewAction) {
+        if let event = controller.event where action == .Saved {
+            EventManager.saveDefaultInfoFromEvent(event: event)
+        }
         dismissViewControllerAnimated(true, completion: nil)
         self.tableView.editing = false
     }
