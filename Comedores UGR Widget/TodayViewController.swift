@@ -47,7 +47,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     private func updateUI(error error: FetcherError? = nil) {
         if let dishes = weekMenu.todayMenu?.allDishes {
             label.text = dishes
-        } else if fetcher.hasAlreadyFetchedToday == false {
+        } else if WeekMenuFetcher.hasAlreadyFetchedToday == false {
             label.text = NSLocalizedString("Loading...")
         } else if let error = error {
             switch error {
@@ -72,7 +72,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
         
-        if fetcher.hasAlreadyFetchedToday {
+        if WeekMenuFetcher.hasAlreadyFetchedToday {
             if updateMenu() {
                 updateUI()
                 completionHandler(.NewData)

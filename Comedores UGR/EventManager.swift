@@ -10,7 +10,6 @@ import EventKit
 
 
 private let DefaultsEventTitleKey = "DefaultsEventTitleKey"
-private let DefaultsEventIncludesNotesKey = "DefaultsEventIncludesNotesKey"
 private let DefaultsEventStartHourKey = "DefaultsEventStartHourKey"
 private let DefaultsEventStartMinuteKey = "DefaultsEventStartMinuteKey"
 private let DefaultsEventEndHourKey = "DefaultsEventEndHourKey"
@@ -41,8 +40,7 @@ struct EventManager {
         
         event.title = defaults.stringForKey(DefaultsEventTitleKey) ?? NSLocalizedString("Lunch")
         
-        let shouldIncludeMenuInNotes = defaults.objectForKey(DefaultsEventIncludesNotesKey) as? Bool
-        if shouldIncludeMenuInNotes == nil || shouldIncludeMenuInNotes == true {
+        if PreferencesManager.includeMenuInEventsNotes {
             event.notes = NSLocalizedString("Menu") + ":\n" + menu.allDishes.stringByReplacingOccurrencesOfString("\n\n", withString: "\n")
         }
         
@@ -83,7 +81,7 @@ struct EventManager {
         defaults.setObject(event.title, forKey: DefaultsEventTitleKey)
         
         if event.notes == nil || event.notes == "" {
-            defaults.setBool(false, forKey: DefaultsEventIncludesNotesKey)
+            PreferencesManager.includeMenuInEventsNotes = false
         }
         
         let startDateComponents = calendar.components([.Hour, .Minute], fromDate: event.startDate)

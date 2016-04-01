@@ -11,7 +11,7 @@ import HTMLReader
 
 
 let DefaultsWeekMenuKey = "DefaultsWeekMenuKey"
-let DefaultsLastUpdateKey = "DefaultsLastUpdatedKey"
+private let DefaultsLastUpdateKey = "DefaultsLastUpdatedKey"
 
 enum FetcherError: ErrorType {
     case NoInternetConnection
@@ -27,11 +27,17 @@ class WeekMenuFetcher {
     
     var isFetching = false
     
-    var hasAlreadyFetchedToday: Bool {
-        if let lastUpdated = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdateKey) as? NSDate where NSCalendar.currentCalendar().isDateInToday(lastUpdated) {
+    
+    static var hasAlreadyFetchedToday: Bool {
+        if let date = WeekMenuFetcher.lastUpdate where NSCalendar.currentCalendar().isDateInToday(date) {
             return true
         }
         return false
+    }
+    
+    
+    static var lastUpdate: NSDate? {
+        return NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdateKey) as? NSDate
     }
     
     

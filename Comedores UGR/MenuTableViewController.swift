@@ -113,7 +113,7 @@ class MenuTableViewController: UITableViewController {
         if weekMenu.isEmpty == false {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("LastUpdateCell", forIndexPath: indexPath) as! LastUpdateTableViewCell
-                cell.configure()
+                cell.configure(date: WeekMenuFetcher.lastUpdate)
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell

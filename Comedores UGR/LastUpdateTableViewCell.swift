@@ -12,13 +12,17 @@ class LastUpdateTableViewCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
     
-    func configure() {
-        if let date = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdateKey) as? NSDate {
+    func configure(date date: NSDate?) {
+        var string = NSLocalizedString("Last Update:") + " "
+        if let lastUpdate = date {
             let formatter = NSDateFormatter()
             formatter.dateStyle = .ShortStyle
             formatter.timeStyle = .ShortStyle
             formatter.doesRelativeDateFormatting = true
-            label.text = NSLocalizedString("Last Update:") + " " + formatter.stringFromDate(date)
+            string += formatter.stringFromDate(lastUpdate)
+        } else {
+            string += NSLocalizedString("Never")
         }
+        label.text = string
     }
 }
