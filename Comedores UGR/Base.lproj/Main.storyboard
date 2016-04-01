@@ -246,8 +246,14 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="30" y="-2" width="1" height="21"/>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
+                                                <variation key="heightClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
+                                                </variation>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHs-f4-9mF">
                                                 <rect key="frame" x="162" y="0.0" width="166" height="32"/>
@@ -263,10 +269,19 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                         <nil key="highlightedColor"/>
+                                                        <variation key="heightClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="13" y="-2" width="0.0" height="21"/>
+                                                        </variation>
                                                     </label>
                                                 </subviews>
+                                                <variation key="heightClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="67" y="0.0" width="13" height="19"/>
+                                                </variation>
                                             </stackView>
                                         </subviews>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="0.0" width="79" height="19"/>
+                                        </variation>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-BA-AzU">
                                         <rect key="frame" x="0.0" y="56" width="328" height="32"/>
@@ -282,10 +297,19 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
+                                                <variation key="heightClass=compact" misplaced="YES">
+                                                    <rect key="frame" x="23" y="-1" width="56" height="20"/>
+                                                </variation>
                                             </label>
                                         </subviews>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="43" width="79" height="19"/>
+                                        </variation>
                                     </stackView>
                                 </subviews>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="23" y="450" width="79" height="62"/>
+                                </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-rO-PP7">
                                 <rect key="frame" x="23" y="596" width="312" height="41"/>
@@ -298,11 +322,17 @@
                                     </label>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW4-14-u4S">
                                         <rect key="frame" x="274" y="5" width="40" height="31"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="47" y="5" width="18" height="31"/>
+                                        </variation>
                                         <connections>
                                             <action selector="switchToggleState:" destination="Ztg-gd-jch" eventType="valueChanged" id="2Ag-rL-Wrq"/>
                                         </connections>
                                     </switch>
                                 </subviews>
+                                <variation key="heightClass=compact" misplaced="YES">
+                                    <rect key="frame" x="23" y="586" width="63" height="41"/>
+                                </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2cW-iP-yW7">
                                 <rect key="frame" x="92" y="317" width="191" height="75"/>
@@ -318,30 +348,84 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
+                                        <variation key="heightClass=compact" misplaced="YES">
+                                            <rect key="frame" x="0.0" y="55" width="191" height="21"/>
+                                        </variation>
                                     </label>
                                 </subviews>
+                                <variation key="heightClass=compact" alignment="top" misplaced="YES">
+                                    <rect key="frame" x="3" y="310" width="191" height="75"/>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="vIV-rO-PP7" firstAttribute="top" secondItem="tUK-h1-PHs" secondAttribute="bottom" priority="250" constant="50" id="0oi-Bh-flT"/>
+                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="top" secondItem="DtK-8S-g1p" secondAttribute="bottom" constant="19" id="0Gi-O7-NBi">
+                                <variation key="heightClass=compact" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="vIV-rO-PP7" firstAttribute="top" secondItem="tUK-h1-PHs" secondAttribute="bottom" priority="250" constant="50" id="0oi-Bh-flT">
+                                <variation key="heightClass=compact" constant="30"/>
+                            </constraint>
                             <constraint firstItem="Pkv-3K-e7f" firstAttribute="centerY" secondItem="voI-gx-Edo" secondAttribute="centerY" priority="750" constant="-150" id="2PW-dt-RY3"/>
                             <constraint firstItem="2cW-iP-yW7" firstAttribute="centerX" secondItem="Pkv-3K-e7f" secondAttribute="centerX" id="3nM-Fo-keX"/>
                             <constraint firstItem="tUK-h1-PHs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="voI-gx-Edo" secondAttribute="leading" constant="16" id="6Cx-8G-v7k"/>
                             <constraint firstAttribute="trailing" secondItem="I4l-ff-9b9" secondAttribute="trailing" constant="8" id="6EA-Sc-6ca"/>
                             <constraint firstItem="tUK-h1-PHs" firstAttribute="centerX" secondItem="2cW-iP-yW7" secondAttribute="centerX" id="6ZW-pN-eiT"/>
+                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="leading" secondItem="voI-gx-Edo" secondAttribute="leading" constant="82" id="AdA-af-Y3G">
+                                <variation key="heightClass=compact" constant="30"/>
+                            </constraint>
                             <constraint firstItem="vIV-rO-PP7" firstAttribute="trailing" secondItem="tUK-h1-PHs" secondAttribute="trailing" constant="-16" id="FW9-D7-Hlh"/>
+                            <constraint firstItem="2cW-iP-yW7" firstAttribute="leading" secondItem="Pkv-3K-e7f" secondAttribute="trailing" constant="-112" id="Oxs-OG-aai">
+                                <variation key="heightClass=compact" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="2cW-iP-yW7" firstAttribute="top" secondItem="Pkv-3K-e7f" secondAttribute="top" id="PR4-Ti-vLS"/>
                             <constraint firstItem="Pkv-3K-e7f" firstAttribute="centerX" secondItem="voI-gx-Edo" secondAttribute="centerX" id="Ptg-8k-1Gv"/>
+                            <constraint firstItem="2cW-iP-yW7" firstAttribute="leading" secondItem="Pkv-3K-e7f" secondAttribute="trailing" id="Rom-oa-Qkk">
+                                <variation key="heightClass=compact" constant="35"/>
+                            </constraint>
                             <constraint firstItem="njf-TW-AiS" firstAttribute="top" secondItem="vIV-rO-PP7" secondAttribute="bottom" constant="40" id="VS3-uM-XAj"/>
                             <constraint firstItem="2cW-iP-yW7" firstAttribute="top" secondItem="Pkv-3K-e7f" secondAttribute="bottom" constant="20" id="YSp-Gj-cm9"/>
+                            <constraint firstItem="tUK-h1-PHs" firstAttribute="leading" secondItem="2cW-iP-yW7" secondAttribute="leading" id="aAy-Vo-0gJ"/>
                             <constraint firstItem="vIV-rO-PP7" firstAttribute="leading" secondItem="tUK-h1-PHs" secondAttribute="leading" id="fXm-4w-b4K"/>
                             <constraint firstItem="DtK-8S-g1p" firstAttribute="leading" secondItem="voI-gx-Edo" secondAttribute="leading" constant="8" id="gOX-4G-0f1"/>
                             <constraint firstItem="DtK-8S-g1p" firstAttribute="baseline" secondItem="I4l-ff-9b9" secondAttribute="baseline" id="j5Y-NK-b9T"/>
-                            <constraint firstItem="tUK-h1-PHs" firstAttribute="top" secondItem="2cW-iP-yW7" secondAttribute="bottom" constant="64" id="oPd-eC-Etd"/>
+                            <constraint firstItem="tUK-h1-PHs" firstAttribute="top" secondItem="2cW-iP-yW7" secondAttribute="bottom" constant="64" id="oPd-eC-Etd">
+                                <variation key="heightClass=compact" constant="30"/>
+                            </constraint>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tUK-h1-PHs" secondAttribute="trailing" constant="16" id="oY2-ri-gda"/>
-                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qzN-KK-bIu" secondAttribute="bottom" constant="60" id="qxd-Kl-TEQ"/>
+                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="top" secondItem="qzN-KK-bIu" secondAttribute="bottom" constant="60" id="qxd-Kl-TEQ">
+                                <variation key="heightClass=compact" constant="40"/>
+                            </constraint>
                             <constraint firstItem="I4l-ff-9b9" firstAttribute="top" secondItem="qzN-KK-bIu" secondAttribute="bottom" constant="8" id="vBD-v5-cLt"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="0Gi-O7-NBi"/>
+                                <exclude reference="AdA-af-Y3G"/>
+                                <exclude reference="Oxs-OG-aai"/>
+                                <exclude reference="PR4-Ti-vLS"/>
+                                <exclude reference="Rom-oa-Qkk"/>
+                                <exclude reference="aAy-Vo-0gJ"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="0Gi-O7-NBi"/>
+                                <exclude reference="2PW-dt-RY3"/>
+                                <include reference="AdA-af-Y3G"/>
+                                <include reference="Oxs-OG-aai"/>
+                                <exclude reference="Ptg-8k-1Gv"/>
+                                <exclude reference="qxd-Kl-TEQ"/>
+                                <exclude reference="3nM-Fo-keX"/>
+                                <include reference="PR4-Ti-vLS"/>
+                                <exclude reference="Rom-oa-Qkk"/>
+                                <exclude reference="YSp-Gj-cm9"/>
+                                <exclude reference="6Cx-8G-v7k"/>
+                                <exclude reference="6ZW-pN-eiT"/>
+                                <include reference="aAy-Vo-0gJ"/>
+                                <exclude reference="VS3-uM-XAj"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
