@@ -14,25 +14,33 @@ class GlanceController: WKInterfaceController {
     
     let menuManager = MenuManager.defaultManager
     
+    @IBOutlet weak var image: WKInterfaceImage!
     @IBOutlet weak var label: WKInterfaceLabel!
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
+        
+        let icon = StyleKit.imageOfIconUtensils(size: CGSize(width: 46, height: 46))
+        image.setImage(icon)
     }
 
     override func willActivate() {
         super.willActivate()
         
-//        if let menu = menuManager.savedMenu, todayMenu = menu.todayMenu {
-//            updateUIWithMenu(todayMenu)
-//            return
-//        }
-//
-//        menuManager.requestMenu { [weak self] menu in
-//            mainQueue {
-//                self?.updateUIWithMenu(menu)
-//            }
-//        }
+        if let menu = menuManager.savedMenu {
+            if let todayMenu = menu.todayMenu {
+                updateUIWithMenu(todayMenu)
+                return
+            } else {
+                updateUIWithMenu(nil)
+            }
+        }
+        
+        menuManager.requestMenu { [weak self] menu in
+            mainQueue {
+                self?.updateUIWithMenu(menu.todayMenu)
+            }
+        }
     }
 
     override func didDeactivate() {
@@ -40,7 +48,19 @@ class GlanceController: WKInterfaceController {
     }
     
     
-    func updateUIWithMenu(menu: DayMenu) {
-        label.setText(menu.allDishes)
+    func updateUIWithMenu(menu: DayMenu?) {
+        
+        let text: String
+        let paragraphStyle = NSMutableParagraphStyle()
+        if let menu = menu {
+            text = menu.allDishes
+            paragraphStyle.alignment = .Left
+        } else {
+            text = NSLocalizedString("No Menu")
+            paragraphStyle.alignment = .Center
+        }
+
+        let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
+        label.setAttributedText(attributedText)
     }
 }
