@@ -10,5 +10,6 @@ import WatchKit
 
 class DateRowController: NSObject {
     
+    @IBOutlet var group: WKInterfaceGroup!
     @IBOutlet var dateLabel: WKInterfaceLabel!
 }

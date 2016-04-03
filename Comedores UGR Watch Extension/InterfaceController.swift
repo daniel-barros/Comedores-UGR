@@ -11,19 +11,18 @@ import WatchConnectivity
 import Foundation
 
 
-//  TODO: Pull to refresh
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet var table: WKInterfaceTable!
     
     let menuManager = MenuManager.defaultManager
     
+//    private var justAwoke = false
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        if menuManager.savedMenu == nil {
-            // TODO: No data / Empty screen
-        }
+//        justAwoke = true
     }
 
     override func willActivate() {
@@ -31,16 +30,20 @@ class InterfaceController: WKInterfaceController {
                 
         if let menu = menuManager.savedMenu {
             updateTable(withMenu: menu)
+//            if justAwoke {
+//                scrollToTodaysMenu(inWeekMenu: menu)
+//                justAwoke = false
+//            }
         }
         
         if menuManager.hasUpdatedDataToday == false {
-            // TODO: Updating wheel
             menuManager.requestMenu { [weak self] menu in
-                self?.updateTable(withMenu: menu)
+                mainQueue {
+                    self?.updateTable(withMenu: menu)
+//                    self?.scrollToTodaysMenu(inWeekMenu: menu)
+                }
             }
         }
-        
-        // TODO: Scroll to today's menu
     }
 
     override func didDeactivate() {
@@ -63,14 +66,25 @@ class InterfaceController: WKInterfaceController {
         for menu in weekMenu {
             let dateRowController = table.rowControllerAtIndex(index) as! DateRowController
             dateRowController.dateLabel.setText(menu.date)
+            dateRowController.group.setBackgroundColor(menu.isTodayMenu ? UIColor.customRedColor() : UIColor.customDarkRedColor())
             index += 1
             for dish in menu.dishes {
                 let dishRowController = table.rowControllerAtIndex(index) as! DishRowController
                 dishRowController.dishLabel.setText(dish)
-                dishRowController.group.setBackgroundColor(menu.isTodayMenu ? UIColor.customDarkRedColor() : nil)
                 index += 1
             }
         }
     }
-
+    
+    
+//    private func scrollToTodaysMenu(inWeekMenu weekMenu: [DayMenu]) {
+//        var index = 0
+//        for menu in weekMenu {
+//            if menu.isTodayMenu {
+//                break
+//            }
+//            index += 1 + menu.dishes.count
+//        }
+//        table.scrollToRowAtIndex(index + 2)
+//    }
 }

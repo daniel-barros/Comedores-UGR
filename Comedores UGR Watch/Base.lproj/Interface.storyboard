@@ -36,6 +36,7 @@
                                     </group>
                                     <connections>
                                         <outlet property="dateLabel" destination="Ml9-BC-j88" id="seA-N6-Oq7"/>
+                                        <outlet property="group" destination="lqb-yy-AT0" id="Tme-NB-YdF"/>
                                     </connections>
                                 </tableRow>
                             </items>

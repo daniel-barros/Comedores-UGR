@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    let fetcher = WeekMenuFetcher()
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         window?.tintColor = UIColor.customRedColor()
@@ -62,9 +65,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension AppDelegate: WCSessionDelegate {
     
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
-        // TODO: Get new menu if proper
-        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey(DefaultsWeekMenuKey) {
-            validSession?.sendMessageData(archivedMenu, replyHandler: nil, errorHandler: nil)
+
+        // Sends back an archived version of the week menu
+        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey(DefaultsWeekMenuKey),
+            menu = NSKeyedUnarchiver.unarchiveObjectWithData(archivedMenu) as? [DayMenu] {
+            
+            if menu.todayMenu == nil && fetcher.isFetching == false {  // Data is outdated, needs to update menu
+                fetcher.fetchMenu(completionHandler: { newMenu in
+                    let newArchivedMenu = NSKeyedArchiver.archivedDataWithRootObject(newMenu)
+                    self.validSession?.sendMessageData(newArchivedMenu, replyHandler: nil, errorHandler: nil)
+                }, errorHandler: { error in
+                    print(error)
+                })
+            } else {
+                validSession?.sendMessageData(archivedMenu, replyHandler: nil, errorHandler: nil)
+            }
         }
     }
 }
