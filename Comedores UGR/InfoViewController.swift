@@ -31,7 +31,7 @@ class InfoViewController: UIViewController {
             let composeVC = MFMailComposeViewController()
             composeVC.mailComposeDelegate = self
             composeVC.setToRecipients(["ugrmenu.feedback@icloud.com"])
-            composeVC.setSubject("UGR Menu Feedback")
+//            composeVC.setSubject("UGR Menu Feedback")
             
             self.presentViewController(composeVC, animated: true, completion: nil)
         } else {

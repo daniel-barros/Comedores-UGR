@@ -10,7 +10,6 @@ import Foundation
 import HTMLReader
 
 
-let DefaultsWeekMenuKey = "DefaultsWeekMenuKey"
 private let DefaultsLastUpdateKey = "DefaultsLastUpdatedKey"
 
 enum FetcherError: ErrorType {

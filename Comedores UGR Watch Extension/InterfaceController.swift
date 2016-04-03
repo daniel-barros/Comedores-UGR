@@ -7,25 +7,70 @@
 //
 
 import WatchKit
+import WatchConnectivity
 import Foundation
 
 
+//  TODO: Pull to refresh
 class InterfaceController: WKInterfaceController {
 
+    @IBOutlet var table: WKInterfaceTable!
+    
+    let menuManager = MenuManager.defaultManager
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        // Configure interface objects here.
+        if menuManager.savedMenu == nil {
+            // TODO: No data / Empty screen
+        }
     }
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+                
+        if let menu = menuManager.savedMenu {
+            updateTable(withMenu: menu)
+        }
+        
+        if menuManager.hasUpdatedDataToday == false {
+            // TODO: Updating wheel
+            menuManager.requestMenu { [weak self] menu in
+                self?.updateTable(withMenu: menu)
+            }
+        }
+        
+        // TODO: Scroll to today's menu
     }
 
     override func didDeactivate() {
-        // This method is called when watch view controller is no longer visible
         super.didDeactivate()
+    }
+    
+    
+    private func updateTable(withMenu weekMenu: [DayMenu]) {
+        var rowTypes = [String]()
+        for menu in weekMenu {
+            rowTypes.append(String(DateRowController))
+            for _ in menu.dishes {
+                rowTypes.append(String(DishRowController))
+            }
+        }
+        
+        table.setRowTypes(rowTypes)
+        
+        var index = 0
+        for menu in weekMenu {
+            let dateRowController = table.rowControllerAtIndex(index) as! DateRowController
+            dateRowController.dateLabel.setText(menu.date)
+            index += 1
+            for dish in menu.dishes {
+                let dishRowController = table.rowControllerAtIndex(index) as! DishRowController
+                dishRowController.dishLabel.setText(dish)
+                dishRowController.group.setBackgroundColor(menu.isTodayMenu ? UIColor.customDarkRedColor() : nil)
+                index += 1
+            }
+        }
     }
 
 }

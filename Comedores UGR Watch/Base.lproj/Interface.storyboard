@@ -5,10 +5,46 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="10032"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--UGR Menu-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Comedores_UGR_Watch" customModuleProvider="target"/>
+                <controller title="UGR Menu" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Comedores_UGR_Watch" customModuleProvider="target">
+                    <items>
+                        <table alignment="left" id="HN2-Ab-fH6">
+                            <items>
+                                <tableRow identifier="DishRowController" selectable="NO" id="xi5-h3-ck8" customClass="DishRowController" customModule="Comedores_UGR_Watch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" id="Gtu-C7-Z9P">
+                                        <items>
+                                            <label alignment="left" text="Label" numberOfLines="0" id="fKI-2e-iaD">
+                                                <fontDescription key="font" style="UICTFontTextStyleBody"/>
+                                            </label>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="dishLabel" destination="fKI-2e-iaD" id="P7C-RU-K7W"/>
+                                        <outlet property="group" destination="Gtu-C7-Z9P" id="DwD-iX-o4N"/>
+                                    </connections>
+                                </tableRow>
+                                <tableRow identifier="DateRowController" selectable="NO" id="JNF-hW-qn5" customClass="DateRowController" customModule="Comedores_UGR_Watch_Extension">
+                                    <group key="rootItem" width="1" height="26" alignment="left" id="lqb-yy-AT0">
+                                        <items>
+                                            <label alignment="center" verticalAlignment="center" text="Label" minimumScaleFactor="0.59999999999999998" id="Ml9-BC-j88">
+                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            </label>
+                                        </items>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.1326254204" alpha="1" colorSpace="calibratedRGB"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="dateLabel" destination="Ml9-BC-j88" id="seA-N6-Oq7"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="table" destination="HN2-Ab-fH6" id="rJ2-GP-IEx"/>
+                    </connections>
+                </controller>
             </objects>
             <point key="canvasLocation" x="235" y="347"/>
         </scene>

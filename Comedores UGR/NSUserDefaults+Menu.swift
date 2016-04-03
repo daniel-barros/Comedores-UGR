@@ -8,6 +8,9 @@
 
 import Foundation
 
+
+let DefaultsWeekMenuKey = "DefaultsWeekMenuKey"
+
 extension NSUserDefaults {
     
     func menuForKey(key: String) -> [DayMenu]? {

@@ -25,6 +25,13 @@
 		33276B6D1CAEB32400AE2721 /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B6C1CAEB32400AE2721 /* StyleKit.swift */; };
 		33276B6F1CAED82700AE2721 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B6E1CAED82700AE2721 /* InfoViewController.swift */; };
 		33276B711CAEE1B500AE2721 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B701CAEE1B500AE2721 /* PreferencesManager.swift */; };
+		33276B731CB1455900AE2721 /* DishRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B721CB1455900AE2721 /* DishRowController.swift */; };
+		33276B741CB1459F00AE2721 /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
+		33276B751CB145FE00AE2721 /* NSUserDefaults+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */; };
+		33276B771CB155B200AE2721 /* DateRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B761CB155B200AE2721 /* DateRowController.swift */; };
+		33276B791CB15E6800AE2721 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EA9C1CA77FE8004E9645 /* Common.swift */; };
+		33276B7A1CB15E7000AE2721 /* AppCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EAA41CA7970F004E9645 /* AppCommon.swift */; };
+		33276B7D1CB1778A00AE2721 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B7C1CB1778A00AE2721 /* MenuManager.swift */; };
 		336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		33808C2B1CA7D1A900AB4912 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33808C2E1CA7D1A900AB4912 /* Localizable.strings */; };
@@ -124,7 +131,7 @@
 		33276B441CABE72D00AE2721 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		33276B491CABE72D00AE2721 /* Comedores UGR Watch Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Comedores UGR Watch Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		33276B4F1CABE72D00AE2721 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		33276B501CABE72D00AE2721 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		33276B501CABE72D00AE2721 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InterfaceController.swift; path = "Comedores UGR Watch Extension/InterfaceController.swift"; sourceTree = SOURCE_ROOT; };
 		33276B521CABE72D00AE2721 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		33276B541CABE72D00AE2721 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		33276B561CABE72D00AE2721 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
@@ -134,6 +141,9 @@
 		33276B6C1CAEB32400AE2721 /* StyleKit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleKit.swift; sourceTree = "<group>"; };
 		33276B6E1CAED82700AE2721 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		33276B701CAEE1B500AE2721 /* PreferencesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
+		33276B721CB1455900AE2721 /* DishRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DishRowController.swift; sourceTree = "<group>"; };
+		33276B761CB155B200AE2721 /* DateRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateRowController.swift; sourceTree = "<group>"; };
+		33276B7C1CB1778A00AE2721 /* MenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		336E35D11CA5AECA00093C3C /* DayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMenu.swift; sourceTree = "<group>"; };
 		33808C251CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		33808C271CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -208,7 +218,8 @@
 		33276B4D1CABE72D00AE2721 /* Comedores UGR Watch Extension */ = {
 			isa = PBXGroup;
 			children = (
-				33276B501CABE72D00AE2721 /* InterfaceController.swift */,
+				33276B7C1CB1778A00AE2721 /* MenuManager.swift */,
+				33276B781CB155CC00AE2721 /* Main */,
 				33276B521CABE72D00AE2721 /* ExtensionDelegate.swift */,
 				33276B541CABE72D00AE2721 /* NotificationController.swift */,
 				33276B561CABE72D00AE2721 /* GlanceController.swift */,
@@ -267,6 +278,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		33276B781CB155CC00AE2721 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				33276B501CABE72D00AE2721 /* InterfaceController.swift */,
+				33276B721CB1455900AE2721 /* DishRowController.swift */,
+				33276B761CB155B200AE2721 /* DateRowController.swift */,
+			);
+			name = Main;
+			sourceTree = "<group>";
+		};
+		33276B7B1CB15F6B00AE2721 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				33276B6A1CAD74DA00AE2721 /* EventManager.swift */,
+				33276B701CAEE1B500AE2721 /* PreferencesManager.swift */,
+				33276B6C1CAEB32400AE2721 /* StyleKit.swift */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 		336E35D41CA5B0FA00093C3C /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -310,12 +341,10 @@
 			isa = PBXGroup;
 			children = (
 				33837D301C9066540095E395 /* AppDelegate.swift */,
-				33276B6A1CAD74DA00AE2721 /* EventManager.swift */,
-				33276B701CAEE1B500AE2721 /* PreferencesManager.swift */,
-				33276B6C1CAEB32400AE2721 /* StyleKit.swift */,
 				33276B6E1CAED82700AE2721 /* InfoViewController.swift */,
 				33837D321C9066540095E395 /* MenuTableViewController.swift */,
 				33276B661CAD732900AE2721 /* Table View Cells */,
+				33276B7B1CB15F6B00AE2721 /* Other */,
 				33837D341C9066540095E395 /* Main.storyboard */,
 				33837D391C9066540095E395 /* LaunchScreen.storyboard */,
 				33276B671CAD735200AE2721 /* Supporting Files */,
@@ -587,9 +616,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				33276B551CABE72D00AE2721 /* NotificationController.swift in Sources */,
+				33276B741CB1459F00AE2721 /* DayMenu.swift in Sources */,
+				33276B7A1CB15E7000AE2721 /* AppCommon.swift in Sources */,
 				33276B531CABE72D00AE2721 /* ExtensionDelegate.swift in Sources */,
 				33276B511CABE72D00AE2721 /* InterfaceController.swift in Sources */,
+				33276B791CB15E6800AE2721 /* Common.swift in Sources */,
+				33276B771CB155B200AE2721 /* DateRowController.swift in Sources */,
+				33276B751CB145FE00AE2721 /* NSUserDefaults+Menu.swift in Sources */,
+				33276B7D1CB1778A00AE2721 /* MenuManager.swift in Sources */,
 				33276B571CABE72D00AE2721 /* GlanceController.swift in Sources */,
+				33276B731CB1455900AE2721 /* DishRowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

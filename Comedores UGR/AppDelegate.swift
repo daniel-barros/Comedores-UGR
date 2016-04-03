@@ -7,16 +7,31 @@
 //
 
 import UIKit
+import WatchConnectivity
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let session: WCSession? = WCSession.isSupported() ? WCSession.defaultSession() : nil
+    
+    /// - returns: `session` property if watch is paired and reachable, and app is installed. `nil` otherwise
+    var validSession: WCSession? {
+        if let validSession = session where validSession.paired && validSession.watchAppInstalled && validSession.reachable {
+            return validSession
+        } else {
+            return nil
+        }
+    }
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         window?.tintColor = UIColor.customRedColor()
+        
+        session?.delegate = self
+        session?.activateSession()
+        
         return true
     }
 
@@ -41,7 +56,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
-
 }
 
+
+extension AppDelegate: WCSessionDelegate {
+    
+    func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
+        // TODO: Get new menu if proper
+        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey(DefaultsWeekMenuKey) {
+            validSession?.sendMessageData(archivedMenu, replyHandler: nil, errorHandler: nil)
+        }
+    }
+}
