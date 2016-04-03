@@ -56,29 +56,33 @@
                     <items>
                         <group alignment="left" spacing="8" id="t8f-Gd-c4y">
                             <items>
-                                <imageView width="46" height="1" alignment="left" verticalAlignment="center" id="smd-LM-lRI"/>
-                                <group alignment="left" layout="vertical" id="CXA-iT-LLt">
+                                <imageView width="40" height="1" alignment="left" verticalAlignment="bottom" contentMode="bottomLeft" id="smd-LM-lRI"/>
+                                <group alignment="left" layout="vertical" spacing="0.0" id="CXA-iT-LLt">
                                     <items>
+                                        <label alignment="left" text="3" textAlignment="right" id="kkZ-5o-KhT">
+                                            <fontDescription key="font" type="system" pointSize="26"/>
+                                        </label>
                                         <label alignment="left" text="Domingo" id="sMm-8D-ELP">
                                             <fontDescription key="font" type="system" pointSize="12"/>
-                                        </label>
-                                        <label alignment="left" text="3" textAlignment="right" id="kkZ-5o-KhT">
-                                            <fontDescription key="font" type="system" pointSize="27"/>
                                         </label>
                                     </items>
                                 </group>
                             </items>
                         </group>
-                        <group alignment="left" id="uCw-4Q-Ouw">
+                        <group alignment="left" radius="0.0" id="uCw-4Q-Ouw">
                             <items>
-                                <label width="1" height="1" alignment="center" verticalAlignment="center" text="Label" numberOfLines="0" id="RHx-dy-hSu"/>
+                                <label width="1" height="1" alignment="center" verticalAlignment="center" text="Label" numberOfLines="0" minimumScaleFactor="0.5" id="RHx-dy-hSu">
+                                    <fontDescription key="font" type="system" pointSize="14"/>
+                                </label>
                             </items>
                         </group>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
                     <connections>
+                        <outlet property="dayNameLabel" destination="sMm-8D-ELP" id="l42-r7-mZc"/>
+                        <outlet property="dayNumberLabel" destination="kkZ-5o-KhT" id="L9r-9d-avp"/>
+                        <outlet property="dishesLabel" destination="RHx-dy-hSu" id="GXC-An-Qqw"/>
                         <outlet property="image" destination="smd-LM-lRI" id="Gau-OC-uZP"/>
-                        <outlet property="label" destination="RHx-dy-hSu" id="7yA-ln-OiM"/>
                     </connections>
                 </glanceController>
             </objects>

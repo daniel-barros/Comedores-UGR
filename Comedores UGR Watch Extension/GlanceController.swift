@@ -15,12 +15,14 @@ class GlanceController: WKInterfaceController {
     let menuManager = MenuManager.defaultManager
     
     @IBOutlet weak var image: WKInterfaceImage!
-    @IBOutlet weak var label: WKInterfaceLabel!
+    @IBOutlet weak var dishesLabel: WKInterfaceLabel!
+    @IBOutlet weak var dayNameLabel: WKInterfaceLabel!
+    @IBOutlet weak var dayNumberLabel: WKInterfaceLabel!
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        let icon = StyleKit.imageOfIconUtensils(size: CGSize(width: 46, height: 46))
+        let icon = StyleKit.imageOfIconUtensils(size: CGSize(width: 40, height: 40))
         image.setImage(icon)
     }
 
@@ -33,6 +35,8 @@ class GlanceController: WKInterfaceController {
                 return
             } else {
                 updateUIWithMenu(nil)
+//                updateUIWithMenu(menu.last)
+//                return
             }
         }
         
@@ -49,18 +53,27 @@ class GlanceController: WKInterfaceController {
     
     
     func updateUIWithMenu(menu: DayMenu?) {
+        // Date
+        let todayComponents = NSCalendar.currentCalendar().components([.Day, .Weekday], fromDate: NSDate())
+        dayNumberLabel.setText(String(todayComponents.day))
+        let formatter = NSDateFormatter()
+        dayNameLabel.setText(formatter.weekdaySymbols[todayComponents.weekday - 1])
         
+        // Dishes
         let text: String
         let paragraphStyle = NSMutableParagraphStyle()
         if let menu = menu {
-            text = menu.allDishes
+            text = menu.allDishes.stringByReplacingOccurrencesOfString("\n\n", withString: "\n")
             paragraphStyle.alignment = .Left
         } else {
             text = NSLocalizedString("No Menu")
             paragraphStyle.alignment = .Center
         }
 
+        paragraphStyle.paragraphSpacing = 4
         let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
-        label.setAttributedText(attributedText)
+        dishesLabel.setAttributedText(attributedText)
+        dishesLabel.sizeToFitWidth()
+        dishesLabel.sizeToFitHeight()
     }
 }
