@@ -55,9 +55,16 @@
                 <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModule="Comedores_UGR_Watch" customModuleProvider="target">
                     <items>
                         <group alignment="left" id="t8f-Gd-c4y"/>
-                        <group alignment="left" id="uCw-4Q-Ouw"/>
+                        <group alignment="left" id="uCw-4Q-Ouw">
+                            <items>
+                                <label alignment="left" text="Label" id="RHx-dy-hSu"/>
+                            </items>
+                        </group>
                     </items>
                     <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="14"/>
+                    <connections>
+                        <outlet property="label" destination="RHx-dy-hSu" id="7yA-ln-OiM"/>
+                    </connections>
                 </glanceController>
             </objects>
             <point key="canvasLocation" x="235" y="672"/>
