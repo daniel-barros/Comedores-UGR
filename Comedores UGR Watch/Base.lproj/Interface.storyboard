@@ -54,16 +54,16 @@
             <objects>
                 <glanceController spacing="0.0" id="0uZ-2p-rRc" customClass="GlanceController" customModule="Comedores_UGR_Watch" customModuleProvider="target">
                     <items>
-                        <group alignment="left" spacing="8" id="t8f-Gd-c4y">
+                        <group alignment="left" spacing="0.0" id="t8f-Gd-c4y">
                             <items>
                                 <imageView width="40" height="1" alignment="left" verticalAlignment="bottom" contentMode="bottomLeft" id="smd-LM-lRI"/>
-                                <group alignment="left" layout="vertical" spacing="0.0" id="CXA-iT-LLt">
+                                <group width="1" height="1" alignment="left" verticalAlignment="bottom" spacing="8" id="CXA-iT-LLt">
                                     <items>
-                                        <label alignment="left" text="3" textAlignment="right" id="kkZ-5o-KhT">
-                                            <fontDescription key="font" type="system" pointSize="26"/>
+                                        <label alignment="left" verticalAlignment="bottom" text="23" minimumScaleFactor="0.5" id="kkZ-5o-KhT">
+                                            <fontDescription key="font" type="system" pointSize="30"/>
                                         </label>
-                                        <label alignment="left" text="Domingo" id="sMm-8D-ELP">
-                                            <fontDescription key="font" type="system" pointSize="12"/>
+                                        <label height="30" alignment="left" verticalAlignment="bottom" text="Wed" minimumScaleFactor="0.59999999999999998" id="sMm-8D-ELP">
+                                            <fontDescription key="font" type="system" pointSize="20"/>
                                         </label>
                                     </items>
                                 </group>
@@ -71,7 +71,7 @@
                         </group>
                         <group alignment="left" radius="0.0" id="uCw-4Q-Ouw">
                             <items>
-                                <label width="1" height="1" alignment="center" verticalAlignment="center" text="Label" numberOfLines="0" minimumScaleFactor="0.5" id="RHx-dy-hSu">
+                                <label width="1" height="1" alignment="center" verticalAlignment="center" numberOfLines="0" minimumScaleFactor="0.5" id="RHx-dy-hSu">
                                     <fontDescription key="font" type="system" pointSize="14"/>
                                 </label>
                             </items>

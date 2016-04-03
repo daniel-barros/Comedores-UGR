@@ -57,7 +57,7 @@ class GlanceController: WKInterfaceController {
         let todayComponents = NSCalendar.currentCalendar().components([.Day, .Weekday], fromDate: NSDate())
         dayNumberLabel.setText(String(todayComponents.day))
         let formatter = NSDateFormatter()
-        dayNameLabel.setText(formatter.weekdaySymbols[todayComponents.weekday - 1])
+        dayNameLabel.setText(formatter.shortWeekdaySymbols[todayComponents.weekday - 1])
         
         // Dishes
         let text: String
