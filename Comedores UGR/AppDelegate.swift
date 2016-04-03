@@ -66,20 +66,25 @@ extension AppDelegate: WCSessionDelegate {
     
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
 
-        // Sends back an archived version of the week menu
-        if let archivedMenu = NSUserDefaults.standardUserDefaults().dataForKey(DefaultsWeekMenuKey),
-            menu = NSKeyedUnarchiver.unarchiveObjectWithData(archivedMenu) as? [DayMenu] {
-            
-            if menu.todayMenu == nil && fetcher.isFetching == false {  // Data is outdated, needs to update menu
-                fetcher.fetchMenu(completionHandler: { newMenu in
-                    let newArchivedMenu = NSKeyedArchiver.archivedDataWithRootObject(newMenu)
-                    self.validSession?.sendMessageData(newArchivedMenu, replyHandler: nil, errorHandler: nil)
-                }, errorHandler: { error in
+        func fetch() {
+            fetcher.fetchMenu(completionHandler: { newMenu in
+                let newArchivedMenu = NSKeyedArchiver.archivedDataWithRootObject(newMenu)
+                self.validSession?.sendMessageData(newArchivedMenu, replyHandler: nil, errorHandler: nil)
+            }, errorHandler: { error in
                     print(error)
-                })
+            })
+        }
+        
+        // Sends back an archived version of the week menu
+        if let menu = fetcher.savedMenu {
+            if menu.todayMenu == nil && fetcher.isFetching == false {
+                fetch()
             } else {
+                let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(menu)
                 validSession?.sendMessageData(archivedMenu, replyHandler: nil, errorHandler: nil)
             }
+        } else {
+            fetch()
         }
     }
 }

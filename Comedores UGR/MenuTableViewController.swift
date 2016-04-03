@@ -14,9 +14,7 @@ class MenuTableViewController: UITableViewController {
     
     let fetcher = WeekMenuFetcher()
     
-    var weekMenu: [DayMenu] = {
-        return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? [DayMenu]()
-    }()
+    var weekMenu = [DayMenu]()
 
     var error: FetcherError?
     
@@ -29,6 +27,8 @@ class MenuTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        weekMenu = fetcher.savedMenu ?? []
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
                 

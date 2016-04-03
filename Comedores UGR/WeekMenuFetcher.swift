@@ -26,6 +26,9 @@ class WeekMenuFetcher {
     
     var isFetching = false
     
+    var savedMenu: [DayMenu]? {
+        return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
+    }
     
     static var hasAlreadyFetchedToday: Bool {
         if let date = WeekMenuFetcher.lastUpdate where NSCalendar.currentCalendar().isDateInToday(date) {

@@ -21,7 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weekMenu = NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey) ?? []
+        weekMenu = fetcher.savedMenu ?? []
         updateUI()
     }
     
@@ -35,7 +35,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     /// Updates `weekMenu` from current user defaults value.
     /// Returns `true` if the menu changed, `false otherwise.
     private func updateMenu() -> Bool {
-        if let newMenu = NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
+        if let newMenu = fetcher.savedMenu
             where weekMenu.containsSameWeekMenuAs(newMenu) == false {
             weekMenu = newMenu
             return true
