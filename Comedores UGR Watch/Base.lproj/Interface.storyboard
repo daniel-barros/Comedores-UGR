@@ -72,10 +72,10 @@
                         </group>
                         <group alignment="left" radius="0.0" id="uCw-4Q-Ouw">
                             <items>
-                                <label width="1" alignment="center" verticalAlignment="center" numberOfLines="6" id="RHx-dy-hSu">
-                                    <fontDescription key="font" type="system" pointSize="12"/>
-                                    <variation key="device=watch42mm" numberOfLines="7">
-                                        <fontDescription key="font" type="system" pointSize="13"/>
+                                <label width="1" alignment="center" verticalAlignment="center" numberOfLines="5" id="RHx-dy-hSu">
+                                    <fontDescription key="font" type="system" pointSize="13"/>
+                                    <variation key="device=watch42mm" numberOfLines="5">
+                                        <fontDescription key="font" type="system" pointSize="15"/>
                                     </variation>
                                 </label>
                             </items>

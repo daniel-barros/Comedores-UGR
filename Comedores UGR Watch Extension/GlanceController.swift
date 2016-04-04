@@ -68,7 +68,7 @@ class GlanceController: WKInterfaceController {
         }
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacing = 4
+        paragraphStyle.paragraphSpacing = 6
         let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
         dishesLabel.setAttributedText(attributedText)
     }
