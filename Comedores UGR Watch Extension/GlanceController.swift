@@ -57,22 +57,19 @@ class GlanceController: WKInterfaceController {
         
         // Dishes
         let text: String
-        let paragraphStyle = NSMutableParagraphStyle()
         if let menu = menu {
             text = menu.allDishes.stringByReplacingOccurrencesOfString("\n\n", withString: "\n")
-            paragraphStyle.alignment = .Left
+            dishesLabel.setVerticalAlignment(.Top)
+            dishesLabel.setHorizontalAlignment(.Left)
         } else {
             text = NSLocalizedString("No Menu")
-            paragraphStyle.alignment = .Center
+            dishesLabel.setVerticalAlignment(.Center)
+            dishesLabel.setHorizontalAlignment(.Center)
         }
-
+        
+        let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = 4
-//        let oneLineSize = (text as NSString).boundingRectWithSize(CGSize.max, options: [], attributes: [NSFontAttributeName: label.font], context: nil)
-        let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: UIFont.systemFontOfSize(13)])
-        
-        
+        let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
         dishesLabel.setAttributedText(attributedText)
-        dishesLabel.sizeToFitWidth()
-        dishesLabel.sizeToFitHeight()
     }
 }
