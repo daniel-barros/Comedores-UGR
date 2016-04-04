@@ -27,6 +27,12 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var optionsGroupBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var infoGroup: UIStackView!
     @IBOutlet weak var priceAndHoursGroup: UIStackView!
+    @IBOutlet weak var sourceGroup: UIStackView!
+    @IBOutlet weak var infoGroupBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleGroupToIconConstraint: NSLayoutConstraint!
+    @IBOutlet weak var optionsLabel: UILabel!
+    @IBOutlet var infoSubgroups: [UIStackView]!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,20 +40,59 @@ class InfoViewController: UIViewController {
         iconImage.image = StyleKit.imageOfIconBig(size: iconImage.bounds.size, resizing: .AspectFill)
         menuInEventsSwitch.on = PreferencesManager.includeMenuInEventsNotes
         
+        // Set appearance for small screens
         if UIDevice.currentDevice().isSmalliPhone {
             iconImageWidthConstraint.constant = 160
-            titleGroupBottomConstraint.constant = 40
             appNameLabel.font = appNameLabel.font.fontWithSize(28)
             authorLabel.font = authorLabel.font.fontWithSize(15)
-            optionsGroupBottomConstraint.constant = 16
             descriptionLabels.forEach { $0.font = $0.font.fontWithSize(13) }
             contentLabels.forEach { $0.font = $0.font.fontWithSize(15) }
-            infoGroup.spacing = 14
-            priceAndHoursGroup.spacing = 20
+            optionsGroupBottomConstraint.constant = 16
+            optionsLabel.font = optionsLabel.font.fontWithSize(15)
+            infoSubgroups.forEach { $0.spacing = 6 }
+            updateMutableConstraints()
         }
     }
     
+    
+    /// Updates constraints that change accoding to device orientation.
+    func updateMutableConstraints() {
+        if UIDevice.currentDevice().orientation.isPortrait {
+            if UIDevice.currentDevice().isSmalliPhone {
+                titleGroupBottomConstraint.constant = 20
+                priceAndHoursGroup.axis = .Horizontal
+                priceAndHoursGroup.spacing = 20
+                infoGroup.spacing = 14
+                infoGroupBottomConstraint.constant = 20
+                sourceGroup.sizeToFit()
+            } else {
+                infoGroupBottomConstraint.constant = 50
+                titleGroupBottomConstraint.constant = 64
+            }
+        } else {
+            if UIDevice.currentDevice().isSmalliPhone {
+                titleGroupBottomConstraint.constant = 20
+                priceAndHoursGroup.axis = .Vertical
+                priceAndHoursGroup.spacing = 10
+                infoGroup.spacing = 10
+                infoGroupBottomConstraint.constant = 10
+                sourceGroup.sizeToFit()
+                titleGroupToIconConstraint.constant = 20
+            } else {
+                infoGroupBottomConstraint.constant = 30
+                titleGroupBottomConstraint.constant = 30
+                titleGroupToIconConstraint.constant = 40
+            }
+        }
+        view.updateConstraints()
+    }
+    
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        updateMutableConstraints()
+    }
 
+    
     @IBAction func sendFeedback(sender: UIButton) {
         
         if MFMailComposeViewController.canSendMail() {
