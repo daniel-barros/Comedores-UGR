@@ -36,7 +36,7 @@ class InterfaceController: WKInterfaceController {
 //            }
         }
         
-        if menuManager.hasUpdatedDataToday == false {
+        if menuManager.hasUpdatedDataToday == false || menuManager.savedMenu?.todayMenu == nil {
             menuManager.requestMenu { [weak self] menu in
                 mainQueue {
                     self?.updateTable(withMenu: menu)
@@ -66,11 +66,12 @@ class InterfaceController: WKInterfaceController {
         for menu in weekMenu {
             let dateRowController = table.rowControllerAtIndex(index) as! DateRowController
             dateRowController.dateLabel.setText(menu.date)
-            dateRowController.group.setBackgroundColor(menu.isTodayMenu ? UIColor.customRedColor() : UIColor.customDarkRedColor())
+            dateRowController.dateLabel.setTextColor(menu.isTodayMenu ? UIColor.customRedColor() : UIColor.customRedColor())
             index += 1
             for dish in menu.dishes {
                 let dishRowController = table.rowControllerAtIndex(index) as! DishRowController
                 dishRowController.dishLabel.setText(dish)
+                dishRowController.group.setBackgroundColor(menu.isTodayMenu ? UIColor.customDarkRedColor() : nil)
                 index += 1
             }
         }

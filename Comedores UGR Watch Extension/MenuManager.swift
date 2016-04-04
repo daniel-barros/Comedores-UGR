@@ -38,6 +38,7 @@ class MenuManager: NSObject, WCSessionDelegate {
     var handler: ([DayMenu] -> ())?
     
     /// Calling this method will prevent handler closures from previous ongoing requests from being executed.
+    /// - warning: The `handler` is not guaranteed to be called it there happens to be any issue.
     func requestMenu(responseHandler handler: [DayMenu] -> ()) {
         session.delegate = self
         session.activateSession()

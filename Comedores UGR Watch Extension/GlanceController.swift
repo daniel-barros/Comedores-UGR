@@ -30,19 +30,15 @@ class GlanceController: WKInterfaceController {
         super.willActivate()
         
         if let menu = menuManager.savedMenu {
-            if let todayMenu = menu.todayMenu {
-                updateUIWithMenu(todayMenu)
+            updateUI(withMenu: menu.todayMenu)
+            if menu.todayMenu != nil {
                 return
-            } else {
-                updateUIWithMenu(nil)
-//                updateUIWithMenu(menu.last)
-//                return
             }
         }
         
         menuManager.requestMenu { [weak self] menu in
             mainQueue {
-                self?.updateUIWithMenu(menu.todayMenu)
+                self?.updateUI(withMenu: menu.todayMenu)
             }
         }
     }
@@ -52,7 +48,7 @@ class GlanceController: WKInterfaceController {
     }
     
     
-    func updateUIWithMenu(menu: DayMenu?) {
+    func updateUI(withMenu menu: DayMenu?) {
         // Date
         let todayComponents = NSCalendar.currentCalendar().components([.Day, .Weekday], fromDate: NSDate())
         dayNumberLabel.setText(String(todayComponents.day))
@@ -71,7 +67,10 @@ class GlanceController: WKInterfaceController {
         }
 
         paragraphStyle.paragraphSpacing = 4
-        let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
+//        let oneLineSize = (text as NSString).boundingRectWithSize(CGSize.max, options: [], attributes: [NSFontAttributeName: label.font], context: nil)
+        let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle, NSFontAttributeName: UIFont.systemFontOfSize(13)])
+        
+        
         dishesLabel.setAttributedText(attributedText)
         dishesLabel.sizeToFitWidth()
         dishesLabel.sizeToFitHeight()

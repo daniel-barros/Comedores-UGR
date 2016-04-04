@@ -26,13 +26,13 @@
                                     </connections>
                                 </tableRow>
                                 <tableRow identifier="DateRowController" selectable="NO" id="JNF-hW-qn5" customClass="DateRowController" customModule="Comedores_UGR_Watch_Extension">
-                                    <group key="rootItem" width="1" height="26" alignment="left" id="lqb-yy-AT0">
+                                    <group key="rootItem" width="1" height="29" alignment="left" radius="0.0" id="lqb-yy-AT0">
                                         <items>
-                                            <label alignment="center" verticalAlignment="center" text="Label" minimumScaleFactor="0.59999999999999998" id="Ml9-BC-j88">
-                                                <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                                            <label width="1" alignment="left" verticalAlignment="bottom" text="Marzo 31 Jueves" textAlignment="center" minimumScaleFactor="0.59999999999999998" id="Ml9-BC-j88">
+                                                <fontDescription key="font" type="system" pointSize="15"/>
                                             </label>
                                         </items>
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.1326254204" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                     </group>
                                     <connections>
                                         <outlet property="dateLabel" destination="Ml9-BC-j88" id="seA-N6-Oq7"/>
@@ -71,7 +71,7 @@
                         </group>
                         <group alignment="left" radius="0.0" id="uCw-4Q-Ouw">
                             <items>
-                                <label width="1" height="1" alignment="center" verticalAlignment="center" numberOfLines="0" minimumScaleFactor="0.5" id="RHx-dy-hSu">
+                                <label width="1" height="1" alignment="center" verticalAlignment="center" numberOfLines="0" minimumScaleFactor="0.29999999999999999" id="RHx-dy-hSu">
                                     <fontDescription key="font" type="system" pointSize="14"/>
                                 </label>
                             </items>
