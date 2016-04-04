@@ -17,11 +17,34 @@ class InfoViewController: UIViewController {
     // TODO: Open link in safari
     @IBOutlet weak var sourceLabel: UILabel!
     
+    @IBOutlet weak var iconImageWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleGroupBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var appNameLabel: UILabel!
+    @IBOutlet weak var authorLabel: UILabel!
+    
+    @IBOutlet var descriptionLabels: [UILabel]!
+    @IBOutlet var contentLabels: [UILabel]!
+    @IBOutlet weak var optionsGroupBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var infoGroup: UIStackView!
+    @IBOutlet weak var priceAndHoursGroup: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         iconImage.image = StyleKit.imageOfIconBig(size: iconImage.bounds.size, resizing: .AspectFill)
         menuInEventsSwitch.on = PreferencesManager.includeMenuInEventsNotes
+        
+        if UIDevice.currentDevice().isSmalliPhone {
+            iconImageWidthConstraint.constant = 160
+            titleGroupBottomConstraint.constant = 40
+            appNameLabel.font = appNameLabel.font.fontWithSize(28)
+            authorLabel.font = authorLabel.font.fontWithSize(15)
+            optionsGroupBottomConstraint.constant = 16
+            descriptionLabels.forEach { $0.font = $0.font.fontWithSize(13) }
+            contentLabels.forEach { $0.font = $0.font.fontWithSize(15) }
+            infoGroup.spacing = 14
+            priceAndHoursGroup.spacing = 20
+        }
     }
     
 

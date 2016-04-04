@@ -142,9 +142,9 @@ class MenuTableViewController: UITableViewController {
             
             switch EventManager.authorizationStatus {
             case .Authorized: self.presentEventEditViewController(menu: menu)
-            case .Denied: self.presentAlertController(NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
+            case .Denied: self.presentAlertController(title: NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
             case .NotDetermined: self.requestEventAccessPermission(menu: menu)
-            case .Restricted: self.presentAlertController(NSLocalizedString("Access Restricted"), message: NSLocalizedString("Access to calendars is restricted, possibly due to parental controls being in place."), showsGoToSettings: false)
+            case .Restricted: self.presentAlertController(title: NSLocalizedString("Access Restricted"), message: NSLocalizedString("Access to calendars is restricted, possibly due to parental controls being in place."), showsGoToSettings: false)
             }
         })
         
@@ -166,7 +166,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    private func presentAlertController(title: String, message: String, showsGoToSettings: Bool) {
+    private func presentAlertController(title title: String, message: String, showsGoToSettings: Bool) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel"), style: .Cancel, handler: { action in

@@ -29,3 +29,14 @@ extension CGSize {
         return CGSize(width: CGFloat.max, height: CGFloat.max)
     }
 }
+
+
+#if os(iOS)
+extension UIDevice {
+    /// - returns: `true` if screen is smaller than iPhone 6
+    var isSmalliPhone: Bool {
+        let screenSize = UIScreen.mainScreen().bounds
+        return min(screenSize.width, screenSize.height) < 375
+    }
+}
+#endif
