@@ -18,8 +18,7 @@ enum FetcherError: ErrorType {
 }
 
 
-/// Fetching the menu saves it to user defaults under the key DefaultsWeekMenuKey (for sharing with widget).
-/// It also records the date of the last update under the key DefaultsLastUpdateKey
+/// Fetching the menu persists it locally, and can be accessed via the `savedMenu` property.
 class WeekMenuFetcher {
     
     private static let url = NSURL(string: "http://comedoresugr.tcomunica.org")!

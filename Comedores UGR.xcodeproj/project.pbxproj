@@ -55,6 +55,8 @@
 		33A9EAA61CA7970F004E9645 /* AppCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EAA41CA7970F004E9645 /* AppCommon.swift */; };
 		33EE303A1CB1A46F00DD4F4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33808C2E1CA7D1A900AB4912 /* Localizable.strings */; };
 		33EE303D1CB1B43E00DD4F4C /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B6C1CAEB32400AE2721 /* StyleKit.swift */; };
+		33EE30401CB2C89100DD4F4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33EE30421CB2C89100DD4F4C /* InfoPlist.strings */; };
+		33EE30451CB2C8B600DD4F4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33EE30471CB2C8B600DD4F4C /* InfoPlist.strings */; };
 		A04F0F94A2C3F9F7B0DB509E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45D3C10D18E5E1925E17412 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
@@ -168,6 +170,8 @@
 		33A9EAA41CA7970F004E9645 /* AppCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCommon.swift; sourceTree = "<group>"; };
 		33EE303B1CB1A6BF00DD4F4C /* Comedores UGR Watch Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Comedores UGR Watch Extension.entitlements"; sourceTree = "<group>"; };
 		33EE303C1CB1A6D100DD4F4C /* Comedores UGR Watch.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Comedores UGR Watch.entitlements"; sourceTree = "<group>"; };
+		33EE30411CB2C89100DD4F4C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		33EE30461CB2C8B600DD4F4C /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7E6BA74AD7A8B0D41EE9405E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B45D3C10D18E5E1925E17412 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B679D0C5174D735F49427568 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -240,6 +244,7 @@
 				33EE303B1CB1A6BF00DD4F4C /* Comedores UGR Watch Extension.entitlements */,
 				33276B581CABE72D00AE2721 /* Assets.xcassets */,
 				33276B5A1CABE72D00AE2721 /* Info.plist */,
+				33EE30471CB2C8B600DD4F4C /* InfoPlist.strings */,
 				33276B4F1CABE72D00AE2721 /* PushNotificationPayload.apns */,
 			);
 			name = "Supporting Files";
@@ -282,6 +287,7 @@
 				33EE303C1CB1A6D100DD4F4C /* Comedores UGR Watch.entitlements */,
 				33276B421CABE72D00AE2721 /* Assets.xcassets */,
 				33276B441CABE72D00AE2721 /* Info.plist */,
+				33EE30421CB2C89100DD4F4C /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -531,6 +537,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33EE30401CB2C89100DD4F4C /* InfoPlist.strings in Resources */,
 				33276B431CABE72D00AE2721 /* Assets.xcassets in Resources */,
 				33276B411CABE72D00AE2721 /* Interface.storyboard in Resources */,
 			);
@@ -541,6 +548,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				33276B591CABE72D00AE2721 /* Assets.xcassets in Resources */,
+				33EE30451CB2C8B600DD4F4C /* InfoPlist.strings in Resources */,
 				33EE303A1CB1A46F00DD4F4C /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -737,6 +745,22 @@
 			isa = PBXVariantGroup;
 			children = (
 				339D794E1CA7DAEE0068AFA7 /* es */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		33EE30421CB2C89100DD4F4C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33EE30411CB2C89100DD4F4C /* es */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		33EE30471CB2C8B600DD4F4C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				33EE30461CB2C8B600DD4F4C /* es */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
