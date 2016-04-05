@@ -59,10 +59,10 @@
                                 <imageView width="40" height="1" alignment="left" verticalAlignment="bottom" contentMode="bottomLeft" id="smd-LM-lRI"/>
                                 <group width="1" height="1" alignment="left" verticalAlignment="bottom" spacing="8" id="CXA-iT-LLt">
                                     <items>
-                                        <label alignment="left" verticalAlignment="bottom" text="23" minimumScaleFactor="0.5" id="kkZ-5o-KhT">
+                                        <label height="28" alignment="left" verticalAlignment="bottom" text="23" minimumScaleFactor="0.5" id="kkZ-5o-KhT">
                                             <fontDescription key="font" type="system" pointSize="30"/>
                                         </label>
-                                        <label height="30" alignment="left" verticalAlignment="bottom" text="Wed" minimumScaleFactor="0.59999999999999998" id="sMm-8D-ELP">
+                                        <label height="21" alignment="left" verticalAlignment="bottom" text="Wed" minimumScaleFactor="0.59999999999999998" id="sMm-8D-ELP">
                                             <fontDescription key="font" type="system" pointSize="20"/>
                                         </label>
                                     </items>
