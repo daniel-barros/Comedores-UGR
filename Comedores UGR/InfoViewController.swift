@@ -42,7 +42,7 @@ class InfoViewController: UIViewController {
         
         // Set appearance for small screens
         if UIDevice.currentDevice().isSmalliPhone {
-            iconImageWidthConstraint.constant = 160
+            titleGroupToIconConstraint.constant = 10
             appNameLabel.font = appNameLabel.font.fontWithSize(28)
             authorLabel.font = authorLabel.font.fontWithSize(15)
             descriptionLabels.forEach { $0.font = $0.font.fontWithSize(13) }
@@ -59,32 +59,40 @@ class InfoViewController: UIViewController {
     func updateMutableConstraints() {
         if UIDevice.currentDevice().orientation.isPortrait {
             if UIDevice.currentDevice().isSmalliPhone {
+                iconImageWidthConstraint.constant = 160
                 titleGroupBottomConstraint.constant = 20
                 priceAndHoursGroup.axis = .Horizontal
                 priceAndHoursGroup.spacing = 20
+                sourceGroup.axis = .Horizontal
+                sourceGroup.alignment = .FirstBaseline
                 infoGroup.spacing = 14
                 infoGroupBottomConstraint.constant = 20
-                sourceGroup.sizeToFit()
+                sourceGroup.spacing = 10
+//                titleGroupToIconConstraint.active = false
             } else {
                 infoGroupBottomConstraint.constant = 50
                 titleGroupBottomConstraint.constant = 64
             }
         } else {
             if UIDevice.currentDevice().isSmalliPhone {
+                iconImageWidthConstraint.constant = 130
                 titleGroupBottomConstraint.constant = 20
                 priceAndHoursGroup.axis = .Vertical
                 priceAndHoursGroup.spacing = 10
-                infoGroup.spacing = 10
+                sourceGroup.axis = .Vertical
+                sourceGroup.alignment = .Leading
+                infoGroup.spacing = 6
                 infoGroupBottomConstraint.constant = 10
-                sourceGroup.sizeToFit()
-                titleGroupToIconConstraint.constant = 20
+                sourceGroup.spacing = 2
+                infoSubgroups.forEach { $0.sizeToFit() }
+//                titleGroupToIconConstraint.active = true
+//                titleGroupToIconConstraint.constant = 10    // TODO: Not working
             } else {
                 infoGroupBottomConstraint.constant = 30
                 titleGroupBottomConstraint.constant = 30
-                titleGroupToIconConstraint.constant = 40
+//                titleGroupToIconConstraint.constant = 40
             }
         }
-        view.updateConstraints()
     }
     
     
@@ -99,7 +107,7 @@ class InfoViewController: UIViewController {
             let composeVC = MFMailComposeViewController()
             composeVC.mailComposeDelegate = self
             composeVC.setToRecipients(["ugrmenu.feedback@icloud.com"])
-//            composeVC.setSubject("UGR Menu Feedback")
+            composeVC.navigationBar.tintColor = UIColor.customRedColor()
             
             self.presentViewController(composeVC, animated: true, completion: nil)
         } else {
