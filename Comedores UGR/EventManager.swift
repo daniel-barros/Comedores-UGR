@@ -41,7 +41,7 @@ struct EventManager {
         event.title = defaults.stringForKey(DefaultsEventTitleKey) ?? NSLocalizedString("Lunch")
         
         if PreferencesManager.includeMenuInEventsNotes {
-            event.notes = NSLocalizedString("Menu") + ":\n" + menu.allDishes.stringByReplacingOccurrencesOfString("\n\n", withString: "\n")
+            event.notes = NSLocalizedString("Menu") + ":\n" + menu.allDishes
         }
         
         if let date = menu.processedDate {

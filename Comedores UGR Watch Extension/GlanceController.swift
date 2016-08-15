@@ -58,7 +58,7 @@ class GlanceController: WKInterfaceController {
         // Dishes
         let text: String
         if let menu = menu {
-            text = menu.allDishes.stringByReplacingOccurrencesOfString("\n\n", withString: "\n")
+            text = menu.allDishes
             dishesLabel.setVerticalAlignment(.Top)
             dishesLabel.setHorizontalAlignment(.Left)
         } else {

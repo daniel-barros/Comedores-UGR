@@ -10,6 +10,7 @@ import Foundation
 
 
 class DayMenu: NSObject, NSCoding {
+    
     let date: String
     let dishes: [String]
     
@@ -53,18 +54,7 @@ class DayMenu: NSObject, NSCoding {
     
     
     var allDishes: String {
-        return DayMenu.dishesStringFrom(dishes)
-    }
-    
-    
-    class func dishesStringFrom(dishesArray: [String]) -> String {
-        let string = dishesArray.reduce("", combine: { (total: String, dish: String) -> String in
-            total + dish + "\n\n"
-        })
-        if string.characters.count > 2 {
-            return string.substringToIndex(string.endIndex.advancedBy(-2))
-        }
-        return string
+        return dishesStringFrom(dishes)
     }
     
     
@@ -74,6 +64,12 @@ class DayMenu: NSObject, NSCoding {
         } else {
             return false
         }
+    }
+    
+    
+    /// `true` if dishes text contains a message like "CERRADO".
+    var isClosedMenu: Bool {
+        return dishes.count == 1 && dishes.first == "CERRADO"
     }
     
     
@@ -95,6 +91,22 @@ class DayMenu: NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(date, forKey: "date")
         aCoder.encodeObject(dishes, forKey: "dishes")
+    }
+}
+
+
+// MARK: Helpers
+
+private extension DayMenu {
+    
+    func dishesStringFrom(dishesArray: [String]) -> String {
+        let string = dishesArray.reduce("", combine: { (total: String, dish: String) -> String in
+            total + dish + "\n"
+        })
+        if string.characters.count > 1 {
+            return string.substringToIndex(string.endIndex.advancedBy(-1))
+        }
+        return string
     }
 }
 

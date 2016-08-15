@@ -34,7 +34,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     private func updateUI(error error: FetcherError? = nil) {
         if let dishes = weekMenu.todayMenu?.allDishes {
-            label.text = dishes
+            label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
         } else if let error = error {
             switch error {
             case .NoInternetConnection:
