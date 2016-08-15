@@ -41,7 +41,9 @@ class MenuTableViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(fetchData), forControlEvents: .ValueChanged)
         
-        fetchData()
+        if fetcher.needsToUpdateMenu {
+            fetchData()
+        }
     }
     
     
@@ -71,7 +73,7 @@ class MenuTableViewController: UITableViewController {
                     if menuChanged {
                         self.tableView.reloadData()
                     } else {
-                        self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)
+                        self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)   // Updates "last updated" row
                     }
                     if menu.isEmpty == false {
                         self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: !menuChanged)
@@ -154,9 +156,22 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    // MARK: Helpers
+    // MARK: - UIScrollViewDelegate
     
-    private func presentEventEditViewController(menu menu: DayMenu) {
+    // Avoids "last update" row scrolling down to first dish row
+    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if lastUpdateRowIsVisible {
+            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
+        }
+    }
+}
+
+
+// MARK: Helpers
+
+private extension MenuTableViewController {
+    
+    func presentEventEditViewController(menu menu: DayMenu) {
         let eventVC = EKEventEditViewController()
         let eventStore = EKEventStore()
         eventVC.eventStore = eventStore
@@ -166,7 +181,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    private func presentAlertController(title title: String, message: String, showsGoToSettings: Bool) {
+    func presentAlertController(title title: String, message: String, showsGoToSettings: Bool) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         
         let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel"), style: .Cancel, handler: { action in
@@ -186,7 +201,7 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    private func requestEventAccessPermission(menu menu: DayMenu) {
+    func requestEventAccessPermission(menu menu: DayMenu) {
         EventManager.requestAccessPermission { granted in
             mainQueue {
                 if granted {
@@ -197,18 +212,7 @@ class MenuTableViewController: UITableViewController {
             }
         }
     }
-
     
-    // MARK: - UIScrollViewDelegate
-    // Avoids "last update" row scrolling down to first dish row
-    
-    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if lastUpdateRowIsVisible {
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
-        }
-    }
-    
-    // MARK: Helpers
     
     private var lastUpdateRowIsVisible: Bool {
         let offset = navigationController!.navigationBar.frame.height + UIApplication.sharedApplication().statusBarFrame.height

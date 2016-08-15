@@ -64,27 +64,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 extension AppDelegate: WCSessionDelegate {
     
+    // Sends back an archived version of the week menu, fetching first if necessary.
     func session(session: WCSession, didReceiveMessage message: [String : AnyObject]) {
 
-        func fetch() {
-            fetcher.fetchMenu(completionHandler: { newMenu in
-                let newArchivedMenu = NSKeyedArchiver.archivedDataWithRootObject(newMenu)
-                self.validSession?.sendMessageData(newArchivedMenu, replyHandler: nil, errorHandler: nil)
-            }, errorHandler: { error in
-                    print(error)
-            })
+        guard fetcher.isFetching == false else { return }
+        
+        func sendMenu(menu: [DayMenu]) {
+            let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(menu)
+            validSession?.sendMessageData(archivedMenu, replyHandler: nil, errorHandler: nil)
         }
         
-        // Sends back an archived version of the week menu
-        if let menu = fetcher.savedMenu {
-            if menu.todayMenu == nil && fetcher.isFetching == false {
-                fetch()
-            } else {
-                let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(menu)
-                validSession?.sendMessageData(archivedMenu, replyHandler: nil, errorHandler: nil)
-            }
+        if fetcher.needsToUpdateMenu {
+            fetcher.fetchMenu(completionHandler: { newMenu in
+                sendMenu(newMenu)
+            }, errorHandler: { error in print(error) })
         } else {
-            fetch()
+            sendMenu(fetcher.savedMenu!)
         }
     }
 }
