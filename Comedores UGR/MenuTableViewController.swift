@@ -34,6 +34,7 @@ class MenuTableViewController: UITableViewController {
                 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
+        
         if weekMenu.isEmpty == false {
             tableView.contentOffset.y = lastUpdateRowHeight   // Hides "last update" row
         }
@@ -97,6 +98,12 @@ class MenuTableViewController: UITableViewController {
     
     @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
         
+    }
+    
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        tableView.separatorInset.left = size.width * 0.2 - 58   // Updates separator inset according to device orientation
     }
     
     
