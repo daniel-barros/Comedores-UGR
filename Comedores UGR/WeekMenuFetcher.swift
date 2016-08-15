@@ -21,13 +21,17 @@ enum FetcherError: ErrorType {
 /// Fetching the menu persists it locally, and can be accessed via the `savedMenu` property.
 class WeekMenuFetcher {
     
-    private static let url = NSURL(string: "http://scu.ugr.es")!
+    private struct Defaults {
+        static let url = NSURL(string: "http://scu.ugr.es")!
+        static let encoding = NSUTF8StringEncoding
+    }
     
     var isFetching = false
     
     var savedMenu: [DayMenu]? {
         return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
     }
+    
     
     static var hasAlreadyFetchedToday: Bool {
         if let date = WeekMenuFetcher.lastUpdate where NSCalendar.currentCalendar().isDateInToday(date) {
@@ -45,10 +49,10 @@ class WeekMenuFetcher {
     /// Fetches week menu **asynchronously**.
     func fetchMenu(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
         isFetching = true
-        NSURLSession.sharedSession().dataTaskWithURL(WeekMenuFetcher.url, completionHandler: {
+        NSURLSession.sharedSession().dataTaskWithURL(Defaults.url, completionHandler: {
             data, response, error in
             
-            if let data = data, htmlString = String(data: data, encoding: NSISOLatin1StringEncoding) {
+            if let data = data, htmlString = String(data: data, encoding: Defaults.encoding) {
                 let weekMenu = self.parseHTML(htmlString)
                 self.persistMenu(weekMenu)
                 completionHandler(weekMenu)
@@ -68,7 +72,7 @@ class WeekMenuFetcher {
     /// If it fails it throws an error of type `FetcherError`.
     func fetchMenu() throws -> [DayMenu] {
         do {
-            let htmlString = try String(contentsOfURL: WeekMenuFetcher.url, encoding: NSISOLatin1StringEncoding)
+            let htmlString = try String(contentsOfURL: Defaults.url, encoding: Defaults.encoding)
             let menu = parseHTML(htmlString)
             persistMenu(menu)
             return menu
@@ -87,35 +91,27 @@ class WeekMenuFetcher {
         let doc = HTMLDocument(string: html)
         
         if let table = doc.firstNodeMatchingSelector("table[class=inline]") {
+            var date: String?
+            var dishes: [String] = []
             for td in table.nodesMatchingSelector("td") as! [HTMLElement] {
-                switch td.objectForKeyedSubscript("rowspan") as? String {
-                case "4"?: print("DATE: " + td.textContent)
-                case "2"?: print("CLOSED: " + td.textContent)
-                default: print("PLATO: " + td.textContent)
+                if td.hasClass("centeralign") && td.objectForKeyedSubscript("rowspan") != nil {
+                    if let date = date {
+                        weekMenu.append(DayMenu(date: date, dishes: dishes))
+                        dishes.removeAll(keepCapacity: true)
+                    }
+                    date = td.textContent
+                        .stringByReplacingOccurrencesOfString("\n", withString: " ")
+                        .stringByTrimmingExtraWhitespaces
+                        .capitalizedString
+                } else {
+                    dishes.append(td.textContent
+                        .stringByTrimmingExtraWhitespaces)
                 }
             }
+            if let date = date {
+                weekMenu.append(DayMenu(date: date, dishes: dishes))
+            }
         }
-//        for node in doc.nodesMatchingSelector("#plato") as! [HTMLElement] {
-//            if let dateNode = node.firstNodeMatchingSelector("#diaplato"),
-//                dishesNode = node.firstNodeMatchingSelector("#platos") {
-//                // Parse date
-//                let date = dateNode.textContent
-//                    .stringByEscapingStrangeCharacters
-//                    .stringByReplacingOccurrencesOfString("\n", withString: " ")
-//                    .stringByTrimmingExtraWhitespaces
-//                
-//                // Parse dishes
-//                var dishesNodes = dishesNode.nodesMatchingSelector("div") as! [HTMLElement]
-//                dishesNodes.removeFirst()    // first one is the parent itself
-//                let dishes = dishesNodes.map {
-//                    $0.textContent
-//                        .stringByEscapingStrangeCharacters
-//                        .stringByTrimmingExtraWhitespaces
-//                }
-//                
-//                weekMenu.append(DayMenu(date: date, dishes: dishes))
-//            }
-//        }
         
         return weekMenu
     }
@@ -124,30 +120,5 @@ class WeekMenuFetcher {
     private func persistMenu(menu: [DayMenu]) {
         NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
         NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
-    }
-}
-
-
-extension String {
-    /// Returns a string without consecutive whitespaces.
-    /// It also removes the first character if it is a new line.
-    var stringByTrimmingExtraWhitespaces: String {
-        var string = self
-        if self[startIndex] == "\n" {
-            string = self.substringFromIndex(startIndex.advancedBy(1))
-        }
-        
-        let components = string.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).filter { !$0.isEmpty }
-        return components.joinWithSeparator(" ")
-    }
-    
-    
-    var stringByEscapingStrangeCharacters: String {
-        return stringByReplacingOccurrencesOfString("Ã¡", withString: "á")
-            .stringByReplacingOccurrencesOfString("Ã³", withString: "ó")
-            .stringByReplacingOccurrencesOfString("Ãº", withString: "ú")
-            .stringByReplacingOccurrencesOfString("Ã±", withString: "ñ")
-            .stringByReplacingOccurrencesOfString("Ã©", withString: "é")
-            .stringByReplacingOccurrencesOfString("Ã", withString: "í")
     }
 }

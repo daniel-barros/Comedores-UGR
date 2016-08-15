@@ -34,6 +34,9 @@
 		336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		3374DF2D1D62082E0084ED64 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EA9C1CA77FE8004E9645 /* Common.swift */; };
+		3374DF2F1D6216B50084ED64 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3374DF2E1D6216B50084ED64 /* StringExtensions.swift */; };
+		3374DF301D6216B50084ED64 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3374DF2E1D6216B50084ED64 /* StringExtensions.swift */; };
+		3374DF311D6216B50084ED64 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3374DF2E1D6216B50084ED64 /* StringExtensions.swift */; };
 		33808C2B1CA7D1A900AB4912 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33808C2E1CA7D1A900AB4912 /* Localizable.strings */; };
 		33808C2C1CA7D1A900AB4912 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33808C2E1CA7D1A900AB4912 /* Localizable.strings */; };
 		33837D311C9066540095E395 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D301C9066540095E395 /* AppDelegate.swift */; };
@@ -149,6 +152,7 @@
 		33276B761CB155B200AE2721 /* DateRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateRowController.swift; path = "Comedores UGR Watch Extension/DateRowController.swift"; sourceTree = SOURCE_ROOT; };
 		33276B7C1CB1778A00AE2721 /* MenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		336E35D11CA5AECA00093C3C /* DayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMenu.swift; sourceTree = "<group>"; };
+		3374DF2E1D6216B50084ED64 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		33808C251CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
 		33808C271CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		33808C2D1CA7D1A900AB4912 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -307,6 +311,7 @@
 				339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */,
 				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
 				336E35D11CA5AECA00093C3C /* DayMenu.swift */,
+				3374DF2E1D6216B50084ED64 /* StringExtensions.swift */,
 				33A9EAA41CA7970F004E9645 /* Colors.swift */,
 				33276B6C1CAEB32400AE2721 /* StyleKit.swift */,
 				33A9EA9C1CA77FE8004E9645 /* Common.swift */,
@@ -623,6 +628,7 @@
 				3303C0C11CA5A09A006363AD /* WeekMenuFetcher.swift in Sources */,
 				33A9EAA61CA7970F004E9645 /* Colors.swift in Sources */,
 				336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */,
+				3374DF301D6216B50084ED64 /* StringExtensions.swift in Sources */,
 				339D79521CA7DC780068AFA7 /* NSUserDefaults+Menu.swift in Sources */,
 				33A9EA9E1CA77FE8004E9645 /* Common.swift in Sources */,
 				3303C0B51CA59FFC006363AD /* TodayViewController.swift in Sources */,
@@ -644,6 +650,7 @@
 				33276B751CB145FE00AE2721 /* NSUserDefaults+Menu.swift in Sources */,
 				33276B7D1CB1778A00AE2721 /* MenuManager.swift in Sources */,
 				33276B571CABE72D00AE2721 /* GlanceController.swift in Sources */,
+				3374DF311D6216B50084ED64 /* StringExtensions.swift in Sources */,
 				33276B731CB1455900AE2721 /* DishRowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -664,6 +671,7 @@
 				33276B6F1CAED82700AE2721 /* InfoViewController.swift in Sources */,
 				33276B711CAEE1B500AE2721 /* PreferencesManager.swift in Sources */,
 				33837D451C90A1360095E395 /* WeekMenuFetcher.swift in Sources */,
+				3374DF2F1D6216B50084ED64 /* StringExtensions.swift in Sources */,
 				339D79511CA7DC780068AFA7 /* NSUserDefaults+Menu.swift in Sources */,
 				33837D311C9066540095E395 /* AppDelegate.swift in Sources */,
 			);

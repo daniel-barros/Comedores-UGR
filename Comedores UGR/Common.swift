@@ -11,6 +11,8 @@ import Foundation
     import UIKit
 #elseif os(OSX)
     import Cocoa
+#elseif os(watchOS)
+    import WatchKit    
 #endif
 
 // **************  THREADS, DELAYS  **************
