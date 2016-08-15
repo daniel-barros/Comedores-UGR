@@ -1,5 +1,5 @@
 //
-//  AppCommon.swift
+//  Colors.swift
 //  Comedores UGR
 //
 //  Created by Daniel Barros López on 3/27/16.
@@ -22,21 +22,3 @@ extension UIColor {
         return UIColor(red: 0.418, green: 0.043, blue: 0.023, alpha: 1)
     }
 }
-
-
-extension CGSize {
-    static var max: CGSize {
-        return CGSize(width: CGFloat.max, height: CGFloat.max)
-    }
-}
-
-
-#if os(iOS)
-extension UIDevice {
-    /// - returns: `true` if screen is smaller than iPhone 6
-    var isSmalliPhone: Bool {
-        let screenSize = UIScreen.mainScreen().bounds
-        return min(screenSize.width, screenSize.height) < 375
-    }
-}
-#endif

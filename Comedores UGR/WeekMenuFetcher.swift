@@ -21,7 +21,7 @@ enum FetcherError: ErrorType {
 /// Fetching the menu persists it locally, and can be accessed via the `savedMenu` property.
 class WeekMenuFetcher {
     
-    private static let url = NSURL(string: "http://comedoresugr.tcomunica.org")!
+    private static let url = NSURL(string: "http://scu.ugr.es")!
     
     var isFetching = false
     
@@ -49,9 +49,9 @@ class WeekMenuFetcher {
             data, response, error in
             
             if let data = data, htmlString = String(data: data, encoding: NSISOLatin1StringEncoding) {
-                let menu = self.parseHTML(htmlString)
-                self.persistMenu(menu)
-                completionHandler(menu)
+                let weekMenu = self.parseHTML(htmlString)
+                self.persistMenu(weekMenu)
+                completionHandler(weekMenu)
             } else if let error = error {
                 if error.code == NSURLErrorNotConnectedToInternet {
                     errorHandler(.NoInternetConnection)
@@ -84,30 +84,38 @@ class WeekMenuFetcher {
     
     private func parseHTML(html: String) -> [DayMenu] {
         var weekMenu = [DayMenu]()
-        
         let doc = HTMLDocument(string: html)
         
-        for node in doc.nodesMatchingSelector("#plato") as! [HTMLElement] {
-            if let dateNode = node.firstNodeMatchingSelector("#diaplato"),
-                dishesNode = node.firstNodeMatchingSelector("#platos") {
-                // Parse date
-                let date = dateNode.textContent
-                    .stringByEscapingStrangeCharacters
-                    .stringByReplacingOccurrencesOfString("\n", withString: " ")
-                    .stringByTrimmingExtraWhitespaces
-                
-                // Parse dishes
-                var dishesNodes = dishesNode.nodesMatchingSelector("div") as! [HTMLElement]
-                dishesNodes.removeFirst()    // first one is the parent itself
-                let dishes = dishesNodes.map {
-                    $0.textContent
-                        .stringByEscapingStrangeCharacters
-                        .stringByTrimmingExtraWhitespaces
+        if let table = doc.firstNodeMatchingSelector("table[class=inline]") {
+            for td in table.nodesMatchingSelector("td") as! [HTMLElement] {
+                switch td.objectForKeyedSubscript("rowspan") as? String {
+                case "4"?: print("DATE: " + td.textContent)
+                case "2"?: print("CLOSED: " + td.textContent)
+                default: print("PLATO: " + td.textContent)
                 }
-                
-                weekMenu.append(DayMenu(date: date, dishes: dishes))
             }
         }
+//        for node in doc.nodesMatchingSelector("#plato") as! [HTMLElement] {
+//            if let dateNode = node.firstNodeMatchingSelector("#diaplato"),
+//                dishesNode = node.firstNodeMatchingSelector("#platos") {
+//                // Parse date
+//                let date = dateNode.textContent
+//                    .stringByEscapingStrangeCharacters
+//                    .stringByReplacingOccurrencesOfString("\n", withString: " ")
+//                    .stringByTrimmingExtraWhitespaces
+//                
+//                // Parse dishes
+//                var dishesNodes = dishesNode.nodesMatchingSelector("div") as! [HTMLElement]
+//                dishesNodes.removeFirst()    // first one is the parent itself
+//                let dishes = dishesNodes.map {
+//                    $0.textContent
+//                        .stringByEscapingStrangeCharacters
+//                        .stringByTrimmingExtraWhitespaces
+//                }
+//                
+//                weekMenu.append(DayMenu(date: date, dishes: dishes))
+//            }
+//        }
         
         return weekMenu
     }
