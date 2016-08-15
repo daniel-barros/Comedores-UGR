@@ -64,7 +64,12 @@ class DayMenu: NSObject, NSCoding {
     
     
     var allDishes: String {
-        let string = dishes.reduce("", combine: { (total: String, dish: String) -> String in
+        return DayMenu.dishesStringFrom(dishes)
+    }
+    
+    
+    class func dishesStringFrom(dishesArray: [String]) -> String {
+        let string = dishesArray.reduce("", combine: { (total: String, dish: String) -> String in
             total + dish + "\n\n"
         })
         if string.characters.count > 2 {
