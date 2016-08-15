@@ -107,6 +107,16 @@ extension NSDate {
     }
 }
 
+
+extension NSCalendar {
+    
+    func differenceInDays(from firstDate: NSDate, to secondDate: NSDate) -> Int {
+        let date1 = startOfDayForDate(firstDate)
+        let date2 = startOfDayForDate(secondDate)
+        return components(.Day, fromDate: date1, toDate: date2, options: []).day
+    }
+}
+
 // **************  PLATFORM-DEPENDENT EXTENSIONS  **************
 
 #if os(iOS)

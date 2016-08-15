@@ -28,34 +28,40 @@ class WeekMenuFetcher {
     
     var isFetching = false
     
+    
     var savedMenu: [DayMenu]? {
         return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
     }
     
     
-    static var hasAlreadyFetchedToday: Bool {
-        if let date = WeekMenuFetcher.lastUpdate where NSCalendar.currentCalendar().isDateInToday(date) {
+    /// `true` if savedMenu is nil or corrupt, or if it's next Sunday or later.
+    var needsToUpdateMenu: Bool {
+        guard let menu = savedMenu, firstDate = menu.first?.processedDate else {
             return true
         }
-        return false
+        return NSCalendar.currentCalendar().differenceInDays(from: firstDate, to: NSDate()) > 5
     }
     
     
-    static var lastUpdate: NSDate? {
+    /// Last time savedMenu was updated.
+    var lastUpdate: NSDate? {
         return NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdateKey) as? NSDate
     }
     
     
     /// Fetches week menu **asynchronously**.
     func fetchMenu(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
+        
         isFetching = true
         NSURLSession.sharedSession().dataTaskWithURL(Defaults.url, completionHandler: {
             data, response, error in
             
             if let data = data, htmlString = String(data: data, encoding: Defaults.encoding) {
-                let weekMenu = self.parseHTML(htmlString)
-                self.persistMenu(weekMenu)
-                completionHandler(weekMenu)
+                let newMenu = self.parseHTML(htmlString)
+                if self.savedMenu == nil || self.savedMenu! != newMenu {
+                    self.saveMenu(newMenu)
+                }
+                completionHandler(newMenu)
             } else if let error = error {
                 if error.code == NSURLErrorNotConnectedToInternet {
                     errorHandler(.NoInternetConnection)
@@ -68,25 +74,33 @@ class WeekMenuFetcher {
     }
     
     
-    /// Fetches week menu **synchronously**.
-    /// If it fails it throws an error of type `FetcherError`.
-    func fetchMenu() throws -> [DayMenu] {
-        do {
-            let htmlString = try String(contentsOfURL: Defaults.url, encoding: Defaults.encoding)
-            let menu = parseHTML(htmlString)
-            persistMenu(menu)
-            return menu
-        } catch {
-            if (error as NSError).code == NSURLErrorNotConnectedToInternet {
-                throw FetcherError.NoInternetConnection
-            } else {
-                throw FetcherError.Other
-            }
-        }
-    }
+//    /// Fetches week menu **synchronously**.
+//    /// If it fails it throws an error of type `FetcherError`.
+//    func fetchMenu() throws -> [DayMenu] {
+//        do {
+//            let htmlString = try String(contentsOfURL: Defaults.url, encoding: Defaults.encoding)
+//            let newMenu = parseHTML(htmlString)
+//            if savedMenu == nil || savedMenu! != newMenu {
+//                saveMenu(newMenu)
+//            }
+//            return newMenu
+//        } catch {
+//            if (error as NSError).code == NSURLErrorNotConnectedToInternet {
+//                throw FetcherError.NoInternetConnection
+//            } else {
+//                throw FetcherError.Other
+//            }
+//        }
+//    }
     
-    
-    private func parseHTML(html: String) -> [DayMenu] {
+}
+
+
+/// MARK: Helpers
+
+private extension WeekMenuFetcher {
+
+    func parseHTML(html: String) -> [DayMenu] {
         var weekMenu = [DayMenu]()
         let doc = HTMLDocument(string: html)
         
@@ -117,7 +131,7 @@ class WeekMenuFetcher {
     }
     
     
-    private func persistMenu(menu: [DayMenu]) {
+    func saveMenu(menu: [DayMenu]) {
         NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
         NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
     }

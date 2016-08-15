@@ -63,7 +63,7 @@ class MenuTableViewController: UITableViewController {
         if fetcher.isFetching == false {
             fetcher.fetchMenu(completionHandler: { menu in
                 self.error = nil
-                let menuChanged = !self.weekMenu.containsSameWeekMenuAs(menu)
+                let menuChanged = self.weekMenu != menu
                 self.weekMenu = menu
                 self.lastTimeTableViewReloaded = NSDate()
                 mainQueue {
@@ -113,7 +113,7 @@ class MenuTableViewController: UITableViewController {
         if weekMenu.isEmpty == false {
             if indexPath.row == 0 {
                 let cell = tableView.dequeueReusableCellWithIdentifier("LastUpdateCell", forIndexPath: indexPath) as! LastUpdateTableViewCell
-                cell.configure(date: WeekMenuFetcher.lastUpdate)
+                cell.configure(date: fetcher.lastUpdate)
                 return cell
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell

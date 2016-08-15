@@ -19,13 +19,13 @@ class DayMenu: NSObject, NSCoding {
     }
     
     
-    var processedDate: NSDate? {
-        let components = date.componentsSeparatedByString(" ")
+    lazy var processedDate: NSDate? = {
+        let components = self.date.componentsSeparatedByString(" ")
         guard components.count == 3 else {
             return nil
         }
         
-        if let month = monthsDict[components[0]],
+        if let month = monthsDict[components[2]],
             day = Int(components[1]) {
             let calendar = NSCalendar.currentCalendar()
             let year = calendar.component(.Year, fromDate: NSDate())
@@ -34,32 +34,21 @@ class DayMenu: NSObject, NSCoding {
         }
         
         return nil
-    }
+    }()
     
     
     var month: String? {
-        let components = date.componentsSeparatedByString(" ")
-        return components.first
+        return date.componentsSeparatedByString(" ").third
     }
     
     
     var dayNumber: String? {
-        let components = date.componentsSeparatedByString(" ")
-        guard components.count >= 2 else {
-            return nil
-        }
-
-        return components[1]
+        return date.componentsSeparatedByString(" ").second
     }
     
     
     var dayName: String? {
-        let components = date.componentsSeparatedByString(" ")
-        guard components.count >= 3 else {
-            return nil
-        }
-        
-        return components[2]
+        return date.componentsSeparatedByString(" ").first
     }
     
     
@@ -87,6 +76,14 @@ class DayMenu: NSObject, NSCoding {
         }
     }
     
+    
+    override func isEqual(object: AnyObject?) -> Bool {
+        if let rhs = object as? DayMenu {
+            return self == rhs
+        }
+        return false
+    }
+    
     // MARK: NSCoding
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -102,6 +99,13 @@ class DayMenu: NSObject, NSCoding {
 }
 
 
+func ==(lhs: DayMenu, rhs: DayMenu) -> Bool {
+    return lhs.date == rhs.date && lhs.dishes == rhs.dishes
+}
+
+
+// MARK: DayMenu collections
+
 extension CollectionType where Generator.Element == DayMenu {
     
     var todayMenu: DayMenu? {
@@ -112,12 +116,8 @@ extension CollectionType where Generator.Element == DayMenu {
         }
         return nil
     }
-    
-    
-    func containsSameWeekMenuAs(menuCollection: Self) -> Bool {
-        return self.first?.processedDate == menuCollection.first?.processedDate && self.first?.processedDate != nil
-    }
 }
+
 
 private let monthsDict = ["Enero": 1, "Febrero": 2, "Marzo": 3, "Abril": 4, "Mayo": 5, "Junio": 6,
     "Julio": 7, "Agosto": 8, "Septiembre": 9, "Octubre": 10, "Noviembre": 11, "Diciembre": 12]
