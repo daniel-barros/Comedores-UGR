@@ -27,7 +27,7 @@
 		33276B711CAEE1B500AE2721 /* PreferencesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B701CAEE1B500AE2721 /* PreferencesManager.swift */; };
 		33276B731CB1455900AE2721 /* DishRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B721CB1455900AE2721 /* DishRowController.swift */; };
 		33276B741CB1459F00AE2721 /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
-		33276B751CB145FE00AE2721 /* NSUserDefaults+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */; };
+		33276B751CB145FE00AE2721 /* NSUserDefaults+Archiving+DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift */; };
 		33276B771CB155B200AE2721 /* DateRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B761CB155B200AE2721 /* DateRowController.swift */; };
 		33276B7A1CB15E7000AE2721 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EAA41CA7970F004E9645 /* Colors.swift */; };
 		33276B7D1CB1778A00AE2721 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B7C1CB1778A00AE2721 /* MenuManager.swift */; };
@@ -47,8 +47,8 @@
 		33837D451C90A1360095E395 /* WeekMenuFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33837D441C90A1360095E395 /* WeekMenuFetcher.swift */; };
 		339D79481CA7DAC80068AFA7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 339D794A1CA7DAC80068AFA7 /* InfoPlist.strings */; };
 		339D794D1CA7DAEE0068AFA7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 339D794F1CA7DAEE0068AFA7 /* InfoPlist.strings */; };
-		339D79511CA7DC780068AFA7 /* NSUserDefaults+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */; };
-		339D79521CA7DC780068AFA7 /* NSUserDefaults+Menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */; };
+		339D79511CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift */; };
+		339D79521CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift */; };
 		339D79571CA942FF0068AFA7 /* ErrorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79561CA942FF0068AFA7 /* ErrorTableViewCell.swift */; };
 		33A7596B1CA97B5B00D3BCA7 /* LastUpdateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A7596A1CA97B5B00D3BCA7 /* LastUpdateTableViewCell.swift */; };
 		33A9EA9D1CA77FE8004E9645 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EA9C1CA77FE8004E9645 /* Common.swift */; };
@@ -166,7 +166,7 @@
 		33837D441C90A1360095E395 /* WeekMenuFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeekMenuFetcher.swift; sourceTree = "<group>"; };
 		339D79491CA7DAC80068AFA7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		339D794E1CA7DAEE0068AFA7 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+Menu.swift"; sourceTree = "<group>"; };
+		339D79501CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSUserDefaults+Archiving+DayMenu.swift"; sourceTree = "<group>"; };
 		339D79561CA942FF0068AFA7 /* ErrorTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTableViewCell.swift; sourceTree = "<group>"; };
 		33A7596A1CA97B5B00D3BCA7 /* LastUpdateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LastUpdateTableViewCell.swift; sourceTree = "<group>"; };
 		33A9EA9C1CA77FE8004E9645 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
@@ -308,7 +308,7 @@
 		336E35D41CA5B0FA00093C3C /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				339D79501CA7DC780068AFA7 /* NSUserDefaults+Menu.swift */,
+				339D79501CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift */,
 				33837D441C90A1360095E395 /* WeekMenuFetcher.swift */,
 				336E35D11CA5AECA00093C3C /* DayMenu.swift */,
 				3374DF2E1D6216B50084ED64 /* StringExtensions.swift */,
@@ -629,7 +629,7 @@
 				33A9EAA61CA7970F004E9645 /* Colors.swift in Sources */,
 				336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */,
 				3374DF301D6216B50084ED64 /* StringExtensions.swift in Sources */,
-				339D79521CA7DC780068AFA7 /* NSUserDefaults+Menu.swift in Sources */,
+				339D79521CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift in Sources */,
 				33A9EA9E1CA77FE8004E9645 /* Common.swift in Sources */,
 				3303C0B51CA59FFC006363AD /* TodayViewController.swift in Sources */,
 			);
@@ -647,7 +647,7 @@
 				33276B511CABE72D00AE2721 /* InterfaceController.swift in Sources */,
 				33EE303D1CB1B43E00DD4F4C /* StyleKit.swift in Sources */,
 				33276B771CB155B200AE2721 /* DateRowController.swift in Sources */,
-				33276B751CB145FE00AE2721 /* NSUserDefaults+Menu.swift in Sources */,
+				33276B751CB145FE00AE2721 /* NSUserDefaults+Archiving+DayMenu.swift in Sources */,
 				33276B7D1CB1778A00AE2721 /* MenuManager.swift in Sources */,
 				33276B571CABE72D00AE2721 /* GlanceController.swift in Sources */,
 				3374DF311D6216B50084ED64 /* StringExtensions.swift in Sources */,
@@ -672,7 +672,7 @@
 				33276B711CAEE1B500AE2721 /* PreferencesManager.swift in Sources */,
 				33837D451C90A1360095E395 /* WeekMenuFetcher.swift in Sources */,
 				3374DF2F1D6216B50084ED64 /* StringExtensions.swift in Sources */,
-				339D79511CA7DC780068AFA7 /* NSUserDefaults+Menu.swift in Sources */,
+				339D79511CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift in Sources */,
 				33837D311C9066540095E395 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

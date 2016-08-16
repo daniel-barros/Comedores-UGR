@@ -10,7 +10,9 @@ import Foundation
 import WatchConnectivity
 
 
+private let DefaultsWeekMenuKey = "DefaultsWeekMenuKey"
 private let DefaultsLastDataUpdateKey = "DefaultsLastDataUpdateKey"
+
 
 class MenuManager: NSObject, WCSessionDelegate {
     static let defaultManager = MenuManager()
@@ -30,8 +32,8 @@ class MenuManager: NSObject, WCSessionDelegate {
     
     private override init() {
         super.init()
-        NSKeyedUnarchiver.setClass(DayMenu.self, forClassName: "Comedores_UGR.DayMenu")
-        NSKeyedArchiver.setClassName("Comedores_UGR.DayMenu", forClass: DayMenu.self)
+//        NSKeyedUnarchiver.setClass(DayMenu.self, forClassName: "Comedores_UGR.DayMenu")
+//        NSKeyedArchiver.setClassName("Comedores_UGR.DayMenu", forClass: DayMenu.self)
     }
 
     
@@ -58,7 +60,7 @@ class MenuManager: NSObject, WCSessionDelegate {
     // MARK: WCSessionDelegate
 
     func session(session: WCSession, didReceiveMessageData messageData: NSData) {
-        if let menu = NSKeyedUnarchiver.unarchiveObjectWithData(messageData) as? [DayMenu] {
+        if let menu = NSKeyedUnarchiver.unarchiveMenuWithData(messageData) {
             let defaults = NSUserDefaults.standardUserDefaults()
             defaults.setObject(NSDate(), forKey: DefaultsLastDataUpdateKey)
             defaults.setMenu(menu, forKey: DefaultsWeekMenuKey)

@@ -54,10 +54,21 @@ class MenuTableViewController: UITableViewController {
     
     
     func appDidBecomeActive(notification: NSNotification) {
-        // This makes sure that only the date for today's menu is highlighted
-        if let lastReload = lastTimeTableViewReloaded
-            where NSCalendar.currentCalendar().isDateInToday(lastReload) == false {
+        // Menu was updated externally and changes need to be reflected in UI
+        if let savedMenu = fetcher.savedMenu where savedMenu != weekMenu {
+            self.error = nil
+            weekMenu = savedMenu
             tableView.reloadData()
+        } else {
+            // This makes sure that only the date for today's menu is highlighted
+            if let lastReload = lastTimeTableViewReloaded
+                where NSCalendar.currentCalendar().isDateInToday(lastReload) == false {
+                tableView.reloadData()
+            }
+            // Menu needs to be updated
+            if fetcher.needsToUpdateMenu {
+                fetchData()
+            }
         }
     }
     

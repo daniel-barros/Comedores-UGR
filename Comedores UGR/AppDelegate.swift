@@ -70,7 +70,7 @@ extension AppDelegate: WCSessionDelegate {
         guard fetcher.isFetching == false else { return }
         
         func sendMenu(menu: [DayMenu]) {
-            let archivedMenu = NSKeyedArchiver.archivedDataWithRootObject(menu)
+            let archivedMenu = NSKeyedArchiver.archivedMenu(menu)
             validSession?.sendMessageData(archivedMenu, replyHandler: nil, errorHandler: nil)
         }
         

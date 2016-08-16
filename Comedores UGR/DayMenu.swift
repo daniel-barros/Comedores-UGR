@@ -9,33 +9,18 @@
 import Foundation
 
 
-class DayMenu: NSObject, NSCoding {
+struct DayMenu: Equatable {
     
     let date: String
     let dishes: [String]
+    let processedDate: NSDate?
+    
     
     init(date: String, dishes: [String]) {
         self.date = date
         self.dishes = dishes
+        self.processedDate = DayMenu.dateFromRawString(date)
     }
-    
-    
-    lazy var processedDate: NSDate? = {
-        let components = self.date.componentsSeparatedByString(" ")
-        guard components.count == 3 else {
-            return nil
-        }
-        
-        if let month = monthsDict[components[2]],
-            day = Int(components[1]) {
-            let calendar = NSCalendar.currentCalendar()
-            let year = calendar.component(.Year, fromDate: NSDate())
-            
-            return calendar.dateWithEra(1, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)
-        }
-        
-        return nil
-    }()
     
     
     var month: String? {
@@ -54,7 +39,7 @@ class DayMenu: NSObject, NSCoding {
     
     
     var allDishes: String {
-        return dishesStringFrom(dishes)
+        return DayMenu.dishesStringFrom(dishes)
     }
     
     
@@ -71,35 +56,14 @@ class DayMenu: NSObject, NSCoding {
     var isClosedMenu: Bool {
         return dishes.count == 1 && dishes.first == "CERRADO"
     }
-    
-    
-    override func isEqual(object: AnyObject?) -> Bool {
-        if let rhs = object as? DayMenu {
-            return self == rhs
-        }
-        return false
-    }
-    
-    // MARK: NSCoding
-    
-    required convenience init?(coder aDecoder: NSCoder) {
-        let date = aDecoder.decodeObjectForKey("date") as! String
-        let dishes = aDecoder.decodeObjectForKey("dishes") as! [String]
-        self.init(date: date, dishes: dishes)
-    }
-    
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(date, forKey: "date")
-        aCoder.encodeObject(dishes, forKey: "dishes")
-    }
 }
 
 
 // MARK: Helpers
 
-private extension DayMenu {
+extension DayMenu {
     
-    func dishesStringFrom(dishesArray: [String]) -> String {
+    static func dishesStringFrom(dishesArray: [String]) -> String {
         let string = dishesArray.reduce("", combine: { (total: String, dish: String) -> String in
             total + dish + "\n"
         })
@@ -107,6 +71,24 @@ private extension DayMenu {
             return string.substringToIndex(string.endIndex.advancedBy(-1))
         }
         return string
+    }
+    
+    
+    static func dateFromRawString(dateString: String) -> NSDate? {
+        let components = dateString.componentsSeparatedByString(" ")
+        guard components.count == 3 else {
+            return nil
+        }
+        
+        if let month = monthsDict[components[2]],
+            day = Int(components[1]) {
+            let calendar = NSCalendar.currentCalendar()
+            let year = calendar.component(.Year, fromDate: NSDate())
+            
+            return calendar.dateWithEra(1, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)
+        }
+        
+        return nil
     }
 }
 

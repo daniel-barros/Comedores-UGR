@@ -10,7 +10,10 @@ import Foundation
 import HTMLReader
 
 
+private let DefaultsWeekMenuKey = "DefaultsWeekMenuKey"
 private let DefaultsLastUpdateKey = "DefaultsLastUpdatedKey"
+private let SharedDefaultsName = "group.danielbarros.comedoresUGR"
+
 
 enum FetcherError: ErrorType {
     case NoInternetConnection
@@ -30,7 +33,7 @@ class WeekMenuFetcher {
     
     
     var savedMenu: [DayMenu]? {
-        return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
+        return sharedDefaults.menuForKey(DefaultsWeekMenuKey)
     }
     
     
@@ -45,7 +48,7 @@ class WeekMenuFetcher {
     
     /// Last time savedMenu was updated.
     var lastUpdate: NSDate? {
-        return NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUpdateKey) as? NSDate
+        return sharedDefaults.objectForKey(DefaultsLastUpdateKey) as? NSDate
     }
     
     
@@ -95,6 +98,13 @@ class WeekMenuFetcher {
 /// MARK: Helpers
 
 private extension WeekMenuFetcher {
+    
+    /// NSUserDefaults instance shared between members of the app group.
+    /// - warning: Proper named app group should be activated in the target's capabilities.
+    var sharedDefaults: NSUserDefaults {
+        return NSUserDefaults(suiteName: SharedDefaultsName)!
+    }
+    
 
     func parseHTML(html: String) -> [DayMenu] {
         var weekMenu = [DayMenu]()
@@ -128,7 +138,7 @@ private extension WeekMenuFetcher {
     
     
     func saveMenu(menu: [DayMenu]) {
-        NSUserDefaults.standardUserDefaults().setMenu(menu, forKey: DefaultsWeekMenuKey)
-        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUpdateKey)
+        sharedDefaults.setMenu(menu, forKey: DefaultsWeekMenuKey)
+        sharedDefaults.setObject(NSDate(), forKey: DefaultsLastUpdateKey)
     }
 }

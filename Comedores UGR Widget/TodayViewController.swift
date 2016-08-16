@@ -27,6 +27,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        if let savedMenu = fetcher.savedMenu {
+            weekMenu = savedMenu
+        }
         updateUI()
     }
     
@@ -46,20 +49,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: NCWidgetProviding
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+        // Menu was updated externally and changes need to be reflected in UI
         if let savedMenu = fetcher.savedMenu where savedMenu != weekMenu {
             weekMenu = savedMenu
             updateUI()
             completionHandler(.NewData)
+        // Menu needs to be updated
         } else if fetcher.needsToUpdateMenu {
             completionHandler(.NoData)
             fetcher.fetchMenu(completionHandler: { newMenu in
                 self.weekMenu = newMenu
-                self.updateUI()
-                completionHandler(.NewData) // TODO: Remove?
+                mainQueue {
+                    self.updateUI()
+                    completionHandler(.NewData) // TODO: Remove?
+                }
             }, errorHandler: { error in
-                self.updateUI(error: error)
-                completionHandler(.Failed)  // TODO: Remove?
+                mainQueue {
+                    self.updateUI(error: error)
+                    completionHandler(.Failed)  // TODO: Remove?
+                }
             })
+        // Menu is up to date
         } else {
             updateUI()  // Updates today's menu even if week menu didn't change
             completionHandler(.NoData)
@@ -71,7 +81,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         var insets = defaultMarginInsets
         insets.top = 10
         insets.right = 8
-        insets.bottom = 20
+        insets.bottom = 28
         return insets
     }
 }
@@ -82,6 +92,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 private extension TodayViewController {
     
     private func updateUI(error error: FetcherError? = nil) {
+        
         if let dishes = weekMenu.todayMenu?.allDishes {
             label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
         } else if let error = error {
