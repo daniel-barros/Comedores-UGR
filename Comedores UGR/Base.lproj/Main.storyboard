@@ -58,7 +58,7 @@
                                             </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DA-Vn-UJS">
-                                            <rect key="frame" x="8" y="30" width="75" height="47"/>
+                                            <rect key="frame" x="8" y="31" width="75" height="47"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="39"/>
                                             <color key="textColor" red="0.11181893199682236" green="0.1118365004658699" blue="0.1118125319480896" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -92,7 +92,7 @@ Pan, Vino Tinto y Manzana</string>
                                     <constraints>
                                         <constraint firstItem="pie-cH-zf5" firstAttribute="leading" secondItem="qF7-MR-PXg" secondAttribute="trailing" constant="26" id="2NN-zA-ClA"/>
                                         <constraint firstItem="wlf-K7-LY2" firstAttribute="trailing" secondItem="qF7-MR-PXg" secondAttribute="trailing" id="2kK-F4-xIj"/>
-                                        <constraint firstItem="wlf-K7-LY2" firstAttribute="top" secondItem="8DA-Vn-UJS" secondAttribute="bottom" constant="-1" id="8Zk-he-JRS"/>
+                                        <constraint firstItem="wlf-K7-LY2" firstAttribute="top" secondItem="8DA-Vn-UJS" secondAttribute="bottom" constant="-2" id="8Zk-he-JRS"/>
                                         <constraint firstItem="qF7-MR-PXg" firstAttribute="baseline" secondItem="pie-cH-zf5" secondAttribute="firstBaseline" id="H6L-x8-0wG"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wlf-K7-LY2" secondAttribute="bottom" constant="14" id="RXT-29-BYc"/>
                                         <constraint firstItem="8DA-Vn-UJS" firstAttribute="trailing" secondItem="qF7-MR-PXg" secondAttribute="trailing" id="Vkb-3h-wWV"/>
@@ -103,7 +103,7 @@ Pan, Vino Tinto y Manzana</string>
                                         <constraint firstItem="wlf-K7-LY2" firstAttribute="width" secondItem="qF7-MR-PXg" secondAttribute="width" id="nyH-Tm-ei4"/>
                                         <constraint firstItem="qF7-MR-PXg" firstAttribute="leading" secondItem="i0m-YW-fs6" secondAttribute="leading" constant="8" id="q70-fc-j9G"/>
                                         <constraint firstItem="qF7-MR-PXg" firstAttribute="top" secondItem="i0m-YW-fs6" secondAttribute="top" constant="14" id="qLr-ch-cca"/>
-                                        <constraint firstItem="8DA-Vn-UJS" firstAttribute="top" secondItem="qF7-MR-PXg" secondAttribute="bottom" constant="-2" id="xYH-fR-8Gh"/>
+                                        <constraint firstItem="8DA-Vn-UJS" firstAttribute="top" secondItem="qF7-MR-PXg" secondAttribute="bottom" constant="-1" id="xYH-fR-8Gh"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -190,8 +190,8 @@ Pan, Vino Tinto y Manzana</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pkv-3K-e7f">
-                                <rect key="frame" x="90" y="80" width="210" height="210"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pkv-3K-e7f">
+                                <rect key="frame" x="82" y="80" width="210" height="210"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="Pkv-3K-e7f" secondAttribute="height" multiplier="1:1" id="qlJ-s9-w8q"/>
                                     <constraint firstAttribute="width" constant="210" id="vW1-6p-wZg"/>
@@ -214,7 +214,7 @@ Pan, Vino Tinto y Manzana</string>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="tUK-h1-PHs">
-                                <rect key="frame" x="23" y="468" width="328" height="87"/>
+                                <rect key="frame" x="24" y="450" width="328" height="87"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="2AH-6G-NMy">
                                         <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
@@ -357,7 +357,7 @@ Pan, Vino Tinto y Manzana</string>
                                                     <rect key="frame" x="0.0" y="13" width="54" height="18"/>
                                                 </variation>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="http://comedoresugr.tcomunica.org" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.55000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="rAE-gn-5L5">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="http://scu.ugr.es" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.55000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="rAE-gn-5L5">
                                                 <rect key="frame" x="63" y="12" width="265" height="20"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -413,7 +413,7 @@ Pan, Vino Tinto y Manzana</string>
                                 </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-rO-PP7">
-                                <rect key="frame" x="23" y="596" width="312" height="41"/>
+                                <rect key="frame" x="23" y="586" width="312" height="41"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include lunch menu as notes in added calendar events" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Vup-PT-Z4e">
                                         <rect key="frame" x="0.0" y="0.0" width="258" height="41"/>
@@ -442,7 +442,7 @@ Pan, Vino Tinto y Manzana</string>
                                 </variation>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2cW-iP-yW7">
-                                <rect key="frame" x="92" y="317" width="191" height="75"/>
+                                <rect key="frame" x="92" y="309" width="191" height="75"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UGR Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-N3-za4">
                                         <rect key="frame" x="7" y="0.0" width="177" height="45"/>

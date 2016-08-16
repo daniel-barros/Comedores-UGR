@@ -22,7 +22,7 @@ enum FetcherError: ErrorType {
 class WeekMenuFetcher {
     
     private struct Defaults {
-        static let url = NSURL(string: "http://scu.ugr.es")!
+        static let url = NSURL(string: "http://bahia.ugr.es/~x45909484/menu/index3.html")!  // TODO: Change to http://scu.ugr.es
         static let encoding = NSUTF8StringEncoding
     }
     
@@ -58,9 +58,7 @@ class WeekMenuFetcher {
             
             if let data = data, htmlString = String(data: data, encoding: Defaults.encoding) {
                 let newMenu = self.parseHTML(htmlString)
-                if self.savedMenu == nil || self.savedMenu! != newMenu {
-                    self.saveMenu(newMenu)
-                }
+                self.saveMenu(newMenu)
                 completionHandler(newMenu)
             } else if let error = error {
                 if error.code == NSURLErrorNotConnectedToInternet {
@@ -80,9 +78,7 @@ class WeekMenuFetcher {
 //        do {
 //            let htmlString = try String(contentsOfURL: Defaults.url, encoding: Defaults.encoding)
 //            let newMenu = parseHTML(htmlString)
-//            if savedMenu == nil || savedMenu! != newMenu {
-//                saveMenu(newMenu)
-//            }
+//            saveMenu(newMenu)
 //            return newMenu
 //        } catch {
 //            if (error as NSError).code == NSURLErrorNotConnectedToInternet {

@@ -33,6 +33,13 @@
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>bahia.ugr.es</key>
+			<dict>
+				<key>NSTemporaryExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>scu.ugr.es</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
