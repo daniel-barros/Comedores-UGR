@@ -59,10 +59,16 @@ class WeekMenuFetcher {
         NSURLSession.sharedSession().dataTaskWithURL(Defaults.url, completionHandler: {
             data, response, error in
             
+            defer { self.isFetching = false }
+            
             if let data = data, htmlString = String(data: data, encoding: Defaults.encoding) {
                 let newMenu = self.parseHTML(htmlString)
-                self.saveMenu(newMenu)
-                completionHandler(newMenu)
+                if newMenu.isEmpty {
+                    errorHandler(.Other)
+                } else {
+                    self.saveMenu(newMenu)
+                    completionHandler(newMenu)
+                }
             } else if let error = error {
                 if error.code == NSURLErrorNotConnectedToInternet {
                     errorHandler(.NoInternetConnection)
@@ -70,28 +76,8 @@ class WeekMenuFetcher {
                     errorHandler(.Other)
                 }
             }
-            self.isFetching = false
         }).resume()
-    }
-    
-    
-//    /// Fetches week menu **synchronously**.
-//    /// If it fails it throws an error of type `FetcherError`.
-//    func fetchMenu() throws -> [DayMenu] {
-//        do {
-//            let htmlString = try String(contentsOfURL: Defaults.url, encoding: Defaults.encoding)
-//            let newMenu = parseHTML(htmlString)
-//            saveMenu(newMenu)
-//            return newMenu
-//        } catch {
-//            if (error as NSError).code == NSURLErrorNotConnectedToInternet {
-//                throw FetcherError.NoInternetConnection
-//            } else {
-//                throw FetcherError.Other
-//            }
-//        }
-//    }
-    
+    }    
 }
 
 

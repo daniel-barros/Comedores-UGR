@@ -99,7 +99,10 @@ class MenuTableViewController: UITableViewController {
                     if self.weekMenu.isEmpty {
                         self.tableView.reloadData()
                     } else {
-                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
+                        self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)   // Updates "last updated" row showing error message temporarily
+                        delay(1) {
+                            self.error = nil    // Next time first cell is loaded it will show last update date instead of error message
+                        }
                     }
                 }
             })
@@ -131,10 +134,17 @@ class MenuTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if weekMenu.isEmpty == false {
+            // First row shows error message if any (eventually dismissed, see fetchData()), or last update date
             if indexPath.row == 0 {
-                let cell = tableView.dequeueReusableCellWithIdentifier("LastUpdateCell", forIndexPath: indexPath) as! LastUpdateTableViewCell
-                cell.configure(date: fetcher.lastUpdate)
-                return cell
+                if let error = error {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("ErrorCell", forIndexPath: indexPath) as! ErrorTableViewCell
+                    cell.configure(error: error)
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCellWithIdentifier("LastUpdateCell", forIndexPath: indexPath) as! LastUpdateTableViewCell
+                    cell.configure(date: fetcher.lastUpdate)
+                    return cell
+                }
             } else {
                 let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell
                 cell.configure(menu: weekMenu[indexPath.row - 1])
