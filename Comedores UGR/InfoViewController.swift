@@ -20,6 +20,8 @@ class InfoViewController: UIViewController {
     @IBOutlet weak var priceAndHoursGroup: UIStackView!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var iconWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var hoursLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -30,6 +32,17 @@ class InfoViewController: UIViewController {
         if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
             versionLabel.text = NSLocalizedString("UGR Menu") + " v\(version)"
         }
+        
+        let fetcher = WeekMenuFetcher()
+        let numberFormatter = NSNumberFormatter()
+        numberFormatter.numberStyle = .DecimalStyle
+        priceLabel.text = numberFormatter.stringFromNumber(fetcher.menuPrice)! + "€"
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateStyle = .NoStyle
+        dateFormatter.timeStyle = .ShortStyle
+        hoursLabel.text = dateFormatter.stringFromDate(fetcher.diningOpeningTime) + " – " +
+            dateFormatter.stringFromDate(fetcher.diningClosingTime)
         
         // Set appearance for small screens
         if UIDevice.currentDevice().isSmalliPhone {
@@ -45,19 +58,6 @@ class InfoViewController: UIViewController {
         }
     }
     
-    
-    /// Updates constraints that change accoding to device orientation.
-    func updateMutableConstraints() {
-        if UIDevice.currentDevice().isSmalliPhone == false {
-            
-        }
-    }
-    
-    
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        updateMutableConstraints()
-    }
-
     
     @IBAction func sendFeedback(sender: UIButton) {
         

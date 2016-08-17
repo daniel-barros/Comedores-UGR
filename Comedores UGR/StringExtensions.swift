@@ -10,10 +10,10 @@ import Foundation
 
 extension String {
     /// Returns a string without consecutive whitespaces.
-    /// It also removes the first character if it is a new line.
+    /// It also removes the first character if it is a new line or whitespace.
     var stringByTrimmingExtraWhitespaces: String {
         var string = self
-        if self[startIndex] == "\n" {
+        if self[startIndex] == "\n" || self[startIndex] == " " {
             string = self.substringFromIndex(startIndex.advancedBy(1))
         }
         

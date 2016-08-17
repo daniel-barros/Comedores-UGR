@@ -504,12 +504,14 @@ Pan, Vino Tinto y Manzana</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="appNameLabel" destination="8jm-N3-za4" id="CIj-cS-rvz"/>
+                        <outlet property="hoursLabel" destination="CzB-Un-xfl" id="Zgd-FZ-ivn"/>
                         <outlet property="iconImage" destination="Pkv-3K-e7f" id="5S5-0m-1HE"/>
                         <outlet property="iconImageWidthConstraint" destination="vW1-6p-wZg" id="ANx-1U-ZHx"/>
                         <outlet property="iconWidthConstraint" destination="vW1-6p-wZg" id="wy2-1c-uEO"/>
                         <outlet property="infoGroup" destination="tUK-h1-PHs" id="WBI-ki-rJV"/>
                         <outlet property="menuInEventsSwitch" destination="JW4-14-u4S" id="KM8-SP-aAM"/>
                         <outlet property="priceAndHoursGroup" destination="2AH-6G-NMy" id="slH-UY-81j"/>
+                        <outlet property="priceLabel" destination="wJw-lb-CHv" id="JYh-fU-fnc"/>
                         <outlet property="versionLabel" destination="nHV-7Y-EVA" id="374-he-K8l"/>
                     </connections>
                 </viewController>
