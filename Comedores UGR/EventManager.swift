@@ -16,6 +16,8 @@ private let DefaultsEventEndHourKey = "DefaultsEventEndHourKey"
 private let DefaultsEventEndMinuteKey = "DefaultsEventEndMinuteKey"
 private let DefaultsEventCalendarIdentifierKey = "DefaultsEventCalendarIdentifierKey"
 private let DefaultsEventLocationKey = "DefaultsEventLocationKey"
+private let DefaultsEventFirstAlarmKey = "DefaultsEventFirstAlarmKey"
+private let DefaultsEventSecondAlarmKey = "DefaultsEventSecondAlarmKey"
 
 
 struct EventManager {
@@ -38,12 +40,15 @@ struct EventManager {
         let event = EKEvent(eventStore: eventStore)
         let defaults = NSUserDefaults.standardUserDefaults()
         
+        // Title
         event.title = defaults.stringForKey(DefaultsEventTitleKey) ?? NSLocalizedString("Lunch")
         
+        // Notes
         if PreferencesManager.includeMenuInEventsNotes {
             event.notes = NSLocalizedString("Menu") + ":\n" + menu.allDishes
         }
         
+        // Date
         if let date = menu.processedDate {
             let calendar = NSCalendar.currentCalendar()
             let components = calendar.components([.Era, .Year, .Month, .Day], fromDate: date)
@@ -58,6 +63,7 @@ struct EventManager {
             event.endDate = calendar.dateFromComponents(components)!
         }
         
+        // Calendar
         if let calendarID = defaults.stringForKey(DefaultsEventCalendarIdentifierKey) {
             // (Can't use calendarWithIdentifier() here, it fails)
             for calendar in eventStore.calendarsForEntityType(.Event) {
@@ -67,7 +73,18 @@ struct EventManager {
             }
         }
         
+        // Location
         event.location = defaults.stringForKey(DefaultsEventLocationKey)
+        
+        // Alarms
+        if PreferencesManager.useDefaultAlarmsForNewEvents {
+            if let alarmOffset = defaults.objectForKey(DefaultsEventFirstAlarmKey) as? NSTimeInterval {
+                event.addAlarm(EKAlarm(relativeOffset: alarmOffset))
+            }
+            if let alarmOffset = defaults.objectForKey(DefaultsEventSecondAlarmKey) as? NSTimeInterval {
+                event.addAlarm(EKAlarm(relativeOffset: alarmOffset))
+            }
+        }
         
         return event
     }
@@ -96,5 +113,9 @@ struct EventManager {
         
         defaults.setObject(event.location, forKey: DefaultsEventLocationKey)
         
+        if PreferencesManager.useDefaultAlarmsForNewEvents {
+            defaults.setObject(event.alarms?.first?.relativeOffset, forKey: DefaultsEventFirstAlarmKey)
+            defaults.setObject(event.alarms?.second?.relativeOffset, forKey: DefaultsEventSecondAlarmKey)
+        }
     }
 }

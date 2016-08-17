@@ -15,10 +15,13 @@ enum PreferencesManager {
     
     static var includeMenuInEventsNotes: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey(DefaultsEventIncludesNotesKey) as? Bool ?? true
+            return NSUserDefaults.standardUserDefaults().objectForKey(DefaultsEventIncludesNotesKey) as? Bool ?? false
         }
         set {
             NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: DefaultsEventIncludesNotesKey)
         }
     }
+    
+    
+    static var useDefaultAlarmsForNewEvents = false
 }
