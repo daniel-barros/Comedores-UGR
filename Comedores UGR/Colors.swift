@@ -21,4 +21,8 @@ extension UIColor {
     class func customDarkRedColor() -> UIColor {
         return UIColor(red: 0.418, green: 0.043, blue: 0.023, alpha: 1)
     }
+    
+    class func mainTextColor() -> UIColor {
+        return .blackColor() //UIColor.darkGrayColor()
+    }
 }

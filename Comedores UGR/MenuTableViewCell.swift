@@ -28,7 +28,7 @@ class MenuTableViewCell: UITableViewCell {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = 13.25
-        let attrString = NSAttributedString(string: menu.allDishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: menu.isClosedMenu ? UIColor.grayColor() : UIColor.darkGrayColor()])
+        let attrString = NSAttributedString(string: menu.allDishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: menu.isClosedMenu ? UIColor.grayColor() : UIColor.mainTextColor()])
         dishesLabel.attributedText = attrString
         
         // Today's date highlight
