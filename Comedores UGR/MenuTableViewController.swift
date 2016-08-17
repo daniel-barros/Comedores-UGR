@@ -42,6 +42,8 @@ class MenuTableViewController: UITableViewController {
         refreshControl = UIRefreshControl()
         refreshControl!.addTarget(self, action: #selector(fetchData), forControlEvents: .ValueChanged)
         
+        updateSeparatorsInset(forSize: tableView.frame.size)
+        
         if fetcher.needsToUpdateMenu {
             fetchData()
         }
@@ -117,7 +119,7 @@ class MenuTableViewController: UITableViewController {
     
     override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        tableView.separatorInset.left = size.width * 0.2 - 58   // Updates separator inset according to device orientation
+        updateSeparatorsInset(forSize: size)
     }
     
     
@@ -242,10 +244,17 @@ private extension MenuTableViewController {
     }
     
     
-    private var lastUpdateRowIsVisible: Bool {
+    var lastUpdateRowIsVisible: Bool {
         let offset = navigationController!.navigationBar.frame.height + UIApplication.sharedApplication().statusBarFrame.height
         return weekMenu.isEmpty == false && tableView.contentOffset.y < lastUpdateRowHeight - offset
     }
+    
+    
+    /// Updates the table view's separators left inset according to the given size.
+    func updateSeparatorsInset(forSize size: CGSize) {
+        tableView.separatorInset.left = size.width * 0.2 - 58
+    }
+    
 }
 
 
