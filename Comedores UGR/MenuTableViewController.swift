@@ -252,7 +252,7 @@ private extension MenuTableViewController {
     
     /// Updates the table view's separators left inset according to the given size.
     func updateSeparatorsInset(forSize size: CGSize) {
-        tableView.separatorInset.left = size.width * 0.2 - 58
+        tableView.separatorInset.left = size.width * 0.2 - 60
     }
     
 }
