@@ -504,25 +504,13 @@ Pan, Vino Tinto y Manzana</string>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="appNameLabel" destination="8jm-N3-za4" id="CIj-cS-rvz"/>
-                        <outlet property="authorLabel" destination="Vhd-Kv-bJL" id="bSi-6a-8Ob"/>
                         <outlet property="iconImage" destination="Pkv-3K-e7f" id="5S5-0m-1HE"/>
                         <outlet property="iconImageWidthConstraint" destination="vW1-6p-wZg" id="ANx-1U-ZHx"/>
                         <outlet property="iconWidthConstraint" destination="vW1-6p-wZg" id="wy2-1c-uEO"/>
                         <outlet property="infoGroup" destination="tUK-h1-PHs" id="WBI-ki-rJV"/>
                         <outlet property="menuInEventsSwitch" destination="JW4-14-u4S" id="KM8-SP-aAM"/>
-                        <outlet property="optionsLabel" destination="Vup-PT-Z4e" id="z5Y-03-S0w"/>
                         <outlet property="priceAndHoursGroup" destination="2AH-6G-NMy" id="slH-UY-81j"/>
-                        <outlet property="sourceGroup" destination="xjF-BA-AzU" id="tCQ-G2-cfv"/>
-                        <outlet property="sourceTextView" destination="OMo-g0-1uy" id="9wf-xz-BlQ"/>
                         <outlet property="versionLabel" destination="nHV-7Y-EVA" id="374-he-K8l"/>
-                        <outletCollection property="contentLabels" destination="CzB-Un-xfl" collectionClass="NSMutableArray" id="22y-gw-kqj"/>
-                        <outletCollection property="infoSubgroups" destination="xjF-BA-AzU" collectionClass="NSMutableArray" id="YqP-nE-EXo"/>
-                        <outletCollection property="descriptionLabels" destination="YNo-tA-iiR" collectionClass="NSMutableArray" id="nbw-FC-dMz"/>
-                        <outletCollection property="infoSubgroups" destination="QPC-11-m6W" collectionClass="NSMutableArray" id="gUn-RG-HXh"/>
-                        <outletCollection property="descriptionLabels" destination="m7j-p6-Vsp" collectionClass="NSMutableArray" id="T2O-eK-CVm"/>
-                        <outletCollection property="descriptionLabels" destination="5E1-ZF-mbf" collectionClass="NSMutableArray" id="uvF-bW-Ub3"/>
-                        <outletCollection property="contentLabels" destination="wJw-lb-CHv" collectionClass="NSMutableArray" id="QNb-zb-xaH"/>
-                        <outletCollection property="infoSubgroups" destination="rHs-f4-9mF" collectionClass="NSMutableArray" id="kxN-EL-Bcs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XG0-qX-bAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
