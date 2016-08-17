@@ -120,21 +120,26 @@ extension NSCalendar {
 // **************  PLATFORM-DEPENDENT EXTENSIONS  **************
 
 #if os(iOS)
-    extension UIDevice {
-        /// - returns: `true` if screen is smaller than iPhone 6
-        var isSmalliPhone: Bool {
-            let screenSize = UIScreen.mainScreen().bounds
-            return min(screenSize.width, screenSize.height) < 375
-        }
+extension UIDevice {
+    /// - returns: `true` if screen is smaller than iPhone 6
+    var isSmalliPhone: Bool {
+        let screenSize = UIScreen.mainScreen().bounds
+        return min(screenSize.width, screenSize.height) < 375
     }
     
-#elseif os(OSX)
-    extension NSTableView {
-        
-        var allRowIndexes: NSIndexSet {
-            return NSIndexSet(indexesInRange: NSRange(0..<numberOfRows))
-        }
+    var isiPhone4sOrPrevious: Bool {
+        let screenSize = UIScreen.mainScreen().bounds
+        return max(screenSize.width, screenSize.height) < 568
     }
+}
+    
+#elseif os(OSX)
+extension NSTableView {
+    
+    var allRowIndexes: NSIndexSet {
+        return NSIndexSet(indexesInRange: NSRange(0..<numberOfRows))
+    }
+}
     
 #endif
 

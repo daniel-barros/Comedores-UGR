@@ -51,6 +51,11 @@ class InfoViewController: UIViewController {
             appNameLabel.font = appNameLabel.font.fontWithSize(28)
             infoGroup.spacing = 10
             priceAndHoursGroup.spacing = 10
+            
+            if UIDevice.currentDevice().isiPhone4sOrPrevious {
+                iconWidthConstraint.constant = 0
+                iconImage.hidden = true
+            }
 //            descriptionLabels.forEach { $0.font = $0.font.fontWithSize(13) }
 //            sourceTextView.font = sourceTextView.font?.fontWithSize(15)
 //            contentLabels.forEach { $0.font = $0.font.fontWithSize(15) }
