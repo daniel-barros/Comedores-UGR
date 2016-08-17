@@ -190,13 +190,237 @@ Pan, Vino Tinto y Manzana</string>
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pkv-3K-e7f">
-                                <rect key="frame" x="82" y="80" width="210" height="210"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="Pkv-3K-e7f" secondAttribute="height" multiplier="1:1" id="qlJ-s9-w8q"/>
-                                    <constraint firstAttribute="width" constant="210" id="vW1-6p-wZg"/>
-                                </constraints>
-                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Krv-mq-suF">
+                                <rect key="frame" x="26" y="80" width="323" height="465"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pkv-3K-e7f">
+                                        <rect key="frame" x="79" y="0.0" width="165" height="165"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Pkv-3K-e7f" secondAttribute="height" multiplier="1:1" id="qlJ-s9-w8q"/>
+                                            <constraint firstAttribute="width" constant="165" id="vW1-6p-wZg"/>
+                                        </constraints>
+                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="p7o-vS-IIL">
+                                        <rect key="frame" x="0.0" y="185" width="323" height="280"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UGR Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-N3-za4">
+                                                <rect key="frame" x="73" y="0.0" width="177" height="45"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="37"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tUK-h1-PHs">
+                                                <rect key="frame" x="0.0" y="89" width="323" height="192"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2AH-6G-NMy">
+                                                        <rect key="frame" x="0.0" y="0.0" width="323" height="61"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHs-f4-9mF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="323" height="21"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Hours:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="m7j-p6-Vsp">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                                            <rect key="frame" x="0.0" y="13" width="46" height="18"/>
+                                                                        </variation>
+                                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="0.0" y="13" width="46" height="18"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1PM – 3:30PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzB-Un-xfl">
+                                                                        <rect key="frame" x="61" y="0.0" width="262" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <variation key="heightClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="13" y="-2" width="0.0" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                                            <rect key="frame" x="56" y="11" width="110" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="56" y="11" width="110" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="widthClass=regular" misplaced="YES">
+                                                                            <rect key="frame" x="56" y="-2" width="110" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="13" y="-2" width="0.0" height="21"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                </subviews>
+                                                                <variation key="heightClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="67" y="0.0" width="13" height="19"/>
+                                                                </variation>
+                                                                <variation key="heightClass=regular" misplaced="YES">
+                                                                    <rect key="frame" x="162" y="0.0" width="166" height="32"/>
+                                                                </variation>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="162" y="0.0" width="166" height="32"/>
+                                                                </variation>
+                                                                <variation key="widthClass=regular" misplaced="YES">
+                                                                    <rect key="frame" x="162" y="0.0" width="166" height="19"/>
+                                                                </variation>
+                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="67" y="0.0" width="13" height="19"/>
+                                                                </variation>
+                                                            </stackView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QPC-11-m6W">
+                                                                <rect key="frame" x="0.0" y="41" width="323" height="21"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="Menu price:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="5E1-ZF-mbf">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="91" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                                            <rect key="frame" x="0.0" y="13" width="81" height="18"/>
+                                                                        </variation>
+                                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="0.0" y="13" width="81" height="18"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="3.5€" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJw-lb-CHv">
+                                                                        <rect key="frame" x="101" y="0.0" width="223" height="21"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                        <variation key="heightClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="30" y="-2" width="1" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                                            <rect key="frame" x="91" y="11" width="35" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="91" y="11" width="35" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="widthClass=regular" misplaced="YES">
+                                                                            <rect key="frame" x="91" y="-2" width="35" height="21"/>
+                                                                        </variation>
+                                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                                            <rect key="frame" x="30" y="-2" width="1" height="21"/>
+                                                                        </variation>
+                                                                    </label>
+                                                                </subviews>
+                                                                <variation key="heightClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
+                                                                </variation>
+                                                                <variation key="heightClass=regular" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
+                                                                </variation>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
+                                                                </variation>
+                                                                <variation key="widthClass=regular" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="19"/>
+                                                                </variation>
+                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
+                                                                </variation>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <variation key="heightClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="19"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
+                                                        </variation>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
+                                                        </variation>
+                                                        <variation key="widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="19"/>
+                                                        </variation>
+                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="19"/>
+                                                        </variation>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-BA-AzU">
+                                                        <rect key="frame" x="0.0" y="81" width="323" height="29"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="Source:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="YNo-tA-iiR">
+                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="21"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=regular" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="13" width="54" height="18"/>
+                                                                </variation>
+                                                                <variation key="widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="13" width="54" height="18"/>
+                                                                </variation>
+                                                            </label>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="http://scu.ugr.es" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-g0-1uy">
+                                                                <rect key="frame" x="69" y="-8" width="254" height="37"/>
+                                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                                            </textView>
+                                                        </subviews>
+                                                        <variation key="heightClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="43" width="79" height="19"/>
+                                                        </variation>
+                                                        <variation key="heightClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="56" width="328" height="32"/>
+                                                        </variation>
+                                                        <variation key="widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="56" width="328" height="32"/>
+                                                        </variation>
+                                                        <variation key="widthClass=regular" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="43" width="328" height="19"/>
+                                                        </variation>
+                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="0.0" y="43" width="79" height="19"/>
+                                                        </variation>
+                                                    </stackView>
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6a-lU-0PI">
+                                                        <rect key="frame" x="0.0" y="130" width="323" height="1"/>
+                                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="1" id="U52-1N-zha"/>
+                                                        </constraints>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-rO-PP7" userLabel="Options Group">
+                                                        <rect key="frame" x="0.0" y="151" width="323" height="41"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include lunch menu as notes in added calendar events" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Vup-PT-Z4e">
+                                                                <rect key="frame" x="0.0" y="0.0" width="258" height="41"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <nil key="highlightedColor"/>
+                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="41"/>
+                                                                </variation>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW4-14-u4S">
+                                                                <rect key="frame" x="274" y="5" width="51" height="31"/>
+                                                                <variation key="heightClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="47" y="5" width="18" height="31"/>
+                                                                </variation>
+                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
+                                                                    <rect key="frame" x="36" y="5" width="14" height="31"/>
+                                                                </variation>
+                                                                <connections>
+                                                                    <action selector="switchToggleState:" destination="Ztg-gd-jch" eventType="valueChanged" id="2Ag-rL-Wrq"/>
+                                                                </connections>
+                                                            </switch>
+                                                        </subviews>
+                                                        <variation key="heightClass=compact" misplaced="YES">
+                                                            <rect key="frame" x="23" y="586" width="63" height="41"/>
+                                                        </variation>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <variation key="heightClass=compact" alignment="top" spacing="28"/>
+                                    </stackView>
+                                </subviews>
+                                <variation key="heightClass=compact" alignment="top" axis="horizontal" spacing="40"/>
+                            </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4l-ff-9b9">
                                 <rect key="frame" x="324" y="28" width="43" height="33"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
@@ -205,7 +429,7 @@ Pan, Vino Tinto y Manzana</string>
                                     <segue destination="QN9-tL-BlX" kind="unwind" unwindAction="prepareForUnwind:" id="fya-Gu-6se"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtK-8S-g1p">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtK-8S-g1p">
                                 <rect key="frame" x="8" y="28" width="119" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Send Feedback"/>
@@ -213,369 +437,69 @@ Pan, Vino Tinto y Manzana</string>
                                     <action selector="sendFeedback:" destination="Ztg-gd-jch" eventType="touchUpInside" id="VBa-6P-3k3"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="tUK-h1-PHs">
-                                <rect key="frame" x="24" y="450" width="328" height="87"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" spacing="36" translatesAutoresizingMaskIntoConstraints="NO" id="2AH-6G-NMy">
-                                        <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QPC-11-m6W">
-                                                <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="Menu price:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="5E1-ZF-mbf">
-                                                        <rect key="frame" x="0.0" y="13" width="81" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="13" width="81" height="18"/>
-                                                        </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="13" width="81" height="18"/>
-                                                        </variation>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="3.5€" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJw-lb-CHv">
-                                                        <rect key="frame" x="91" y="11" width="35" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="30" y="-2" width="1" height="21"/>
-                                                        </variation>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="91" y="11" width="35" height="21"/>
-                                                        </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="91" y="11" width="35" height="21"/>
-                                                        </variation>
-                                                        <variation key="widthClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="91" y="-2" width="35" height="21"/>
-                                                        </variation>
-                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="30" y="-2" width="1" height="21"/>
-                                                        </variation>
-                                                    </label>
-                                                </subviews>
-                                                <variation key="heightClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
-                                                </variation>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
-                                                </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
-                                                </variation>
-                                                <variation key="widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="19"/>
-                                                </variation>
-                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
-                                                </variation>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHs-f4-9mF">
-                                                <rect key="frame" x="162" y="0.0" width="166" height="32"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="Hours:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="m7j-p6-Vsp">
-                                                        <rect key="frame" x="0.0" y="13" width="46" height="18"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="13" width="46" height="18"/>
-                                                        </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="13" width="46" height="18"/>
-                                                        </variation>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="1PM – 3:30PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzB-Un-xfl">
-                                                        <rect key="frame" x="56" y="11" width="110" height="21"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <nil key="highlightedColor"/>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="13" y="-2" width="0.0" height="21"/>
-                                                        </variation>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="56" y="11" width="110" height="21"/>
-                                                        </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="56" y="11" width="110" height="21"/>
-                                                        </variation>
-                                                        <variation key="widthClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="56" y="-2" width="110" height="21"/>
-                                                        </variation>
-                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="13" y="-2" width="0.0" height="21"/>
-                                                        </variation>
-                                                    </label>
-                                                </subviews>
-                                                <variation key="heightClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="67" y="0.0" width="13" height="19"/>
-                                                </variation>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="162" y="0.0" width="166" height="32"/>
-                                                </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="162" y="0.0" width="166" height="32"/>
-                                                </variation>
-                                                <variation key="widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="162" y="0.0" width="166" height="19"/>
-                                                </variation>
-                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="67" y="0.0" width="13" height="19"/>
-                                                </variation>
-                                            </stackView>
-                                        </subviews>
-                                        <variation key="heightClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="79" height="19"/>
-                                        </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
-                                        </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
-                                        </variation>
-                                        <variation key="widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="328" height="19"/>
-                                        </variation>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="79" height="19"/>
-                                        </variation>
-                                    </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-BA-AzU">
-                                        <rect key="frame" x="0.0" y="56" width="328" height="32"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" misplaced="YES" text="Source:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="YNo-tA-iiR">
-                                                <rect key="frame" x="0.0" y="13" width="53" height="18"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="13" width="54" height="18"/>
-                                                </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="0.0" y="13" width="54" height="18"/>
-                                                </variation>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="http://scu.ugr.es" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.55000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="rAE-gn-5L5">
-                                                <rect key="frame" x="63" y="12" width="265" height="20"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                <nil key="highlightedColor"/>
-                                                <variation key="heightClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="23" y="-1" width="56" height="20"/>
-                                                </variation>
-                                                <variation key="heightClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="64" y="12" width="264" height="20"/>
-                                                </variation>
-                                                <variation key="widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="64" y="12" width="264" height="20"/>
-                                                </variation>
-                                                <variation key="widthClass=regular" misplaced="YES">
-                                                    <rect key="frame" x="64" y="-1" width="264" height="20"/>
-                                                </variation>
-                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                    <rect key="frame" x="23" y="-1" width="56" height="20"/>
-                                                </variation>
-                                            </label>
-                                        </subviews>
-                                        <variation key="heightClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="43" width="79" height="19"/>
-                                        </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="56" width="328" height="32"/>
-                                        </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="56" width="328" height="32"/>
-                                        </variation>
-                                        <variation key="widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="43" width="328" height="19"/>
-                                        </variation>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="43" width="79" height="19"/>
-                                        </variation>
-                                    </stackView>
-                                </subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UGR Menu v1.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHV-7Y-EVA">
+                                <rect key="frame" x="26" y="638" width="99" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="23" y="450" width="79" height="62"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="23" y="450" width="328" height="87"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="23" y="450" width="328" height="87"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="169" y="450" width="328" height="62"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="280" y="241" width="79" height="62"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-rO-PP7">
-                                <rect key="frame" x="23" y="586" width="312" height="41"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include lunch menu as notes in added calendar events" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Vup-PT-Z4e">
-                                        <rect key="frame" x="0.0" y="0.0" width="258" height="41"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="0.0" width="20" height="41"/>
-                                        </variation>
-                                    </label>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW4-14-u4S">
-                                        <rect key="frame" x="274" y="5" width="40" height="31"/>
-                                        <variation key="heightClass=compact" misplaced="YES">
-                                            <rect key="frame" x="47" y="5" width="18" height="31"/>
-                                        </variation>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="36" y="5" width="14" height="31"/>
-                                        </variation>
-                                        <connections>
-                                            <action selector="switchToggleState:" destination="Ztg-gd-jch" eventType="valueChanged" id="2Ag-rL-Wrq"/>
-                                        </connections>
-                                    </switch>
-                                </subviews>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by Daniel Barros" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhd-Kv-bJL">
+                                <rect key="frame" x="188" y="638" width="161" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
                                 <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="23" y="586" width="63" height="41"/>
-                                </variation>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2cW-iP-yW7">
-                                <rect key="frame" x="92" y="309" width="191" height="75"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UGR Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-N3-za4">
-                                        <rect key="frame" x="7" y="0.0" width="177" height="45"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="37"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="7" y="0.0" width="177" height="45"/>
-                                        </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="7" y="0.0" width="177" height="45"/>
-                                        </variation>
-                                        <variation key="widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="7" y="0.0" width="177" height="45"/>
-                                        </variation>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Created by Daniel Barros" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhd-Kv-bJL">
-                                        <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                        <variation key="heightClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                        </variation>
-                                        <variation key="heightClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                        </variation>
-                                        <variation key="widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                        </variation>
-                                        <variation key="widthClass=regular" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                        </variation>
-                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                            <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                        </variation>
-                                    </label>
-                                </subviews>
-                                <variation key="heightClass=compact" alignment="top" misplaced="YES">
-                                    <rect key="frame" x="3" y="310" width="191" height="75"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="3" y="310" width="191" height="75"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="3" y="310" width="191" height="75"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="148" y="310" width="191" height="75"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
                                 <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="280" y="101" width="191" height="75"/>
+                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
                                 </variation>
-                            </stackView>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="top" secondItem="DtK-8S-g1p" secondAttribute="bottom" constant="19" id="0Gi-O7-NBi">
-                                <variation key="heightClass=compact" constant="40"/>
-                            </constraint>
-                            <constraint firstItem="vIV-rO-PP7" firstAttribute="top" secondItem="tUK-h1-PHs" secondAttribute="bottom" priority="250" constant="50" id="0oi-Bh-flT"/>
-                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="centerY" secondItem="voI-gx-Edo" secondAttribute="centerY" priority="750" constant="-150" id="2PW-dt-RY3"/>
-                            <constraint firstItem="2cW-iP-yW7" firstAttribute="centerX" secondItem="Pkv-3K-e7f" secondAttribute="centerX" id="3nM-Fo-keX"/>
-                            <constraint firstItem="tUK-h1-PHs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="voI-gx-Edo" secondAttribute="leading" constant="16" id="6Cx-8G-v7k"/>
+                            <constraint firstItem="Vhd-Kv-bJL" firstAttribute="trailing" secondItem="tUK-h1-PHs" secondAttribute="trailing" id="5eN-C5-nZj"/>
                             <constraint firstAttribute="trailing" secondItem="I4l-ff-9b9" secondAttribute="trailing" constant="8" id="6EA-Sc-6ca"/>
-                            <constraint firstItem="tUK-h1-PHs" firstAttribute="centerX" secondItem="2cW-iP-yW7" secondAttribute="centerX" id="6ZW-pN-eiT"/>
-                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="leading" secondItem="voI-gx-Edo" secondAttribute="leading" constant="82" id="AdA-af-Y3G">
-                                <variation key="heightClass=compact" constant="30"/>
-                            </constraint>
-                            <constraint firstItem="vIV-rO-PP7" firstAttribute="trailing" secondItem="tUK-h1-PHs" secondAttribute="trailing" constant="-16" id="FW9-D7-Hlh"/>
-                            <constraint firstAttribute="trailing" secondItem="tUK-h1-PHs" secondAttribute="trailing" constant="273" id="GGx-9e-JTd">
-                                <variation key="heightClass=compact" constant="16"/>
-                            </constraint>
-                            <constraint firstItem="2cW-iP-yW7" firstAttribute="leading" secondItem="Pkv-3K-e7f" secondAttribute="trailing" constant="-112" id="Oxs-OG-aai">
+                            <constraint firstItem="njf-TW-AiS" firstAttribute="top" secondItem="Vhd-Kv-bJL" secondAttribute="bottom" constant="12" id="8mq-pF-JvF"/>
+                            <constraint firstItem="njf-TW-AiS" firstAttribute="top" secondItem="nHV-7Y-EVA" secondAttribute="bottom" constant="12" id="Taz-rv-zFq"/>
+                            <constraint firstAttribute="trailing" secondItem="Krv-mq-suF" secondAttribute="trailing" constant="26" id="elH-Dz-Ifl">
                                 <variation key="heightClass=compact" constant="40"/>
                             </constraint>
-                            <constraint firstItem="2cW-iP-yW7" firstAttribute="top" secondItem="Pkv-3K-e7f" secondAttribute="top" id="PR4-Ti-vLS"/>
-                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="centerX" secondItem="voI-gx-Edo" secondAttribute="centerX" id="Ptg-8k-1Gv"/>
-                            <constraint firstItem="njf-TW-AiS" firstAttribute="top" secondItem="vIV-rO-PP7" secondAttribute="bottom" constant="40" id="VS3-uM-XAj"/>
-                            <constraint firstItem="2cW-iP-yW7" firstAttribute="top" secondItem="Pkv-3K-e7f" secondAttribute="bottom" constant="20" id="YSp-Gj-cm9"/>
-                            <constraint firstItem="tUK-h1-PHs" firstAttribute="leading" secondItem="2cW-iP-yW7" secondAttribute="leading" id="aAy-Vo-0gJ"/>
-                            <constraint firstAttribute="trailing" secondItem="tUK-h1-PHs" secondAttribute="trailing" constant="24" id="cro-Ul-owh"/>
-                            <constraint firstAttribute="trailing" secondItem="vIV-rO-PP7" secondAttribute="trailing" constant="-33" id="elJ-lK-F1l">
-                                <variation key="heightClass=compact-widthClass=compact" constant="48"/>
-                            </constraint>
-                            <constraint firstItem="vIV-rO-PP7" firstAttribute="leading" secondItem="tUK-h1-PHs" secondAttribute="leading" id="fXm-4w-b4K"/>
                             <constraint firstItem="DtK-8S-g1p" firstAttribute="leading" secondItem="voI-gx-Edo" secondAttribute="leading" constant="8" id="gOX-4G-0f1"/>
-                            <constraint firstItem="DtK-8S-g1p" firstAttribute="baseline" secondItem="I4l-ff-9b9" secondAttribute="baseline" id="j5Y-NK-b9T"/>
-                            <constraint firstItem="tUK-h1-PHs" firstAttribute="top" secondItem="2cW-iP-yW7" secondAttribute="bottom" constant="64" id="oPd-eC-Etd"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="tUK-h1-PHs" secondAttribute="trailing" constant="16" id="oY2-ri-gda"/>
-                            <constraint firstItem="Pkv-3K-e7f" firstAttribute="top" secondItem="qzN-KK-bIu" secondAttribute="bottom" constant="60" id="qxd-Kl-TEQ">
+                            <constraint firstItem="Krv-mq-suF" firstAttribute="leading" secondItem="voI-gx-Edo" secondAttribute="leading" constant="26" id="j4C-7F-2tj">
                                 <variation key="heightClass=compact" constant="40"/>
+                            </constraint>
+                            <constraint firstItem="DtK-8S-g1p" firstAttribute="baseline" secondItem="I4l-ff-9b9" secondAttribute="baseline" id="j5Y-NK-b9T"/>
+                            <constraint firstItem="Krv-mq-suF" firstAttribute="top" secondItem="qzN-KK-bIu" secondAttribute="bottom" constant="60" id="ncl-F9-LLI">
+                                <variation key="heightClass=compact" constant="50"/>
                             </constraint>
                             <constraint firstItem="I4l-ff-9b9" firstAttribute="top" secondItem="qzN-KK-bIu" secondAttribute="bottom" constant="8" id="vBD-v5-cLt"/>
+                            <constraint firstItem="nHV-7Y-EVA" firstAttribute="leading" secondItem="tUK-h1-PHs" secondAttribute="leading" id="xLh-pk-ING"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="0Gi-O7-NBi"/>
-                                <exclude reference="AdA-af-Y3G"/>
-                                <exclude reference="Oxs-OG-aai"/>
-                                <exclude reference="PR4-Ti-vLS"/>
-                                <exclude reference="GGx-9e-JTd"/>
-                                <exclude reference="aAy-Vo-0gJ"/>
-                                <exclude reference="cro-Ul-owh"/>
-                                <exclude reference="elJ-lK-F1l"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact">
-                            <mask key="constraints">
-                                <include reference="0Gi-O7-NBi"/>
-                                <exclude reference="2PW-dt-RY3"/>
-                                <include reference="AdA-af-Y3G"/>
-                                <exclude reference="Ptg-8k-1Gv"/>
-                                <exclude reference="qxd-Kl-TEQ"/>
-                                <exclude reference="3nM-Fo-keX"/>
-                                <include reference="Oxs-OG-aai"/>
-                                <include reference="PR4-Ti-vLS"/>
-                                <exclude reference="YSp-Gj-cm9"/>
-                                <exclude reference="6Cx-8G-v7k"/>
-                                <exclude reference="6ZW-pN-eiT"/>
-                                <include reference="GGx-9e-JTd"/>
-                                <include reference="aAy-Vo-0gJ"/>
-                                <exclude reference="cro-Ul-owh"/>
-                                <exclude reference="oY2-ri-gda"/>
-                                <exclude reference="VS3-uM-XAj"/>
-                            </mask>
-                        </variation>
-                        <variation key="heightClass=compact-widthClass=compact">
-                            <mask key="constraints">
-                                <exclude reference="FW9-D7-Hlh"/>
-                                <include reference="elJ-lK-F1l"/>
-                            </mask>
-                        </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
@@ -583,30 +507,28 @@ Pan, Vino Tinto y Manzana</string>
                         <outlet property="authorLabel" destination="Vhd-Kv-bJL" id="bSi-6a-8Ob"/>
                         <outlet property="iconImage" destination="Pkv-3K-e7f" id="5S5-0m-1HE"/>
                         <outlet property="iconImageWidthConstraint" destination="vW1-6p-wZg" id="ANx-1U-ZHx"/>
+                        <outlet property="iconWidthConstraint" destination="vW1-6p-wZg" id="wy2-1c-uEO"/>
                         <outlet property="infoGroup" destination="tUK-h1-PHs" id="WBI-ki-rJV"/>
-                        <outlet property="infoGroupBottomConstraint" destination="0oi-Bh-flT" id="niG-te-RMv"/>
                         <outlet property="menuInEventsSwitch" destination="JW4-14-u4S" id="KM8-SP-aAM"/>
-                        <outlet property="optionsGroupBottomConstraint" destination="VS3-uM-XAj" id="vv0-QA-eE2"/>
                         <outlet property="optionsLabel" destination="Vup-PT-Z4e" id="z5Y-03-S0w"/>
                         <outlet property="priceAndHoursGroup" destination="2AH-6G-NMy" id="slH-UY-81j"/>
                         <outlet property="sourceGroup" destination="xjF-BA-AzU" id="tCQ-G2-cfv"/>
-                        <outlet property="sourceLabel" destination="rAE-gn-5L5" id="rN4-nw-W9L"/>
-                        <outlet property="titleGroupBottomConstraint" destination="oPd-eC-Etd" id="U82-uP-zxP"/>
-                        <outlet property="titleGroupToIconConstraint" destination="Oxs-OG-aai" id="Nn0-Pi-Hpz"/>
-                        <outletCollection property="descriptionLabels" destination="YNo-tA-iiR" collectionClass="NSMutableArray" id="nbw-FC-dMz"/>
-                        <outletCollection property="descriptionLabels" destination="5E1-ZF-mbf" collectionClass="NSMutableArray" id="uvF-bW-Ub3"/>
-                        <outletCollection property="descriptionLabels" destination="m7j-p6-Vsp" collectionClass="NSMutableArray" id="T2O-eK-CVm"/>
-                        <outletCollection property="contentLabels" destination="wJw-lb-CHv" collectionClass="NSMutableArray" id="QNb-zb-xaH"/>
+                        <outlet property="sourceTextView" destination="OMo-g0-1uy" id="9wf-xz-BlQ"/>
+                        <outlet property="versionLabel" destination="nHV-7Y-EVA" id="374-he-K8l"/>
                         <outletCollection property="contentLabels" destination="CzB-Un-xfl" collectionClass="NSMutableArray" id="22y-gw-kqj"/>
-                        <outletCollection property="infoSubgroups" destination="QPC-11-m6W" collectionClass="NSMutableArray" id="gUn-RG-HXh"/>
-                        <outletCollection property="infoSubgroups" destination="rHs-f4-9mF" collectionClass="NSMutableArray" id="kxN-EL-Bcs"/>
                         <outletCollection property="infoSubgroups" destination="xjF-BA-AzU" collectionClass="NSMutableArray" id="YqP-nE-EXo"/>
+                        <outletCollection property="descriptionLabels" destination="YNo-tA-iiR" collectionClass="NSMutableArray" id="nbw-FC-dMz"/>
+                        <outletCollection property="infoSubgroups" destination="QPC-11-m6W" collectionClass="NSMutableArray" id="gUn-RG-HXh"/>
+                        <outletCollection property="descriptionLabels" destination="m7j-p6-Vsp" collectionClass="NSMutableArray" id="T2O-eK-CVm"/>
+                        <outletCollection property="descriptionLabels" destination="5E1-ZF-mbf" collectionClass="NSMutableArray" id="uvF-bW-Ub3"/>
+                        <outletCollection property="contentLabels" destination="wJw-lb-CHv" collectionClass="NSMutableArray" id="QNb-zb-xaH"/>
+                        <outletCollection property="infoSubgroups" destination="rHs-f4-9mF" collectionClass="NSMutableArray" id="kxN-EL-Bcs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XG0-qX-bAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QN9-tL-BlX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="855.75" y="109.5"/>
+            <point key="canvasLocation" x="855.5" y="109.5"/>
         </scene>
     </scenes>
 </document>

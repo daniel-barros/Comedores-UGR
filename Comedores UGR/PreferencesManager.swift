@@ -11,7 +11,7 @@ import Foundation
 
 private let DefaultsEventIncludesNotesKey = "DefaultsEventIncludesNotesKey"
 
-struct PreferencesManager {
+enum PreferencesManager {
     
     static var includeMenuInEventsNotes: Bool {
         get {
