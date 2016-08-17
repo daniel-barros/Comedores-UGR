@@ -12,37 +12,42 @@ import Foundation
 
 class GlanceController: WKInterfaceController {
     
-    let menuManager = MenuManager.defaultManager
+    let menuManager = MenuManager()
     
     @IBOutlet weak var image: WKInterfaceImage!
     @IBOutlet weak var dishesLabel: WKInterfaceLabel!
     @IBOutlet weak var dayNameLabel: WKInterfaceLabel!
     @IBOutlet weak var dayNumberLabel: WKInterfaceLabel!
 
+    
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
         let icon = StyleKit.imageOfIconUtensils(size: CGSize(width: 40, height: 40))
         image.setImage(icon)
+//        if let menu = menuManager.savedMenu {
+//            updateUI(withMenu: menu.todayMenu)
+//        }
     }
 
+    
     override func willActivate() {
         super.willActivate()
         
         if let menu = menuManager.savedMenu {
             updateUI(withMenu: menu.todayMenu)
-            if menu.todayMenu != nil {
-                return
-            }
         }
         
-        menuManager.requestMenu { [weak self] menu in
-            mainQueue {
-                self?.updateUI(withMenu: menu.todayMenu)
+        if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
+            menuManager.updateMenu { [weak self] menu in
+                mainQueue {
+                    self?.updateUI(withMenu: menu.todayMenu)
+                }
             }
         }
     }
 
+    
     override func didDeactivate() {
         super.didDeactivate()
     }

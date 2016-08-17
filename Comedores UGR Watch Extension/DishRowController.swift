@@ -12,4 +12,9 @@ class DishRowController: NSObject {
 
     @IBOutlet var group: WKInterfaceGroup!
     @IBOutlet var dishLabel: WKInterfaceLabel!
+    
+    func configure(dish dish: String, isTodayMenu: Bool) {
+        dishLabel.setText(dish)
+        group.setBackgroundColor(isTodayMenu ? UIColor.customDarkRedColor() : nil)
+    }
 }

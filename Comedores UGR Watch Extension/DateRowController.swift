@@ -12,4 +12,9 @@ class DateRowController: NSObject {
     
     @IBOutlet var group: WKInterfaceGroup!
     @IBOutlet var dateLabel: WKInterfaceLabel!
+    
+    func configure(menu menu: DayMenu) {
+        dateLabel.setText(menu.date)
+        dateLabel.setTextColor(menu.isTodayMenu ? .customRedColor() : .customRedColor())
+    }
 }

@@ -15,36 +15,34 @@ class InterfaceController: WKInterfaceController {
 
     @IBOutlet var table: WKInterfaceTable!
     
-    let menuManager = MenuManager.defaultManager
+    let menuManager = MenuManager()
     
-//    private var justAwoke = false
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-//        justAwoke = true
+//        if let menu = menuManager.savedMenu {
+//            updateTable(withMenu: menu)
+//        }
     }
+    
 
     override func willActivate() {
         super.willActivate()
-                
+        
         if let menu = menuManager.savedMenu {
             updateTable(withMenu: menu)
-//            if justAwoke {
-//                scrollToTodaysMenu(inWeekMenu: menu)
-//                justAwoke = false
-//            }
         }
         
-        if menuManager.hasUpdatedDataToday == false || menuManager.savedMenu?.todayMenu == nil {
-            menuManager.requestMenu { [weak self] menu in
+        if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
+            menuManager.updateMenu { [weak self] menu in
                 mainQueue {
                     self?.updateTable(withMenu: menu)
-//                    self?.scrollToTodaysMenu(inWeekMenu: menu)
                 }
             }
         }
     }
+    
 
     override func didDeactivate() {
         super.didDeactivate()
@@ -65,27 +63,13 @@ class InterfaceController: WKInterfaceController {
         var index = 0
         for menu in weekMenu {
             let dateRowController = table.rowControllerAtIndex(index) as! DateRowController
-            dateRowController.dateLabel.setText(menu.date)
-            dateRowController.dateLabel.setTextColor(menu.isTodayMenu ? UIColor.customRedColor() : UIColor.customRedColor())
+            dateRowController.configure(menu: menu)
             index += 1
             for dish in menu.dishes {
                 let dishRowController = table.rowControllerAtIndex(index) as! DishRowController
-                dishRowController.dishLabel.setText(dish)
-                dishRowController.group.setBackgroundColor(menu.isTodayMenu ? UIColor.customDarkRedColor() : nil)
+                dishRowController.configure(dish: dish, isTodayMenu: menu.isTodayMenu)
                 index += 1
             }
         }
     }
-    
-    
-//    private func scrollToTodaysMenu(inWeekMenu weekMenu: [DayMenu]) {
-//        var index = 0
-//        for menu in weekMenu {
-//            if menu.isTodayMenu {
-//                break
-//            }
-//            index += 1 + menu.dishes.count
-//        }
-//        table.scrollToRowAtIndex(index + 2)
-//    }
 }
