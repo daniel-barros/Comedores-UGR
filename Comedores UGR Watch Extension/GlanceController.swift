@@ -62,17 +62,19 @@ class GlanceController: WKInterfaceController {
         
         // Dishes
         let text: String
+        let paragraphStyle = NSMutableParagraphStyle()
         if let menu = menu {
             text = menu.allDishes
             dishesLabel.setVerticalAlignment(.Top)
             dishesLabel.setHorizontalAlignment(.Left)
+            paragraphStyle.alignment = .Left
         } else {
             text = NSLocalizedString("No Menu")
             dishesLabel.setVerticalAlignment(.Center)
             dishesLabel.setHorizontalAlignment(.Center)
+            paragraphStyle.alignment = .Center
         }
         
-        let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = 6
         let attributedText = NSAttributedString(string: text, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
         dishesLabel.setAttributedText(attributedText)

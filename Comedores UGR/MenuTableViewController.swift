@@ -97,9 +97,6 @@ class MenuTableViewController: UITableViewController {
                     } else {
                         self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)   // Updates "last updated" row
                     }
-                    if menu.isEmpty == false && self.refreshControl!.refreshing {
-                        self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: !menuChanged)
-                    }
                     UIView.animateWithDuration(0.5) {
                         if self.refreshControl!.refreshing {
                             self.refreshControl!.endRefreshing()
