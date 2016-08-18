@@ -15,6 +15,6 @@ class DateRowController: NSObject {
     
     func configure(menu menu: DayMenu) {
         dateLabel.setText(menu.date)
-        dateLabel.setTextColor(menu.isTodayMenu ? .customRedColor() : .customRedColor())
+        dateLabel.setTextColor(menu.isTodayMenu ? .customRedColor() : .lightGrayColor())
     }
 }

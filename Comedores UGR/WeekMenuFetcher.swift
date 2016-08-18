@@ -28,7 +28,7 @@ enum FetcherError: ErrorType {
 class WeekMenuFetcher {
     
     private struct Defaults {
-        static let url = NSURL(string: "http://bahia.ugr.es/~x45909484/menu/index3.html")!  // TODO: Change to http://scu.ugr.es
+        static let url = NSURL(string: "http://scu.ugr.es")!
         static let encoding = NSUTF8StringEncoding
         static let spanishLocale = NSLocale(localeIdentifier: "es_ES")
         static let defaultMenuPrice = 3.5

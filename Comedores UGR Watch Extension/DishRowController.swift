@@ -15,6 +15,5 @@ class DishRowController: NSObject {
     
     func configure(dish dish: String, isTodayMenu: Bool) {
         dishLabel.setText(dish)
-        group.setBackgroundColor(isTodayMenu ? UIColor.customDarkRedColor() : nil)
     }
 }
