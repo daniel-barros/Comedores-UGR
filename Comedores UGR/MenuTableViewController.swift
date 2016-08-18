@@ -20,6 +20,9 @@ class MenuTableViewController: UITableViewController {
     
     var lastTimeTableViewReloaded: NSDate?
     
+    /// `false` when there's a saved menu or the vc has already fetched since viewDidLoad().
+    var isFetchingForFirstTime = true
+    
     private let lastUpdateRowHeight: CGFloat = 46.45
     
     
@@ -37,6 +40,7 @@ class MenuTableViewController: UITableViewController {
         
         if weekMenu.isEmpty == false {
             tableView.contentOffset.y = lastUpdateRowHeight   // Hides "last update" row
+            isFetchingForFirstTime = false
         }
         
         refreshControl = UIRefreshControl()
@@ -45,6 +49,10 @@ class MenuTableViewController: UITableViewController {
         updateSeparatorsInset(forSize: tableView.frame.size)
         
         if fetcher.needsToUpdateMenu {
+            if isFetchingForFirstTime {
+                refreshControl!.beginRefreshing()
+                tableView.contentOffset.y = -tableView.contentInset.top
+            }
             fetchData()
         }
     }
@@ -82,28 +90,38 @@ class MenuTableViewController: UITableViewController {
                 let menuChanged = self.weekMenu != menu
                 self.weekMenu = menu
                 self.lastTimeTableViewReloaded = NSDate()
+                self.isFetchingForFirstTime = false
                 mainQueue {
-                    self.refreshControl!.endRefreshing()
                     if menuChanged {
                         self.tableView.reloadData()
                     } else {
                         self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)   // Updates "last updated" row
                     }
-                    if menu.isEmpty == false {
+                    if menu.isEmpty == false && self.refreshControl!.refreshing {
                         self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: !menuChanged)
+                    }
+                    UIView.animateWithDuration(0.5) {
+                        if self.refreshControl!.refreshing {
+                            self.refreshControl!.endRefreshing()
+                        }
                     }
                 }
             }, errorHandler: { error in
                 self.error = error
                 self.lastTimeTableViewReloaded = NSDate()
+                self.isFetchingForFirstTime = false
                 mainQueue {
-                    self.refreshControl!.endRefreshing()
                     if self.weekMenu.isEmpty {
                         self.tableView.reloadData()
                     } else {
                         self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)   // Updates "last updated" row showing error message temporarily
                         delay(1) {
                             self.error = nil    // Next time first cell is loaded it will show last update date instead of error message
+                        }
+                    }
+                    UIView.animateWithDuration(0.5) {
+                        if self.refreshControl!.refreshing {
+                            self.refreshControl!.endRefreshing()
                         }
                     }
                 }
@@ -127,7 +145,7 @@ class MenuTableViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if weekMenu.isEmpty {
-            return 1
+            return isFetchingForFirstTime ? 0 : 1
         }
         return weekMenu.count + 1
     }
