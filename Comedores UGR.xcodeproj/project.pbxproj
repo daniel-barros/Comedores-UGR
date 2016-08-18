@@ -56,6 +56,7 @@
 		33A9EAA31CA782B6004E9645 /* MenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EAA21CA782B6004E9645 /* MenuTableViewCell.swift */; };
 		33A9EAA51CA7970F004E9645 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EAA41CA7970F004E9645 /* Colors.swift */; };
 		33A9EAA61CA7970F004E9645 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EAA41CA7970F004E9645 /* Colors.swift */; };
+		33E653621D6613BE00AFBBC9 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B45D3C10D18E5E1925E17412 /* Pods.framework */; };
 		33EE303A1CB1A46F00DD4F4C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33808C2E1CA7D1A900AB4912 /* Localizable.strings */; };
 		33EE303D1CB1B43E00DD4F4C /* StyleKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B6C1CAEB32400AE2721 /* StyleKit.swift */; };
 		33EE30401CB2C89100DD4F4C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 33EE30421CB2C89100DD4F4C /* InfoPlist.strings */; };
@@ -186,6 +187,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33E653621D6613BE00AFBBC9 /* Pods.framework in Frameworks */,
 				3303C0B21CA59FFC006363AD /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
