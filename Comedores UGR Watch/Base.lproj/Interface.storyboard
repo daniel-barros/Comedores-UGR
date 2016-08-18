@@ -57,7 +57,7 @@
                         <group alignment="left" spacing="2" id="t8f-Gd-c4y">
                             <items>
                                 <imageView width="40" height="40" alignment="left" verticalAlignment="bottom" contentMode="bottomLeft" id="smd-LM-lRI"/>
-                                <group width="1" alignment="left" verticalAlignment="bottom" spacing="8" id="CXA-iT-LLt">
+                                <group alignment="left" verticalAlignment="bottom" spacing="2" id="CXA-iT-LLt">
                                     <items>
                                         <label height="21" alignment="left" verticalAlignment="bottom" text="Wed" minimumScaleFactor="0.59999999999999998" id="sMm-8D-ELP">
                                             <fontDescription key="font" type="system" pointSize="20"/>
