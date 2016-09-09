@@ -328,7 +328,7 @@ class StyleKit: NSObject {
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         StyleKit.drawIconUtensils(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
-        image = UIGraphicsGetImageFromCurrentImageContext()
+        image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         return image
@@ -339,7 +339,7 @@ class StyleKit: NSObject {
         
         UIGraphicsBeginImageContextWithOptions(size, false, 0)
         StyleKit.drawIconBig(frame: CGRect(origin: CGPoint.zero, size: size), resizing: resizing)
-        image = UIGraphicsGetImageFromCurrentImageContext()
+        image = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         return image

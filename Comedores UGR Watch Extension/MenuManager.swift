@@ -85,4 +85,9 @@ class MenuManager: NSObject, WCSessionDelegate {
             print("Error: Bad data.")
         }
     }
+    
+    
+    func session(session: WCSession, activationDidCompleteWithState activationState: WCSessionActivationState, error: NSError?) {
+        
+    }
 }

@@ -7,3 +7,4 @@
 */
 
 CFBundleDisplayName = "Menú UGR";
+NSCalendarsUsageDescription = "Necesitamos acceso para añadir nuevos eventos al Calendario.";

@@ -104,4 +104,20 @@ extension AppDelegate: WCSessionDelegate {
             sendMenu(fetcher.savedMenu!)
         }
     }
+    
+    
+    @available(iOS 9.3, *)
+    func session(session: WCSession, activationDidCompleteWithState activationState: WCSessionActivationState, error: NSError?) {
+        
+    }
+    
+    
+    func sessionDidBecomeInactive(session: WCSession) {
+        
+    }
+    
+    
+    func sessionDidDeactivate(session: WCSession) {
+        
+    }
 }
