@@ -34,7 +34,14 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
     
-    @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var label: UILabel!  // Used for displaying menu, and error messages in iOS 9.
+    @IBOutlet weak var errorLabel: UILabel! // Used for displaying error messages only from iOS 10 and on.
+    
+    @IBOutlet weak var labelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var labelAlternateBottomConstraint: NSLayoutConstraint!  // A >= constraint used from iOS 10.
     
     private let fetcher = WeekMenuFetcher()
     
@@ -44,6 +51,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     override func viewDidLoad() {
         super.viewDidLoad()
         weekMenu = fetcher.savedMenu ?? []
+        
+        setUpLabels()
     }
     
     
@@ -106,6 +115,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         insets.bottom = 28
         return insets
     }
+    
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func widgetActiveDisplayModeDidChange(activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
+        var newSize = label.textRectForBounds(CGRect(x: 0, y: 0, width: label.frame.width, height: maxSize.height), limitedToNumberOfLines: 0).size
+        newSize.height += labelTopConstraint.constant + labelAlternateBottomConstraint.constant
+        preferredContentSize = newSize
+        
+    }
 }
 
 
@@ -113,20 +131,88 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
 private extension TodayViewController {
     
-    private func updateUI(error error: FetcherError? = nil) {
+    func setUpLabels() {
+        
+        let effect: UIVibrancyEffect
+        if #available(iOS 10, *) {
+            // Menu label color and position
+            label.textColor = .blackColor()
+            labelLeadingConstraint.constant = 16
+            labelTrailingConstraint.constant = 16
+            labelTopConstraint.constant = 8
+            labelBottomConstraint.active = false
+            labelAlternateBottomConstraint.constant = 16
+            
+            effect = UIVibrancyEffect.widgetSecondaryVibrancyEffect()
+        } else {
+            effect = UIVibrancyEffect.notificationCenterVibrancyEffect()
+        }
+        
+        // Error label visual effect
+        let visualEffectView = UIVisualEffectView(effect: effect)
+        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(visualEffectView)
+        NSLayoutConstraint.activateConstraints([
+            visualEffectView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
+            visualEffectView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
+            visualEffectView.topAnchor.constraintEqualToAnchor(view.topAnchor),
+            visualEffectView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor)
+            ])
+        errorLabel.translatesAutoresizingMaskIntoConstraints = false
+        visualEffectView.contentView.addSubview(errorLabel)
+        NSLayoutConstraint.activateConstraints([
+            errorLabel.centerXAnchor.constraintEqualToAnchor(visualEffectView.centerXAnchor),
+            errorLabel.centerYAnchor.constraintEqualToAnchor(visualEffectView.centerYAnchor)
+            ])
+    }
+    
+    
+    func updateUI(error error: FetcherError? = nil) {
         
         if let dishes = weekMenu.todayMenu?.allDishes {
-            label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
-        } else if let error = error {
-            switch error {
-            case .NoInternetConnection:
-                label.text = NSLocalizedString("No Connection")
-            case .Other:
-                label.text = NSLocalizedString("Error")
+            if #available(iOS 10, *) {
+                label.hidden = false
+                errorLabel.hidden = true
+                
+                let paragraphStyle = NSMutableParagraphStyle()
+                paragraphStyle.paragraphSpacing = 8
+                paragraphStyle.lineBreakMode = .ByTruncatingTail
+                label.attributedText = NSAttributedString(string: dishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
+                
+                if dishesLabelNeedsMoreSpace() {
+                    extensionContext?.widgetLargestAvailableDisplayMode = .Expanded
+                } else {
+                    extensionContext?.widgetLargestAvailableDisplayMode = .Compact
+                }
+            } else {
+                label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
             }
         } else {
-            label.text = NSLocalizedString("No Menu")
+            let alternateLabel: UILabel
+            if #available(iOS 10, *) {
+                extensionContext?.widgetLargestAvailableDisplayMode = .Compact
+                alternateLabel = errorLabel
+                label.hidden = true
+                errorLabel.hidden = false
+            } else {
+                alternateLabel = label
+            }
+            if let error = error {
+                switch error {
+                case .NoInternetConnection:
+                    alternateLabel.text = NSLocalizedString("No Connection")
+                case .Other:
+                    alternateLabel.text = NSLocalizedString("Error")
+                }
+            } else {
+                alternateLabel.text = NSLocalizedString("No Menu")
+            }
         }
+    }
+    
+    
+    func dishesLabelNeedsMoreSpace() -> Bool {
+        return label.textRectForBounds(CGRect(x: 0, y: 0, width: label.frame.width, height: CGFloat.max), limitedToNumberOfLines: 0).height > label.frame.height
     }
 }
 
