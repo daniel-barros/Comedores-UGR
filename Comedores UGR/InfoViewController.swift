@@ -81,6 +81,15 @@ class InfoViewController: UIViewController {
     }
     
     
+    // TODO: This is a quick fix until you solve the constraints issues.
+    override func shouldAutorotate() -> Bool {
+        if #available(iOS 10, *) {
+            return false
+        }
+        return true
+    }
+    
+    
     @IBAction func sendFeedback(sender: UIButton) {
         
         if MFMailComposeViewController.canSendMail() {
