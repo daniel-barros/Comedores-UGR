@@ -35,8 +35,16 @@ class DateRowController: NSObject {
     @IBOutlet var group: WKInterfaceGroup!
     @IBOutlet var dateLabel: WKInterfaceLabel!
     
-    func configure(menu menu: DayMenu) {
-        dateLabel.setText(menu.date)
-        dateLabel.setTextColor(menu.isTodayMenu ? .customRedColor() : .lightGrayColor())
+    func configure(with date: String, isToday: Bool) {
+        var dateComponents = date.componentsSeparatedByString(" ")
+        dateComponents.removeLast()
+        let text: String
+        if let name = dateComponents.first, number = dateComponents.second {
+            text = name + " " + number
+        } else {
+            text = date
+        }
+        dateLabel.setText(text)
+        dateLabel.setTextColor(isToday ? .customRedColor() : .lightGrayColor())
     }
 }

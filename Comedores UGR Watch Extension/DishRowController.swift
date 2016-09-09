@@ -35,7 +35,7 @@ class DishRowController: NSObject {
     @IBOutlet var group: WKInterfaceGroup!
     @IBOutlet var dishLabel: WKInterfaceLabel!
     
-    func configure(dish dish: String, isTodayMenu: Bool) {
+    func configure(with dish: String, isToday: Bool) {
         dishLabel.setText(dish)
     }
 }
