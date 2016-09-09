@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Uoh-aC-A5W">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Uoh-aC-A5W">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--UGR Dining Menu-->
         <scene sceneID="xCO-hN-ywd">
             <objects>
                 <tableViewController id="05Y-7Q-F2S" customClass="MenuTableViewController" customModule="Comedores_UGR" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="144" sectionHeaderHeight="28" sectionFooterHeight="28" id="mhI-B5-WQk">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="144" sectionHeaderHeight="28" sectionFooterHeight="28" id="mhI-B5-WQk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LastUpdateCell" rowHeight="44" id="S9p-1G-DQz" customClass="LastUpdateTableViewCell" customModule="Comedores_UGR" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="S9p-1G-DQz" id="bZG-wp-dO3">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Last Update: Today at 4:13 PM" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fIq-0y-viC">
-                                            <rect key="frame" x="82" y="14" width="210" height="15.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -45,47 +45,31 @@
                                 <rect key="frame" x="0.0" y="136" width="375" height="144"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xSv-hp-2u9" id="i0m-YW-fs6">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="143.5"/>
+                                    <frame key="frameInset" width="375" height="143"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Marzo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="qF7-MR-PXg">
-                                            <rect key="frame" x="8" y="14" width="75" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="Marzo" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="qF7-MR-PXg">
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="widthClass=regular" misplaced="YES">
-                                                <rect key="frame" x="8" y="14" width="74" height="55.5"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="14" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8DA-Vn-UJS">
-                                            <rect key="frame" x="8" y="31" width="75" height="47"/>
                                             <fontDescription key="fontDescription" type="system" weight="light" pointSize="39"/>
-                                            <color key="textColor" red="0.11181893199682236" green="0.1118365004658699" blue="0.1118125319480896" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="textColor" red="0.11181893199682236" green="0.1118365004658699" blue="0.1118125319480896" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="widthClass=regular" misplaced="YES">
-                                                <rect key="frame" x="8" y="64.5" width="74" height="51"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" text="Lunes" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="wlf-K7-LY2">
-                                            <rect key="frame" x="8" y="76" width="75" height="18"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="widthClass=regular" misplaced="YES">
-                                                <rect key="frame" x="8" y="111" width="74" height="18"/>
-                                            </variation>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="1000" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pie-cH-zf5">
-                                            <rect key="frame" x="109" y="14" width="254" height="115.5"/>
                                             <string key="text">Arroz Montañés
 
 Medallón de Lomo con Ali-oli Gratinado con Fritura de Hortalizas
 
 Pan, Vino Tinto y Manzana</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
-                                            <variation key="widthClass=regular" misplaced="YES">
-                                                <rect key="frame" x="156.5" y="51" width="442.5" height="18"/>
-                                            </variation>
                                         </label>
                                     </subviews>
                                     <constraints>
@@ -116,13 +100,12 @@ Pan, Vino Tinto y Manzana</string>
                                 <rect key="frame" x="0.0" y="280" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pfg-uu-GiD" id="pWL-AG-PRe">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <frame key="frameInset" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="No Internet Connection" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIg-k6-fGZ">
-                                            <rect key="frame" x="107.5" y="14" width="160" height="15.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -149,7 +132,6 @@ Pan, Vino Tinto y Manzana</string>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kNS-vx-VEz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -175,7 +157,7 @@ Pan, Vino Tinto y Manzana</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3uF-Ij-4Ki" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-515" y="143"/>
+            <point key="canvasLocation" x="-598" y="109"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="F7j-L9-s1X">
@@ -190,227 +172,89 @@ Pan, Vino Tinto y Manzana</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Krv-mq-suF">
-                                <rect key="frame" x="26" y="80" width="323" height="465"/>
+                                <frame key="frameInset" minX="26" minY="80" width="323" height="449"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pkv-3K-e7f">
-                                        <rect key="frame" x="79" y="0.0" width="165" height="165"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Pkv-3K-e7f" secondAttribute="height" multiplier="1:1" id="qlJ-s9-w8q"/>
                                             <constraint firstAttribute="width" constant="165" id="vW1-6p-wZg"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="center" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="p7o-vS-IIL">
-                                        <rect key="frame" x="0.0" y="185" width="323" height="280"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="p7o-vS-IIL">
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UGR Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-N3-za4">
-                                                <rect key="frame" x="73" y="0.0" width="177" height="45"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UGR Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8jm-N3-za4">
                                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tUK-h1-PHs">
-                                                <rect key="frame" x="0.0" y="89" width="323" height="192"/>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="tUK-h1-PHs">
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2AH-6G-NMy">
-                                                        <rect key="frame" x="0.0" y="0.0" width="323" height="61"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="2AH-6G-NMy">
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rHs-f4-9mF">
-                                                                <rect key="frame" x="0.0" y="0.0" width="323" height="21"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Hours:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="m7j-p6-Vsp">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="51" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
-                                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                                            <rect key="frame" x="0.0" y="13" width="46" height="18"/>
-                                                                        </variation>
-                                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="0.0" y="13" width="46" height="18"/>
-                                                                        </variation>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="1PM – 3:30PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CzB-Un-xfl">
-                                                                        <rect key="frame" x="61" y="0.0" width="262" height="21"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
-                                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="13" y="-2" width="0.0" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                                            <rect key="frame" x="56" y="11" width="110" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="56" y="11" width="110" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="widthClass=regular" misplaced="YES">
-                                                                            <rect key="frame" x="56" y="-2" width="110" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="13" y="-2" width="0.0" height="21"/>
-                                                                        </variation>
                                                                     </label>
                                                                 </subviews>
-                                                                <variation key="heightClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="67" y="0.0" width="13" height="19"/>
-                                                                </variation>
-                                                                <variation key="heightClass=regular" misplaced="YES">
-                                                                    <rect key="frame" x="162" y="0.0" width="166" height="32"/>
-                                                                </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="162" y="0.0" width="166" height="32"/>
-                                                                </variation>
-                                                                <variation key="widthClass=regular" misplaced="YES">
-                                                                    <rect key="frame" x="162" y="0.0" width="166" height="19"/>
-                                                                </variation>
-                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="67" y="0.0" width="13" height="19"/>
-                                                                </variation>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="QPC-11-m6W">
-                                                                <rect key="frame" x="0.0" y="41" width="323" height="21"/>
                                                                 <subviews>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="Menu price:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="5E1-ZF-mbf">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="91" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Menu price:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="5E1-ZF-mbf">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
-                                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                                            <rect key="frame" x="0.0" y="13" width="81" height="18"/>
-                                                                        </variation>
-                                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="0.0" y="13" width="81" height="18"/>
-                                                                        </variation>
                                                                     </label>
-                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" misplaced="YES" text="3.5€" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJw-lb-CHv">
-                                                                        <rect key="frame" x="101" y="0.0" width="223" height="21"/>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="3.5€" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wJw-lb-CHv">
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                         <nil key="highlightedColor"/>
-                                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="30" y="-2" width="1" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                                            <rect key="frame" x="91" y="11" width="35" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="91" y="11" width="35" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="widthClass=regular" misplaced="YES">
-                                                                            <rect key="frame" x="91" y="-2" width="35" height="21"/>
-                                                                        </variation>
-                                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                                            <rect key="frame" x="30" y="-2" width="1" height="21"/>
-                                                                        </variation>
                                                                     </label>
                                                                 </subviews>
-                                                                <variation key="heightClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
-                                                                </variation>
-                                                                <variation key="heightClass=regular" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
-                                                                </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="32"/>
-                                                                </variation>
-                                                                <variation key="widthClass=regular" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="126" height="19"/>
-                                                                </variation>
-                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="31" height="19"/>
-                                                                </variation>
                                                             </stackView>
                                                         </subviews>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="19"/>
-                                                        </variation>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
-                                                        </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="32"/>
-                                                        </variation>
-                                                        <variation key="widthClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="328" height="19"/>
-                                                        </variation>
-                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="0.0" width="79" height="19"/>
-                                                        </variation>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-BA-AzU">
-                                                        <rect key="frame" x="0.0" y="81" width="323" height="29"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="firstBaseline" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xjF-BA-AzU">
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" misplaced="YES" text="Source:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="YNo-tA-iiR">
-                                                                <rect key="frame" x="0.0" y="0.0" width="59" height="21"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" text="Source:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="YNo-tA-iiR">
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                                <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <variation key="heightClass=regular" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="13" width="54" height="18"/>
-                                                                </variation>
-                                                                <variation key="widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="13" width="54" height="18"/>
-                                                                </variation>
                                                             </label>
-                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" misplaced="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="http://scu.ugr.es" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-g0-1uy">
-                                                                <rect key="frame" x="69" y="-8" width="254" height="37"/>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="251" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="http://scu.ugr.es" translatesAutoresizingMaskIntoConstraints="NO" id="OMo-g0-1uy">
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                                 <dataDetectorType key="dataDetectorTypes" link="YES"/>
                                                             </textView>
                                                         </subviews>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="43" width="79" height="19"/>
-                                                        </variation>
-                                                        <variation key="heightClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="56" width="328" height="32"/>
-                                                        </variation>
-                                                        <variation key="widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="56" width="328" height="32"/>
-                                                        </variation>
-                                                        <variation key="widthClass=regular" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="43" width="328" height="19"/>
-                                                        </variation>
-                                                        <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="0.0" y="43" width="79" height="19"/>
-                                                        </variation>
                                                     </stackView>
-                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D6a-lU-0PI">
-                                                        <rect key="frame" x="0.0" y="130" width="323" height="1"/>
+                                                    <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="D6a-lU-0PI">
                                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="1" id="U52-1N-zha"/>
                                                         </constraints>
                                                     </view>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-rO-PP7" userLabel="Options Group">
-                                                        <rect key="frame" x="0.0" y="151" width="323" height="41"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="vIV-rO-PP7" userLabel="Options Group">
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Include lunch menu as notes in added calendar events" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.65000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="Vup-PT-Z4e">
-                                                                <rect key="frame" x="0.0" y="0.0" width="258" height="41"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                                 <nil key="highlightedColor"/>
-                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="20" height="41"/>
-                                                                </variation>
                                                             </label>
                                                             <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JW4-14-u4S">
-                                                                <rect key="frame" x="274" y="5" width="51" height="31"/>
-                                                                <variation key="heightClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="47" y="5" width="18" height="31"/>
-                                                                </variation>
-                                                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                                                    <rect key="frame" x="36" y="5" width="14" height="31"/>
-                                                                </variation>
                                                                 <connections>
                                                                     <action selector="switchToggleState:" destination="Ztg-gd-jch" eventType="valueChanged" id="2Ag-rL-Wrq"/>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
-                                                        <variation key="heightClass=compact" misplaced="YES">
-                                                            <rect key="frame" x="23" y="586" width="63" height="41"/>
-                                                        </variation>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
@@ -421,7 +265,6 @@ Pan, Vino Tinto y Manzana</string>
                                 <variation key="heightClass=compact" alignment="top" axis="horizontal" spacing="40"/>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I4l-ff-9b9">
-                                <rect key="frame" x="324" y="28" width="43" height="33"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
@@ -429,57 +272,26 @@ Pan, Vino Tinto y Manzana</string>
                                 </connections>
                             </button>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DtK-8S-g1p">
-                                <rect key="frame" x="8" y="28" width="119" height="33"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <state key="normal" title="Send Feedback"/>
                                 <connections>
                                     <action selector="sendFeedback:" destination="Ztg-gd-jch" eventType="touchUpInside" id="VBa-6P-3k3"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UGR Menu v1.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHV-7Y-EVA">
-                                <rect key="frame" x="26" y="638" width="99" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="UGR Menu v1.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nHV-7Y-EVA">
+                                <frame key="frameInset" minX="26" minY="638" width="99" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Created by Daniel Barros" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhd-Kv-bJL">
-                                <rect key="frame" x="188" y="638" width="161" height="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Created by Daniel Barros" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vhd-Kv-bJL">
+                                <frame key="frameInset" minX="188" minY="638" width="161" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
-                                <variation key="heightClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="heightClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="widthClass=regular" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
-                                <variation key="heightClass=compact-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="0.0" y="55" width="191" height="21"/>
-                                </variation>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Vhd-Kv-bJL" firstAttribute="trailing" secondItem="tUK-h1-PHs" secondAttribute="trailing" id="5eN-C5-nZj"/>
                             <constraint firstAttribute="trailing" secondItem="I4l-ff-9b9" secondAttribute="trailing" constant="8" id="6EA-Sc-6ca"/>
@@ -500,7 +312,6 @@ Pan, Vino Tinto y Manzana</string>
                             <constraint firstItem="nHV-7Y-EVA" firstAttribute="leading" secondItem="tUK-h1-PHs" secondAttribute="leading" id="xLh-pk-ING"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="appNameLabel" destination="8jm-N3-za4" id="CIj-cS-rvz"/>
                         <outlet property="hoursLabel" destination="CzB-Un-xfl" id="Zgd-FZ-ivn"/>
@@ -517,7 +328,7 @@ Pan, Vino Tinto y Manzana</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XG0-qX-bAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="QN9-tL-BlX" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="855.5" y="109.5"/>
+            <point key="canvasLocation" x="1006" y="109"/>
         </scene>
     </scenes>
 </document>
