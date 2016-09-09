@@ -105,6 +105,10 @@ extension NSDate {
     var isInPast: Bool {
         return timeIntervalSinceNow < 0
     }
+    
+    var isTodayOrFuture: Bool {
+        return NSCalendar.currentCalendar().isDateInToday(self) || self.timeIntervalSinceNow > 0
+    }
 }
 
 
