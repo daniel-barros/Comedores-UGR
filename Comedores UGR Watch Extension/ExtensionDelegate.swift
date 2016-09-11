@@ -30,14 +30,49 @@ SOFTWARE.
 
 import WatchKit
 
+private let DefaultsLastUIUpdateKey = "DefaultsLastUIUpdateKey"
+
+
 class ExtensionDelegate: NSObject, WKExtensionDelegate {
+    
+    let menuManager = MenuManager()
+    
+    var hasUpdatedUIToday: Bool {
+        if let date = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUIUpdateKey) as? NSDate where NSCalendar.currentCalendar().isDateInToday(date) {
+            return true
+        }
+        return false
+    }
+    
 
     func applicationDidFinishLaunching() {
-        // Perform any final initialization of your application.
+        updateAppPages(with: menuManager.relevantSavedMenu)
     }
 
     func applicationDidBecomeActive() {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print(#function)
+        
+        if #available(watchOS 3.0, *) {
+            // TODO: Update for watchOS 3: Update UI everyday at 00:00, update menu when necessary every x hours
+            if hasUpdatedUIToday == false {
+                updateAppPages(with: menuManager.relevantSavedMenu)
+            }
+        } else {
+            if hasUpdatedUIToday == false {
+                updateAppPages(with: menuManager.relevantSavedMenu)
+            }
+        }
+        
+        if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
+            let previousMenu = menuManager.savedMenu
+            menuManager.updateMenu { menu in
+                if previousMenu == nil || previousMenu! != menu {
+                    mainQueue {
+                        self.updateAppPages(with: self.menuManager.relevantSavedMenu)
+                    }
+                }
+            }
+        }
     }
 
     func applicationWillResignActive() {
@@ -45,4 +80,23 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         // Use this method to pause ongoing tasks, disable timers, etc.
     }
 
+}
+
+
+// MARK: - Helpers
+
+private extension ExtensionDelegate {
+    
+    /// Updates app UI
+    func updateAppPages(with weekMenu: [DayMenu]) {
+        
+        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUIUpdateKey)
+
+        if weekMenu.isEmpty {
+            WKInterfaceController.reloadRootControllersWithNames([String(InterfaceController)], contexts: nil)
+        } else {
+            WKInterfaceController.reloadRootControllersWithNames(Array(count: weekMenu.count, repeatedValue: String(InterfaceController)), contexts: weekMenu.map(DayMenuWrapper.init(menu:)))
+        }
+    }
+    
 }

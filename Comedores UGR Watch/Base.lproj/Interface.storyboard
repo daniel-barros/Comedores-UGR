@@ -13,12 +13,14 @@
                     <items>
                         <group width="1" alignment="left" layout="vertical" id="O34-AX-O1K">
                             <items>
-                                <label width="1" alignment="left" text="Label" numberOfLines="0" id="6EL-gc-yIW"/>
+                                <label width="1" alignment="left" text="No Menu" numberOfLines="0" id="6EL-gc-yIW"/>
                             </items>
                             <edgeInsets key="margins" left="0.0" right="0.0" top="4" bottom="0.0"/>
                         </group>
+                        <label width="1" height="1" heightAdjustment="-20" alignment="left" hidden="YES" text="No Menu" textAlignment="center" numberOfLines="0" id="qZ0-al-cWK"/>
                     </items>
                     <connections>
+                        <outlet property="errorLabel" destination="qZ0-al-cWK" id="4hA-UT-yYY"/>
                         <outlet property="label" destination="6EL-gc-yIW" id="Bci-3n-dnc"/>
                     </connections>
                 </controller>

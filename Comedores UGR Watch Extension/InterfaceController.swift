@@ -35,21 +35,12 @@ import Foundation
 
 class InterfaceController: WKInterfaceController {
     
-    // TODO: In Swift 3.0 remove this since awakeWithContext takes Any? instead of AnyObject?
-    /// Class wrapper for DayMenu struct.
-    private class DayMenuWrapper {
-        let menu: DayMenu
-        
-        init(menu: DayMenu) {
-            self.menu = menu
-        }
-    }
-    
-    
     @IBOutlet weak var label: WKInterfaceLabel!
+    @IBOutlet var errorLabel: WKInterfaceLabel!
     
     let menuManager = MenuManager() // TODO: Figure this out for multiple controllers
     var menu: DayMenu?
+    
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -57,42 +48,14 @@ class InterfaceController: WKInterfaceController {
         if let menu = context as? DayMenuWrapper {
             self.menu = menu.menu
             updateUI(with: menu.menu)
-        } else if let weekMenu = menuManager.savedMenu {
-            updateAppPages(with: weekMenu)
-//            if let menu = weekMenu.first {
-//                self.menu = menu
-//                updateUI(with: menu)
-//            } else {
-//                // TODO: Handle this case
-//            }
         } else {
-            // TODO: Handle this case
+            updateUI(withError: NSLocalizedString("No Menu"))
         }
     }
     
     
     override func willActivate() {
         super.willActivate()
-        
-        // TODO: Update pages every day instead of each willActivate
-        if let menu = menu, date = menu.processedDate
-            where date.isTodayOrFuture == false {
-            if let weekMenu = menuManager.savedMenu {
-                updateAppPages(with: weekMenu)
-            }
-        }
-        
-        // TODO: When to update? when context is nil in awake or menu is nil in willActivate
-        if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
-            let previousMenu = menuManager.savedMenu
-            menuManager.updateMenu { [weak self] menu in
-                if previousMenu == nil || previousMenu! != menu {
-                    mainQueue {
-                        self?.updateAppPages(with: menu)
-                    }
-                }
-            }
-        }
     }
     
     
@@ -106,21 +69,21 @@ class InterfaceController: WKInterfaceController {
 
 private extension InterfaceController {
     
-    func updateAppPages(with weekMenu: [DayMenu]) {
-        let filteredMenu = relevantWeekMenu(from: weekMenu)
-        if filteredMenu.isEmpty {
-            WKInterfaceController.reloadRootControllersWithNames([String(InterfaceController)], contexts: nil)
-        } else {
-            WKInterfaceController.reloadRootControllersWithNames(Array(count: filteredMenu.count, repeatedValue: String(InterfaceController)), contexts: filteredMenu.map(DayMenuWrapper.init(menu:)))
-        }
-    }
-    
-    
     func updateUI(with menu: DayMenu) {
         setTitle(shortDate(from: menu.date))
+        label.setHidden(false)
+        errorLabel.setHidden(true)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = 6
         label.setAttributedText(NSAttributedString(string: menu.allDishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle]))
+    }
+    
+    
+    func updateUI(withError message: String) {
+        setTitle(NSLocalizedString("UGR Menu"))
+        label.setHidden(true)
+        errorLabel.setHidden(false)
+        errorLabel.setText(message)
     }
     
     
@@ -133,15 +96,5 @@ private extension InterfaceController {
         }
         return date
     }
-    
-    
-    /// Returns a filtered array containing only menus corresponding to today and beyond.
-    func relevantWeekMenu(from weekMenu: [DayMenu]) -> [DayMenu] {
-        return weekMenu.flatMap { menu -> DayMenu? in
-            if let date = menu.processedDate where date.isTodayOrFuture {
-                return menu
-            }
-            return nil
-        }
-    }
 }
+

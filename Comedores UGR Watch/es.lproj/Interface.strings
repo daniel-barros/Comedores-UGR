@@ -1,0 +1,17 @@
+
+/* Class = "WKInterfaceLabel"; text = "Label"; ObjectID = "6EL-gc-yIW"; */
+"6EL-gc-yIW.text" = "Label";
+
+/* Class = "WKInterfaceController"; title = "UGR Menu"; ObjectID = "AgC-eL-Hgc"; */
+"AgC-eL-Hgc.title" = "Menú UGR";
+
+/* Class = "WKInterfaceLabel"; text = "Alert Label"; ObjectID = "XkS-y5-khE"; */
+"XkS-y5-khE.text" = "Alert Label";
+
+/* Class = "WKInterfaceLabel"; text = "23"; ObjectID = "kkZ-5o-KhT"; */
+"kkZ-5o-KhT.text" = "23";
+
+/* Class = "WKInterfaceLabel"; text = "Wed"; ObjectID = "sMm-8D-ELP"; */
+"sMm-8D-ELP.text" = "Wed";
+
+"6EL-gc-yIW.text" = "No Hay Menú";
