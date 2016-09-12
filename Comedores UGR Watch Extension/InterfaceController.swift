@@ -38,7 +38,6 @@ class InterfaceController: WKInterfaceController {
     @IBOutlet weak var label: WKInterfaceLabel!
     @IBOutlet var errorLabel: WKInterfaceLabel!
     
-    let menuManager = MenuManager() // TODO: Figure this out for multiple controllers
     var menu: DayMenu?
     
     
