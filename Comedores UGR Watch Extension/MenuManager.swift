@@ -92,3 +92,18 @@ class MenuManager: NSObject, WCSessionDelegate {
         }
     }
 }
+
+extension MenuManager {
+    /// Returns a filtered array containing only menus corresponding to today and beyond.
+    var relevantSavedMenu: [DayMenu] {
+        guard let weekMenu = savedMenu else {
+            return []
+        }
+        return weekMenu.flatMap { menu -> DayMenu? in
+            if let date = menu.processedDate where date.isTodayOrFuture {
+                return menu
+            }
+            return nil
+        }
+    }
+}

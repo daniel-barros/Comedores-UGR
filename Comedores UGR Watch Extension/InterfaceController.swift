@@ -34,64 +34,66 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceController {
-
-    @IBOutlet var table: WKInterfaceTable!
     
-    let menuManager = MenuManager()
+    @IBOutlet weak var label: WKInterfaceLabel!
+    @IBOutlet var errorLabel: WKInterfaceLabel!
+    
+    var menu: DayMenu?
     
     
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        
-//        if let menu = menuManager.savedMenu {
-//            updateTable(withMenu: menu)
-//        }
+
+        if let menu = context as? DayMenuWrapper {
+            self.menu = menu.menu
+            updateUI(with: menu.menu)
+        } else {
+            updateUI(withError: NSLocalizedString("No Menu"))
+        }
     }
     
-
+    
     override func willActivate() {
         super.willActivate()
-        
-        if let menu = menuManager.savedMenu {
-            updateTable(withMenu: menu)
-        }
-        
-        if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
-            menuManager.updateMenu { [weak self] menu in
-                mainQueue {
-                    self?.updateTable(withMenu: menu)
-                }
-            }
-        }
     }
     
-
+    
     override func didDeactivate() {
         super.didDeactivate()
     }
+}
+
+
+// MARK: - Helpers
+
+private extension InterfaceController {
+    
+    func updateUI(with menu: DayMenu) {
+        setTitle(shortDate(from: menu.date))
+        label.setHidden(false)
+        errorLabel.setHidden(true)
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.paragraphSpacing = 6
+        label.setAttributedText(NSAttributedString(string: menu.allDishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle]))
+    }
     
     
-    private func updateTable(withMenu weekMenu: [DayMenu]) {
-        var rowTypes = [String]()
-        for menu in weekMenu {
-            rowTypes.append(String(DateRowController))
-            for _ in menu.dishes {
-                rowTypes.append(String(DishRowController))
-            }
+    func updateUI(withError message: String) {
+        setTitle(NSLocalizedString("UGR Menu"))
+        label.setHidden(true)
+        errorLabel.setHidden(false)
+        errorLabel.setText(message)
+    }
+    
+    
+    /// Returns a string like "Lunes 5" from one like "Lunes 5 Septiembre".
+    func shortDate(from date: String) -> String {
+        var dateComponents = date.componentsSeparatedByString(" ")
+        dateComponents.removeLast()
+        if let name = dateComponents.first, number = dateComponents.second {
+            return name + " " + number
         }
-        
-        table.setRowTypes(rowTypes)
-        
-        var index = 0
-        for menu in weekMenu {
-            let dateRowController = table.rowControllerAtIndex(index) as! DateRowController
-            dateRowController.configure(menu: menu)
-            index += 1
-            for dish in menu.dishes {
-                let dishRowController = table.rowControllerAtIndex(index) as! DishRowController
-                dishRowController.configure(dish: dish, isTodayMenu: menu.isTodayMenu)
-                index += 1
-            }
-        }
+        return date
     }
 }
+
