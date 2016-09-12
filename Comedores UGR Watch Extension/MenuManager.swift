@@ -52,7 +52,6 @@ class MenuManager: NSObject, WCSessionDelegate {
         session.delegate = self
         session.activateSession()
         self.handler = handler
-        session.sendMessage([:], replyHandler: nil, errorHandler: nil)
     }
     
     
@@ -88,6 +87,8 @@ class MenuManager: NSObject, WCSessionDelegate {
     
     
     func session(session: WCSession, activationDidCompleteWithState activationState: WCSessionActivationState, error: NSError?) {
-        
+        if activationState == .Activated {
+            session.sendMessage([:], replyHandler: nil, errorHandler: nil)
+        }
     }
 }
