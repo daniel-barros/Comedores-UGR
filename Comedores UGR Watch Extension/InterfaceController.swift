@@ -36,7 +36,6 @@ import Foundation
 class InterfaceController: WKInterfaceController {
 
     @IBOutlet var table: WKInterfaceTable!
-    var todayRowIndex: Int?
     
     let menuManager = MenuManager()
     
@@ -44,21 +43,23 @@ class InterfaceController: WKInterfaceController {
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
-        if let menu = menuManager.savedMenu {
-            updateUI(with: menu)
-        }
+//        if let menu = menuManager.savedMenu {
+//            updateTable(withMenu: menu)
+//        }
     }
     
 
     override func willActivate() {
         super.willActivate()
         
-        //if dayChanged { updateUI(with: menu) } 
+        if let menu = menuManager.savedMenu {
+            updateTable(withMenu: menu)
+        }
         
         if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
             menuManager.updateMenu { [weak self] menu in
                 mainQueue {
-                    self?.updateUI(with: menu)
+                    self?.updateTable(withMenu: menu)
                 }
             }
         }
@@ -68,27 +69,9 @@ class InterfaceController: WKInterfaceController {
     override func didDeactivate() {
         super.didDeactivate()
     }
-}
-
-
-// MARK: - Helpers
-private extension InterfaceController {
-    
-    func updateUI(with weekMenu: [DayMenu]) {
-        updateTable(with: weekMenu)
-//        updateTableScrollPosition()
-    }
     
     
-    func updateTableScrollPosition() {
-        if let index = todayRowIndex {
-            print(#function, index)
-            table.scrollToRowAtIndex(index)
-        }
-    }
-    
-    
-    func updateTable(with weekMenu: [DayMenu]) {
+    private func updateTable(withMenu weekMenu: [DayMenu]) {
         var rowTypes = [String]()
         for menu in weekMenu {
             rowTypes.append(String(DateRowController))
@@ -101,15 +84,12 @@ private extension InterfaceController {
         
         var index = 0
         for menu in weekMenu {
-            if menu.isTodayMenu {
-                todayRowIndex = index
-            }
             let dateRowController = table.rowControllerAtIndex(index) as! DateRowController
-            dateRowController.configure(with: menu.date, isToday: menu.isTodayMenu)
+            dateRowController.configure(menu: menu)
             index += 1
             for dish in menu.dishes {
                 let dishRowController = table.rowControllerAtIndex(index) as! DishRowController
-                dishRowController.configure(with: dish, isToday: menu.isTodayMenu)
+                dishRowController.configure(dish: dish, isTodayMenu: menu.isTodayMenu)
                 index += 1
             }
         }
