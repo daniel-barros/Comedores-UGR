@@ -58,7 +58,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     
     func applicationDidBecomeActive() {
-        print(#function)
+//        print(#function)
         
         if #available(watchOSApplicationExtension 3.0, *) {
             
@@ -85,7 +85,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         var tasks = backgroundTasks
         // Menu update. If no new menu available tries update again in 4 hours
         if let task = tasks.filter({ $0 is WKApplicationRefreshBackgroundTask }).first {
-            print("Updating menu")
+//            print("Updating menu")
             tasks.remove(task)
             updateMenuAndUI(completion: { updated in
                 if updated == false {
@@ -96,7 +96,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
         }
         // UI update
         else if let task = tasks.filter({ $0 is WKSnapshotRefreshBackgroundTask }).first {
-            print("Updating UI")
+//            print("Updating UI")
             tasks.remove(task)
             scheduleAppUIRefreshTomorrow()
             if self.menuManager.needsToUpdateMenu {
@@ -118,7 +118,7 @@ private extension ExtensionDelegate {
     
     /// Updates app UI.
     func updateAppPages(with weekMenu: [DayMenu]) {
-        print(#function)
+//        print(#function)
         NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUIUpdateKey)
 
         if weekMenu.isEmpty {
@@ -131,7 +131,7 @@ private extension ExtensionDelegate {
     
     /// Updates the menu and if there's a new one the UI is refreshed.
     func updateMenuAndUI(completion handler: ((updated: Bool) -> ())? = nil) {
-        print(#function)
+//        print(#function)
         let previousMenu = menuManager.savedMenu
         menuManager.updateMenu { menu in
             if previousMenu == nil || previousMenu! != menu {
@@ -148,7 +148,7 @@ private extension ExtensionDelegate {
     
     @available(watchOSApplicationExtension 3.0, *)
     func scheduleAppUIRefreshTomorrow() {
-        print(#function)
+//        print(#function)
         let tomorrow = NSCalendar.currentCalendar().startOfDayForDate(NSDate().dateByAddingTimeInterval(60*60*25))
         WKExtension.sharedExtension().scheduleSnapshotRefreshWithPreferredDate(tomorrow, userInfo: nil, scheduledCompletion: {_ in })
     }
@@ -156,7 +156,7 @@ private extension ExtensionDelegate {
     
     @available(watchOSApplicationExtension 3.0, *)
     func scheduleAppDataRefreshNow(addingHours hours: Double = 0) {
-        print(#function)
+//        print(#function)
         WKExtension.sharedExtension().scheduleBackgroundRefreshWithPreferredDate(NSDate().dateByAddingTimeInterval(60*60*hours), userInfo: nil, scheduledCompletion: { _ in })
     }
 }
