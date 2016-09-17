@@ -62,6 +62,9 @@ class GlanceController: WKInterfaceController {
         
         if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
             menuManager.updateMenu { [weak self] menu in
+                guard let menu = menu else {
+                    return
+                }
                 mainQueue {
                     self?.updateUI(withMenu: menu.todayMenu)
                 }

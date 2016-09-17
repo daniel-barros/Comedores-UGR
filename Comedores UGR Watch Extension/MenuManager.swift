@@ -40,15 +40,14 @@ class MenuManager: NSObject, WCSessionDelegate {
     
     private var session = WCSession.defaultSession()
     
-    private var handler: ([DayMenu] -> ())?
+    private var handler: ([DayMenu]? -> ())?
     
     var savedMenu: [DayMenu]? {
         return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
     }
     
     
-    /// - warning: There is no guarantee that handler will be called.
-    func updateMenu(responseHandler handler: [DayMenu] -> ()) {
+    func updateMenu(responseHandler handler: [DayMenu]? -> ()) {
         session.delegate = self
         session.activateSession()
         self.handler = handler
@@ -81,14 +80,19 @@ class MenuManager: NSObject, WCSessionDelegate {
             defaults.setObject(NSDate(), forKey: DefaultsLastDataUpdateKey)
             handler?(menu)
         } else {
+            handler?(nil)
             print("Error: Bad data.")
         }
+        handler = nil
     }
     
     
     func session(session: WCSession, activationDidCompleteWithState activationState: WCSessionActivationState, error: NSError?) {
         if activationState == .Activated {
             session.sendMessage([:], replyHandler: nil, errorHandler: nil)
+        } else {
+            handler?(nil)
+            handler = nil
         }
     }
 }
