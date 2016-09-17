@@ -132,8 +132,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 private extension TodayViewController {
     
     func setUpLabels() {
-        
-        let effect: UIVibrancyEffect
         if #available(iOS 10, *) {
             // Menu label color and position
             label.textColor = .blackColor()
@@ -142,28 +140,7 @@ private extension TodayViewController {
             labelTopConstraint.constant = 8
             labelBottomConstraint.active = false
             labelAlternateBottomConstraint.constant = 16
-            
-            effect = UIVibrancyEffect.widgetSecondaryVibrancyEffect()
-        } else {
-            effect = UIVibrancyEffect.notificationCenterVibrancyEffect()
         }
-        
-        // Error label visual effect
-        let visualEffectView = UIVisualEffectView(effect: effect)
-        visualEffectView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(visualEffectView)
-        NSLayoutConstraint.activateConstraints([
-            visualEffectView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor),
-            visualEffectView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor),
-            visualEffectView.topAnchor.constraintEqualToAnchor(view.topAnchor),
-            visualEffectView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor)
-            ])
-        errorLabel.translatesAutoresizingMaskIntoConstraints = false
-        visualEffectView.contentView.addSubview(errorLabel)
-        NSLayoutConstraint.activateConstraints([
-            errorLabel.centerXAnchor.constraintEqualToAnchor(visualEffectView.centerXAnchor),
-            errorLabel.centerYAnchor.constraintEqualToAnchor(visualEffectView.centerYAnchor)
-            ])
     }
     
     
