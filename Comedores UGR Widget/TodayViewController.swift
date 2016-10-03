@@ -41,11 +41,12 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     @IBOutlet weak var labelTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var labelTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var labelBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var labelAlternateBottomConstraint: NSLayoutConstraint!  // A >= constraint used from iOS 10.
+    @IBOutlet weak var labelAlternateBottomConstraint: NSLayoutConstraint!  // A >= constraint used in iOS 10.
     
     private let fetcher = WeekMenuFetcher()
     
     var weekMenu = [DayMenu]()
+    var displayedMenu: DayMenu?
     
     
     override func viewDidLoad() {
@@ -61,13 +62,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         if let savedMenu = fetcher.savedMenu {
             weekMenu = savedMenu
         }
-        updateUI()
+        if displayedMenu == nil || displayedMenu != weekMenu.todayMenu {
+            updateUI()
+        }
     }
     
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        view.layoutIfNeeded()   // Fixes top margin glitch
+        if #available(iOS 10, *) {} else {
+            view.layoutIfNeeded()   // Fixes top margin glitch in iOS 9 (sort of).
+        }
     }
     
     
@@ -146,7 +151,9 @@ private extension TodayViewController {
     
     func updateUI(error error: FetcherError? = nil) {
         
-        if let dishes = weekMenu.todayMenu?.allDishes {
+        if let todayMenu = weekMenu.todayMenu {
+            displayedMenu = todayMenu
+            let dishes = todayMenu.allDishes
             if #available(iOS 10, *) {
                 label.hidden = false
                 errorLabel.hidden = true
@@ -156,7 +163,7 @@ private extension TodayViewController {
                 paragraphStyle.lineBreakMode = .ByTruncatingTail
                 label.attributedText = NSAttributedString(string: dishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
                 
-                if dishesLabelNeedsMoreSpace() {
+                if contentRequiresExpandedMode() {
                     extensionContext?.widgetLargestAvailableDisplayMode = .Expanded
                 } else {
                     extensionContext?.widgetLargestAvailableDisplayMode = .Compact
@@ -165,6 +172,7 @@ private extension TodayViewController {
                 label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
             }
         } else {
+            displayedMenu = nil
             let alternateLabel: UILabel
             if #available(iOS 10, *) {
                 extensionContext?.widgetLargestAvailableDisplayMode = .Compact
@@ -188,8 +196,10 @@ private extension TodayViewController {
     }
     
     
-    func dishesLabelNeedsMoreSpace() -> Bool {
-        return label.textRectForBounds(CGRect(x: 0, y: 0, width: label.frame.width, height: CGFloat.max), limitedToNumberOfLines: 0).height > label.frame.height
+    @available(iOS 10, *)
+    func contentRequiresExpandedMode() -> Bool {
+        // Asumes expanded widget will not take more space than strictly necessary for displaying the label
+        return label.textRectForBounds(CGRect(x: 0, y: 0, width: label.frame.width, height: CGFloat.max), limitedToNumberOfLines: 0).height + labelTopConstraint.constant + labelAlternateBottomConstraint.constant >= view.frame.height
     }
 }
 

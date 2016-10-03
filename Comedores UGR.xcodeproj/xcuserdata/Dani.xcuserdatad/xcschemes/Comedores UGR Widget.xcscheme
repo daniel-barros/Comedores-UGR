@@ -67,16 +67,33 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       launchAutomaticallySubstyle = "2">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.springboard">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "33837D2C1C9066540095E395"
-            BuildableName = "Comedores UGR.app"
-            BlueprintName = "Comedores UGR"
+            BlueprintIdentifier = "3303C0AF1CA59FFC006363AD"
+            BuildableName = "Comedores UGR Widget.appex"
+            BlueprintName = "Comedores UGR Widget"
             ReferencedContainer = "container:Comedores UGR.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "3303C0AF1CA59FFC006363AD"
+            BuildableName = "Comedores UGR Widget.appex"
+            BlueprintName = "Comedores UGR Widget"
+            ReferencedContainer = "container:Comedores UGR.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
+      <EnvironmentVariables>
+         <EnvironmentVariable
+            key = "OS_ACTIVITY_MODE"
+            value = "disable"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
