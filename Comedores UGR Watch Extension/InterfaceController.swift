@@ -33,12 +33,16 @@ import WatchConnectivity
 import Foundation
 
 
+/// Shows a day menu passed as context.
 class InterfaceController: WKInterfaceController {
+    
+    private static let showTodaysMenuNotification = "showTodaysMenuNotification"
     
     @IBOutlet weak var label: WKInterfaceLabel!
     @IBOutlet var errorLabel: WKInterfaceLabel!
     
     var menu: DayMenu?
+    private var observer: AnyObject?
     
     
     override func awakeWithContext(context: AnyObject?) {
@@ -50,16 +54,19 @@ class InterfaceController: WKInterfaceController {
         } else {
             updateUI(withError: NSLocalizedString("No Menu"))
         }
+        
+        listenToNotifications()
     }
     
     
-    override func willActivate() {
-        super.willActivate()
+    deinit {
+        stopListeningToNotifications()
     }
     
     
-    override func didDeactivate() {
-        super.didDeactivate()
+    // Called from context menu item.
+    func showTodaysMenuPage() {
+        NSNotificationCenter.defaultCenter().postNotificationName(InterfaceController.showTodaysMenuNotification, object: nil)
     }
 }
 
@@ -70,11 +77,17 @@ private extension InterfaceController {
     
     func updateUI(with menu: DayMenu) {
         setTitle(shortDate(from: menu.date))
+        
         label.setHidden(false)
         errorLabel.setHidden(true)
+        
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = 6
         label.setAttributedText(NSAttributedString(string: menu.allDishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle]))
+        
+        addMenuItemWithImageNamed("LeftArrow",
+                                  title: NSLocalizedString("Today"),
+                                  action: #selector(showTodaysMenuPage))
     }
     
     
@@ -83,6 +96,23 @@ private extension InterfaceController {
         label.setHidden(true)
         errorLabel.setHidden(false)
         errorLabel.setText(message)
+    }
+    
+    
+    /// Observers notification which, when received, updates the current page.
+    func listenToNotifications() {
+        observer = NSNotificationCenter.defaultCenter().addObserverForName(InterfaceController.showTodaysMenuNotification, object: nil, queue: NSOperationQueue.mainQueue()) { notification in
+            if let menu = self.menu where menu.isTodayMenu {
+                self.becomeCurrentPage()
+            }
+        }
+    }
+    
+    
+    func stopListeningToNotifications() {
+        if let observer = observer {
+            NSNotificationCenter.defaultCenter().removeObserver(observer)
+        }
     }
     
     
