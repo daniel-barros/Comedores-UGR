@@ -46,7 +46,7 @@ enum FetcherError: ErrorType {
 }
 
 
-/// Fetching the menu persists it locally, and can be accessed via the `savedMenu` property.
+/// Fetching the menu persists it locally, and it can be accessed via the `savedMenu` property.
 class WeekMenuFetcher {
     
     private struct Defaults {

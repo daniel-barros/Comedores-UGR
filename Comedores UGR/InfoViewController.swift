@@ -32,6 +32,8 @@ import UIKit
 import MessageUI
 
 
+// TODO: Fix constraints issues on iOS 10
+
 class InfoViewController: UIViewController {
     
     @IBOutlet weak var iconImage: UIImageView!
