@@ -54,16 +54,22 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         weekMenu = fetcher.savedMenu ?? []
         
         setUpLabels()
+        updateUI()
     }
     
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
         if let savedMenu = fetcher.savedMenu {
             weekMenu = savedMenu
         }
         if displayedMenu == nil || displayedMenu != weekMenu.todayMenu {
             updateUI()
+        }
+        
+        if #available(iOSApplicationExtension 10.0, *) {
+            updateAvailableDisplayModes()
         }
     }
     
@@ -85,10 +91,18 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     // MARK: NCWidgetProviding
     
     func widgetPerformUpdateWithCompletionHandler(completionHandler: ((NCUpdateResult) -> Void)) {
+        
+        func updateUIAndDisplayModes(error error: FetcherError? = nil) {
+            updateUI(error: error)
+            if #available(iOSApplicationExtension 10.0, *) {
+                updateAvailableDisplayModes()
+            }
+        }
+        
         // Menu was updated externally and changes need to be reflected in UI
         if let savedMenu = fetcher.savedMenu where savedMenu != weekMenu {
             weekMenu = savedMenu
-            updateUI()
+            updateUIAndDisplayModes()
             completionHandler(.NewData)
         // Menu needs to be updated
         } else if fetcher.needsToUpdateMenu {
@@ -96,18 +110,17 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             fetcher.fetchMenu(completionHandler: { newMenu in
                 self.weekMenu = newMenu
                 mainQueue {
-                    self.updateUI()
+                    updateUIAndDisplayModes()
                     completionHandler(.NewData) // TODO: Remove?
                 }
             }, errorHandler: { error in
                 mainQueue {
-                    self.updateUI(error: error)
+                    updateUIAndDisplayModes(error: error)
                     completionHandler(.Failed)  // TODO: Remove?
                 }
             })
         // Menu is up to date
         } else {
-            updateUI()  // Updates today's menu even if week menu didn't change
             completionHandler(.NoData)
         }
     }
@@ -124,10 +137,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     @available(iOSApplicationExtension 10.0, *)
     func widgetActiveDisplayModeDidChange(activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {
-        var newSize = label.textRectForBounds(CGRect(x: 0, y: 0, width: label.frame.width, height: maxSize.height), limitedToNumberOfLines: 0).size
-        newSize.height += labelTopConstraint.constant + labelAlternateBottomConstraint.constant
-        preferredContentSize = newSize
-        
+        updatePreferredContentSize(withMaximumSize: maxSize)
     }
 }
 
@@ -162,12 +172,6 @@ private extension TodayViewController {
                 paragraphStyle.paragraphSpacing = 8
                 paragraphStyle.lineBreakMode = .ByTruncatingTail
                 label.attributedText = NSAttributedString(string: dishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
-                
-                if contentRequiresExpandedMode() {
-                    extensionContext?.widgetLargestAvailableDisplayMode = .Expanded
-                } else {
-                    extensionContext?.widgetLargestAvailableDisplayMode = .Compact
-                }
             } else {
                 label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
             }
@@ -175,7 +179,6 @@ private extension TodayViewController {
             displayedMenu = nil
             let alternateLabel: UILabel
             if #available(iOS 10, *) {
-                extensionContext?.widgetLargestAvailableDisplayMode = .Compact
                 alternateLabel = errorLabel
                 label.hidden = true
                 errorLabel.hidden = false
@@ -196,10 +199,29 @@ private extension TodayViewController {
     }
     
     
+    /// - warning: Lay out UI before using this.
+    @available(iOSApplicationExtension 10.0, *)
+    func updateAvailableDisplayModes() {
+        if displayedMenu == nil || contentRequiresExpandedMode() == false {
+            extensionContext?.widgetLargestAvailableDisplayMode = .Compact
+        } else {
+            extensionContext?.widgetLargestAvailableDisplayMode = .Expanded
+        }
+    }
+    
+    
     @available(iOS 10, *)
     func contentRequiresExpandedMode() -> Bool {
         // Asumes expanded widget will not take more space than strictly necessary for displaying the label
         return label.textRectForBounds(CGRect(x: 0, y: 0, width: label.frame.width, height: CGFloat.max), limitedToNumberOfLines: 0).height + labelTopConstraint.constant + labelAlternateBottomConstraint.constant >= view.frame.height
+    }
+    
+    
+    @available(iOSApplicationExtension 10.0, *)
+    func updatePreferredContentSize(withMaximumSize maxSize: CGSize) {
+        var newSize = label.textRectForBounds(CGRect(x: 0, y: 0, width: maxSize.width, height: maxSize.height), limitedToNumberOfLines: 0).size
+        newSize.height += labelTopConstraint.constant + labelAlternateBottomConstraint.constant
+        preferredContentSize = newSize
     }
 }
 
