@@ -66,6 +66,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         }
         if displayedMenu == nil || displayedMenu != weekMenu.todayMenu {
             updateUI()
+            if #available(iOSApplicationExtension 10.0, *) {
+                if let context = extensionContext {
+                    updatePreferredContentSize(withMaximumSize: context.widgetMaximumSizeForDisplayMode(context.widgetActiveDisplayMode))
+                }
+            }
         }
         
         if #available(iOSApplicationExtension 10.0, *) {    // This is not inside previous if because it needs to be called right after viewDidLoad()
@@ -96,6 +101,9 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             updateUI(error: error)
             if #available(iOSApplicationExtension 10.0, *) {
                 updateAvailableDisplayModes()
+                if let context = extensionContext {
+                    updatePreferredContentSize(withMaximumSize: context.widgetMaximumSizeForDisplayMode(context.widgetActiveDisplayMode))
+                }
             }
         }
         
