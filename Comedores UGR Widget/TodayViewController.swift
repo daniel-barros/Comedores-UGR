@@ -174,12 +174,8 @@ private extension TodayViewController {
             let dishes = todayMenu.allDishes
             if #available(iOS 10, *) {
                 label.hidden = false
-                errorLabel.hidden = true
-                
-                let paragraphStyle = NSMutableParagraphStyle()
-                paragraphStyle.paragraphSpacing = 8
-                paragraphStyle.lineBreakMode = .ByTruncatingTail
-                label.attributedText = NSAttributedString(string: dishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle])
+                errorLabel.hidden = true                
+                label.attributedText = dishes.with(paragraphSpacing: 8, lineBreakMode: .ByTruncatingTail)
             } else {
                 label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
             }
@@ -227,10 +223,10 @@ private extension TodayViewController {
     
     @available(iOSApplicationExtension 10.0, *)
     func updatePreferredContentSize(withMaximumSize maxSize: CGSize) {
-        var newHeight = label.textRectForBounds(CGRect(x: 0, y: 0, width: maxSize.width, height: maxSize.height), limitedToNumberOfLines: 0).size.height
-        newHeight += labelTopConstraint.constant + labelAlternateBottomConstraint.constant
-        newHeight = min(newHeight, maxSize.height)
-        preferredContentSize.height = newHeight
+        let verticalPadding = labelTopConstraint.constant + labelAlternateBottomConstraint.constant
+        var newHeight = label.textRectForBounds(CGRect(x: 0, y: 0, width: maxSize.width, height: maxSize.height - verticalPadding), limitedToNumberOfLines: 0).size.height
+        newHeight += verticalPadding
+        preferredContentSize.height = min(newHeight, maxSize.height)
     }
 }
 

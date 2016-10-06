@@ -77,14 +77,9 @@ private extension InterfaceController {
     
     func updateUI(with menu: DayMenu) {
         setTitle(shortDate(from: menu.date))
-        
         label.setHidden(false)
         errorLabel.setHidden(true)
-        
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacing = 6
-        label.setAttributedText(NSAttributedString(string: menu.allDishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle]))
-        
+        label.setAttributedText(menu.allDishes.with(paragraphSpacing: 6))
         addMenuItemWithImageNamed("LeftArrow",
                                   title: NSLocalizedString("Today"),
                                   action: #selector(showTodaysMenuPage))

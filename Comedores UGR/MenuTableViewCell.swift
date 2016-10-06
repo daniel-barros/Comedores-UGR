@@ -48,10 +48,8 @@ class MenuTableViewCell: UITableViewCell {
         dayNumberLabel.text = menu.dayNumber
         dayNameLabel.text = menu.dayName
         
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.paragraphSpacing = 13.25
-        let attrString = NSAttributedString(string: menu.allDishes, attributes: [NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: menu.isClosedMenu ? UIColor.grayColor() : UIColor.mainTextColor()])
-        dishesLabel.attributedText = attrString
+        let color = menu.isClosedMenu ? UIColor.grayColor() : UIColor.mainTextColor()
+        dishesLabel.attributedText = menu.allDishes.with(color: color, paragraphSpacing: 13.25)
         
         // Today's date highlight
         if menu.isTodayMenu {
