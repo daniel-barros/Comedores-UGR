@@ -9,11 +9,37 @@ import Foundation
 
 #if os(iOS)
     import UIKit
+    typealias Color = UIColor
+    typealias Font = UIFont
 #elseif os(OSX)
     import Cocoa
+    typealias Color = NSColor
+    typealias Font = NSFont
 #elseif os(watchOS)
-    import WatchKit    
+    import WatchKit
+    typealias Color = UIColor
+    typealias Font = UIFont
 #endif
+
+
+//// **************  OPERATORS  **************
+
+infix operator =? { associativity right precedence 90 }
+
+/// Performs assignment only if the element on the right is not nil, otherwise it does nothing.
+func =? <T>( inout left: T, right: T?) {
+    if let right = right {
+        left = right
+    }
+}
+
+/// Performs assignment only if the element on the right is not nil, otherwise it does nothing.
+func =? <T>( inout left: T?, right: T?) {
+    if let right = right {
+        left = right
+    }
+}
+
 
 // **************  THREADS, DELAYS  **************
 
@@ -53,7 +79,8 @@ func synced(lock: AnyObject, closure: () -> ()) {
     objc_sync_exit(lock)
 }
 
-// **************  STRUCT EXTENSIONS  **************
+
+// **************  FOUNDATION AND STANDARD LIBRARY EXTENSIONS  **************
 
 extension Array {
     var second: Generator.Element? {
@@ -83,6 +110,34 @@ extension Array {
         var list = self
         list.shuffle()
         return list
+    }
+}
+
+
+extension String {
+    
+    /// Use one or more parameters to create an attributed string with those properties.
+    func with(font font: Font? = nil,
+                   color: Color? = nil,
+                   lineSpacing: CGFloat? = nil,
+                   paragraphSpacing: CGFloat? = nil,
+                   lineBreakMode: NSLineBreakMode? = nil) -> NSAttributedString {
+        
+        var attributes: [String: AnyObject] = [:]
+        
+        attributes[NSFontAttributeName] =? font
+        
+        attributes[NSForegroundColorAttributeName] =? color
+
+        if lineSpacing != nil || paragraphSpacing != nil || lineBreakMode != nil {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.paragraphSpacing =? paragraphSpacing
+            paragraphStyle.lineBreakMode =? lineBreakMode
+            paragraphStyle.lineSpacing =? lineSpacing
+            attributes[NSParagraphStyleAttributeName] = paragraphStyle
+        }
+        
+        return NSAttributedString(string: self, attributes: attributes)
     }
 }
 
@@ -121,6 +176,7 @@ extension NSCalendar {
     }
 }
 
+
 // **************  PLATFORM-DEPENDENT EXTENSIONS  **************
 
 #if os(iOS)
@@ -147,16 +203,16 @@ extension NSTableView {
     
 #endif
 
-// **************  LOCALIZATION  **************
+
+// **************  FUNCTIONS  **************
 
 func NSLocalizedString(string: String) -> String {
     return NSLocalizedString(string, comment: "")
 }
 
+
 // **************  PROTOCOLS  **************
 
-/// Useful for table view cells.
-///
 /// When you implement the `configure(_:T)` method you can specify the parameter name you want. If there's no need for a parameter at all implement it like this: `func configure(_: Void) { ... }`.
 protocol Configurable {
     associatedtype T
