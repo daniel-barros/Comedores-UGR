@@ -68,7 +68,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             updateUI()
         }
         
-        if #available(iOSApplicationExtension 10.0, *) {
+        if #available(iOSApplicationExtension 10.0, *) {    // This is not inside previous if because it needs to be called right after viewDidLoad()
             updateAvailableDisplayModes()
         }
     }
@@ -219,9 +219,10 @@ private extension TodayViewController {
     
     @available(iOSApplicationExtension 10.0, *)
     func updatePreferredContentSize(withMaximumSize maxSize: CGSize) {
-        var newSize = label.textRectForBounds(CGRect(x: 0, y: 0, width: maxSize.width, height: maxSize.height), limitedToNumberOfLines: 0).size
-        newSize.height += labelTopConstraint.constant + labelAlternateBottomConstraint.constant
-        preferredContentSize = newSize
+        var newHeight = label.textRectForBounds(CGRect(x: 0, y: 0, width: maxSize.width, height: maxSize.height), limitedToNumberOfLines: 0).size.height
+        newHeight += labelTopConstraint.constant + labelAlternateBottomConstraint.constant
+        newHeight = min(newHeight, maxSize.height)
+        preferredContentSize.height = newHeight
     }
 }
 
