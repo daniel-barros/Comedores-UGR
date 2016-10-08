@@ -28,19 +28,10 @@
 
 
 import Foundation
-
 #if os(iOS)
     import UIKit
-    typealias Color = UIColor
-    typealias Font = UIFont
-#elseif os(OSX)
-    import Cocoa
-    typealias Color = NSColor
-    typealias Font = NSFont
 #elseif os(watchOS)
     import WatchKit
-    typealias Color = UIColor
-    typealias Font = UIFont
 #endif
 
 
@@ -159,8 +150,8 @@ extension String {
     /// Use one or more parameters to create an attributed string with certain properties.
     ///
     /// A nil parameter will be ignored.
-    func with(font font: Font? = nil,
-              color: Color? = nil,
+    func with(font font: UIFont? = nil,
+              color: UIColor? = nil,
               lineSpacing: CGFloat? = nil,
               paragraphSpacing: CGFloat? = nil,
               lineBreakMode: NSLineBreakMode? = nil) -> NSAttributedString {
@@ -232,29 +223,22 @@ extension NSCalendar {
 }
 
 
-// **************  PLATFORM-DEPENDENT EXTENSIONS  **************
+// **************  UIKIT EXTENSIONS  **************
 
 #if os(iOS)
-    extension UIDevice {
-        /// - returns: `true` if screen is smaller than iPhone 6
-        var isSmalliPhone: Bool {
-            let screenSize = UIScreen.mainScreen().bounds
-            return min(screenSize.width, screenSize.height) < 375
-        }
-        
-        var isiPhone4sOrPrevious: Bool {
-            let screenSize = UIScreen.mainScreen().bounds
-            return max(screenSize.width, screenSize.height) < 568
-        }
+    
+extension UIDevice {
+    /// - returns: `true` if screen is smaller than iPhone 6
+    var isSmalliPhone: Bool {
+        let screenSize = UIScreen.mainScreen().bounds
+        return min(screenSize.width, screenSize.height) < 375
     }
     
-#elseif os(OSX)
-    extension NSTableView {
-        
-        var allRowIndexes: NSIndexSet {
-            return NSIndexSet(indexesInRange: NSRange(0..<numberOfRows))
-        }
+    var isiPhone4sOrPrevious: Bool {
+        let screenSize = UIScreen.mainScreen().bounds
+        return max(screenSize.width, screenSize.height) < 568
     }
+}
     
 #endif
 
