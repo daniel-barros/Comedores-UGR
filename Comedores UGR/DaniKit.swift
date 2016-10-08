@@ -1,9 +1,31 @@
-//
-//  Common.swift
-//
-//  Created by Daniel Barros López on 1/16/16.
-//  Copyright © 2016 Daniel Barros López. All rights reserved.
-//
+/*
+ MIT License
+ 
+ Copyright (c) 2016 Daniel Barros
+ 
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ 
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+ 
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ */
+
+
+// DaniKit
+// Collection of functions, protocols, operators and extensions missing in common Apple frameworks.
+
 
 import Foundation
 
@@ -27,16 +49,26 @@ import Foundation
 infix operator =? { associativity right precedence 90 }
 
 /// Performs assignment only if the element on the right is not nil, otherwise it does nothing.
-func =? <T>( inout left: T, right: T?) {
+func =? <T>(inout left: T, right: T?) {
     if let right = right {
         left = right
     }
 }
 
 /// Performs assignment only if the element on the right is not nil, otherwise it does nothing.
-func =? <T>( inout left: T?, right: T?) {
+func =? <T>(inout left: T?, right: T?) {
     if let right = right {
         left = right
+    }
+}
+
+
+infix operator ?> { precedence 90 }
+
+/// If the first element is not nil, it is unwrapped and passed to the closure as a parameter.
+func ?> <T>(left: T?, right: (T) -> ()) {
+    if let l = left {
+        right(l)
     }
 }
 
@@ -83,6 +115,7 @@ func synced(lock: AnyObject, closure: () -> ()) {
 // **************  FOUNDATION AND STANDARD LIBRARY EXTENSIONS  **************
 
 extension Array {
+    
     var second: Generator.Element? {
         guard count >= 2 else {
             return nil
@@ -95,6 +128,13 @@ extension Array {
             return nil
         }
         return self[2]
+    }
+    
+    var fourth: Generator.Element? {
+        guard count >= 4 else {
+            return nil
+        }
+        return self[3]
     }
     
     /// Shuffle the elements of `self` in-place.
@@ -116,19 +156,21 @@ extension Array {
 
 extension String {
     
-    /// Use one or more parameters to create an attributed string with those properties.
+    /// Use one or more parameters to create an attributed string with certain properties.
+    ///
+    /// A nil parameter will be ignored.
     func with(font font: Font? = nil,
-                   color: Color? = nil,
-                   lineSpacing: CGFloat? = nil,
-                   paragraphSpacing: CGFloat? = nil,
-                   lineBreakMode: NSLineBreakMode? = nil) -> NSAttributedString {
+              color: Color? = nil,
+              lineSpacing: CGFloat? = nil,
+              paragraphSpacing: CGFloat? = nil,
+              lineBreakMode: NSLineBreakMode? = nil) -> NSAttributedString {
         
         var attributes: [String: AnyObject] = [:]
         
         attributes[NSFontAttributeName] =? font
         
         attributes[NSForegroundColorAttributeName] =? color
-
+        
         if lineSpacing != nil || paragraphSpacing != nil || lineBreakMode != nil {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.paragraphSpacing =? paragraphSpacing
@@ -143,13 +185,25 @@ extension String {
 
 
 extension CGSize {
+    
     static var max: CGSize {
         return CGSize(width: CGFloat.max, height: CGFloat.max)
+    }
+    
+    
+    func with(height height: CGFloat) -> CGSize {
+        return CGSize(width: self.width, height: height)
+    }
+    
+    
+    func with(width width: CGFloat) -> CGSize {
+        return CGSize(width: width, height: self.height)
     }
 }
 
 
 extension Bool {
+    
     static var random: Bool {
         return arc4random_uniform(2) == 0 ? true : false
     }
@@ -157,6 +211,7 @@ extension Bool {
 
 
 extension NSDate {
+    
     var isInPast: Bool {
         return timeIntervalSinceNow < 0
     }
@@ -180,26 +235,26 @@ extension NSCalendar {
 // **************  PLATFORM-DEPENDENT EXTENSIONS  **************
 
 #if os(iOS)
-extension UIDevice {
-    /// - returns: `true` if screen is smaller than iPhone 6
-    var isSmalliPhone: Bool {
-        let screenSize = UIScreen.mainScreen().bounds
-        return min(screenSize.width, screenSize.height) < 375
+    extension UIDevice {
+        /// - returns: `true` if screen is smaller than iPhone 6
+        var isSmalliPhone: Bool {
+            let screenSize = UIScreen.mainScreen().bounds
+            return min(screenSize.width, screenSize.height) < 375
+        }
+        
+        var isiPhone4sOrPrevious: Bool {
+            let screenSize = UIScreen.mainScreen().bounds
+            return max(screenSize.width, screenSize.height) < 568
+        }
     }
-    
-    var isiPhone4sOrPrevious: Bool {
-        let screenSize = UIScreen.mainScreen().bounds
-        return max(screenSize.width, screenSize.height) < 568
-    }
-}
     
 #elseif os(OSX)
-extension NSTableView {
-    
-    var allRowIndexes: NSIndexSet {
-        return NSIndexSet(indexesInRange: NSRange(0..<numberOfRows))
+    extension NSTableView {
+        
+        var allRowIndexes: NSIndexSet {
+            return NSIndexSet(indexesInRange: NSRange(0..<numberOfRows))
+        }
     }
-}
     
 #endif
 
