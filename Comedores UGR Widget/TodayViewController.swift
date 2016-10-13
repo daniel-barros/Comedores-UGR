@@ -168,17 +168,24 @@ private extension TodayViewController {
     
     
     func updateUI(error error: FetcherError? = nil) {
-        
+        // Show menu
         if let todayMenu = weekMenu.todayMenu {
             displayedMenu = todayMenu
             let dishes = todayMenu.allDishes
             if #available(iOS 10, *) {
-                label.hidden = false
-                errorLabel.hidden = true                
-                label.attributedText = dishes.with(paragraphSpacing: 8, lineBreakMode: .ByTruncatingTail)
+                if todayMenu.isClosedMenu { // Today it's closed
+                    label.hidden = true
+                    errorLabel.hidden = false
+                    errorLabel.text = NSLocalizedString("Closed")
+                } else {    // Menu available
+                    label.hidden = false
+                    errorLabel.hidden = true
+                    label.attributedText = dishes.with(paragraphSpacing: 8, lineBreakMode: .ByTruncatingTail)
+                }
             } else {
                 label.text = dishes.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
             }
+        // Show error
         } else {
             displayedMenu = nil
             let alternateLabel: UILabel
