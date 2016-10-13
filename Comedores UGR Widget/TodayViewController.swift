@@ -224,7 +224,11 @@ private extension TodayViewController {
     @available(iOSApplicationExtension 10.0, *)
     func updatePreferredContentSize(withMaximumSize maxSize: CGSize) {
         let verticalPadding = labelTopConstraint.constant + labelAlternateBottomConstraint.constant
-        var newHeight = label.textRectForBounds(CGRect(x: 0, y: 0, width: maxSize.width, height: maxSize.height - verticalPadding), limitedToNumberOfLines: 0).size.height
+        let horizontalPadding = labelLeadingConstraint.constant + labelTrailingConstraint.constant
+        let textBounds = CGRect(x: 0, y: 0,
+                                width: maxSize.width - horizontalPadding,
+                                height: maxSize.height - verticalPadding)
+        var newHeight = label.textRectForBounds(textBounds, limitedToNumberOfLines: 0).size.height
         newHeight += verticalPadding
         preferredContentSize.height = min(newHeight, maxSize.height)
     }
