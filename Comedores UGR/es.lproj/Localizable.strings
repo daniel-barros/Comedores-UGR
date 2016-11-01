@@ -15,6 +15,8 @@
 "No data to show. Check again later." = "No hay datos que mostrar. Vuelve más tarde.";
 "Last Update:" = "Últ. Actualización:";
 "Add to Calendar" = "Añadir al Calendario";
+"Add to\nCalendar" = "Añadir al\nCalendario";
+"Allergens\nInformation" = "Información\nAlergénica";
 "OK" = "OK";
 "Access Denied" = "Acceso Denegado";
 "Please go to the app's settings and allow us to access your calendars." = "Por favor, ve a los ajustes de la aplicación y permítenos acceso a tus calendarios.";

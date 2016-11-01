@@ -30,6 +30,7 @@ SOFTWARE.
 
 import UIKit
 import EventKitUI
+import SafariServices
 
 
 class MenuTableViewController: UITableViewController {
@@ -213,19 +214,12 @@ class MenuTableViewController: UITableViewController {
         }
         
         let menu = self.weekMenu[indexPath.row - 1]
-                
-        let rowAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Add to Calendar"), handler: { action, indexPath in
-            switch EventManager.authorizationStatus {
-            case .Authorized: self.presentEventEditViewController(menu: menu)
-            case .Denied: self.presentAlertController(title: NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
-            case .NotDetermined: self.requestEventAccessPermission(menu: menu)
-            case .Restricted: self.presentAlertController(title: NSLocalizedString("Access Restricted"), message: NSLocalizedString("Access to calendars is restricted, possibly due to parental controls being in place."), showsGoToSettings: false)
-            }
-        })
-        
-        rowAction.backgroundColor = UIColor.customAlternateRedColor()
-        
-        return [rowAction]
+        let calendarAction = addToCalendarRowAction(forMenu: menu)
+        if let allergensRowAction = allergensInfoRowAction(forMenu: menu) {
+            return [calendarAction, allergensRowAction]
+        } else {
+            return [calendarAction]
+        }
     }
     
     
@@ -243,6 +237,37 @@ class MenuTableViewController: UITableViewController {
 // MARK: Helpers
 
 private extension MenuTableViewController {
+    
+    func addToCalendarRowAction(forMenu menu: DayMenu) -> UITableViewRowAction {
+        let rowAction = UITableViewRowAction(style: .Normal,
+                                             title: NSLocalizedString("Add to\nCalendar"),
+                                             handler: { action, indexPath in
+            switch EventManager.authorizationStatus {
+            case .Authorized: self.presentEventEditViewController(menu: menu)
+            case .Denied: self.presentAlertController(title: NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
+            case .NotDetermined: self.requestEventAccessPermission(menu: menu)
+            case .Restricted: self.presentAlertController(title: NSLocalizedString("Access Restricted"), message: NSLocalizedString("Access to calendars is restricted, possibly due to parental controls being in place."), showsGoToSettings: false)
+            }
+        })
+        rowAction.backgroundColor = UIColor.customAlternateRedColor()
+        return rowAction
+    }
+    
+    
+    func allergensInfoRowAction(forMenu menu: DayMenu) -> UITableViewRowAction? {
+        if let allergensUrlString = menu.allergensUrl,
+            url = NSURL(string: allergensUrlString) {
+            return UITableViewRowAction(style: .Normal,
+                                        title: NSLocalizedString("Allergens\nInformation"),
+                                        handler: { (action, indexPath) in
+                let webVC = SFSafariViewController(URL: url)
+                self.navigationController?.pushViewController(webVC, animated: true)
+            })
+        } else {
+            return nil
+        }
+    }
+    
     
     func presentEventEditViewController(menu menu: DayMenu) {
         let eventVC = EKEventEditViewController()
