@@ -197,6 +197,13 @@ class MenuTableViewController: UITableViewController {
     }
     
     
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if indexPath.row == 0 { return false }
+        if self.weekMenu[indexPath.row - 1].isClosedMenu { return false }
+        return true
+    }
+    
+    
     // MARK: - UITableViewDelegate
     
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -205,10 +212,9 @@ class MenuTableViewController: UITableViewController {
             return nil
         }
         
+        let menu = self.weekMenu[indexPath.row - 1]
+                
         let rowAction = UITableViewRowAction(style: .Normal, title: NSLocalizedString("Add to Calendar"), handler: { action, indexPath in
-            
-            let menu = self.weekMenu[indexPath.row - 1]
-            
             switch EventManager.authorizationStatus {
             case .Authorized: self.presentEventEditViewController(menu: menu)
             case .Denied: self.presentAlertController(title: NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
