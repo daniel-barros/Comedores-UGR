@@ -152,23 +152,30 @@ private extension WeekMenuFetcher {
         if let table = doc.firstNodeMatchingSelector("table[class=inline]") {
             var date: String?
             var dishes: [String] = []
+            var allergensUrl: String?
             for td in table.nodesMatchingSelector("td") as! [HTMLElement] {
-                if td.hasClass("centeralign") && td.objectForKeyedSubscript("rowspan") != nil {
+                if td.hasClass("centeralign") && td.objectForKeyedSubscript("rowspan") != nil { // date row
+                    // Save previous day menu
                     if let date = date {
-                        weekMenu.append(DayMenu(date: date, dishes: dishes))
+                        weekMenu.append(DayMenu(date: date, dishes: dishes, allergensUrl: allergensUrl))
                         dishes.removeAll(keepCapacity: true)
                     }
+                    // Set date for next dishes
                     date = td.textContent
                         .stringByReplacingOccurrencesOfString("\n", withString: " ")
                         .stringByTrimmingExtraWhitespaces
                         .capitalizedString
-                } else {
+                } else if td.hasClass("rightalign") {   // Allergens info row
+                    if let url = td.firstNodeMatchingSelector("a")?.attributes["href"] as? String {
+                        allergensUrl = Defaults.url.relativeString + url
+                    }
+                } else {    // dish row
                     dishes.append(td.textContent
                         .stringByTrimmingExtraWhitespaces)
                 }
             }
             if let date = date {
-                weekMenu.append(DayMenu(date: date, dishes: dishes))
+                weekMenu.append(DayMenu(date: date, dishes: dishes, allergensUrl: allergensUrl))
             }
         }
         

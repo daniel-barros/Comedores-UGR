@@ -36,12 +36,14 @@ struct DayMenu: Equatable {
     let date: String
     let dishes: [String]
     let processedDate: NSDate?
+    let allergensUrl: String?
     
     
-    init(date: String, dishes: [String]) {
+    init(date: String, dishes: [String], allergensUrl: String?) {
         self.date = date
         self.dishes = dishes
         self.processedDate = DayMenu.dateFromRawString(date)
+        self.allergensUrl = allergensUrl
     }
     
     

@@ -65,7 +65,7 @@ extension NSKeyedUnarchiver {
                 return menu
             } else {
                 ok = false
-                return DayMenu(date: "", dishes: [])
+                return DayMenu(date: "", dishes: [], allergensUrl: nil)
             }
         }
         if ok == false { return nil }
@@ -93,11 +93,16 @@ private extension DayMenu {
         self.date = date
         self.dishes = dishes
         self.processedDate = DayMenu.dateFromRawString(date)
+        self.allergensUrl = archivedMenu["allergens"] as? String
     }
     
     
     /// A representation of the menu instance that can be archived using NSKeyedArchiver.
     var archivableVersion: [String: AnyObject] {
-        return ["date": date, "dishes": dishes]
+        if let url = allergensUrl {
+            return ["date": date, "dishes": dishes, "allergens": url]
+        } else {
+            return ["date": date, "dishes": dishes]
+        }
     }
 }
