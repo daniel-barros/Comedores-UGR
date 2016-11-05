@@ -37,6 +37,7 @@ private let DefaultsPriceKey = "DefaultsPriceKey"
 private let DefaultsOpeningTimeKey = "DefaultsOpeningTimeKey"
 private let DefaultsClosingTimeKey = "DefaultsClosingTimeKey"
 private let DefaultsLastUpdateKey = "DefaultsLastUpdatedKey"
+private let DefaultsAppVersionWhenLastUpdate = "DefaultsAppVersionWhenLastUpdate"
 private let SharedDefaultsName = "group.danielbarros.comedoresUGR"
 
 
@@ -66,9 +67,13 @@ class WeekMenuFetcher {
     }
     
     
-    /// `true` if savedMenu is nil or corrupt, or if it's next Sunday or later.
+    /// `true` if savedMenu is nil or corrupt, if it's next Sunday or later, or if a new app version was just installed.
     var needsToUpdateMenu: Bool {
         guard let menu = savedMenu, firstDate = menu.first?.processedDate else {
+            return true
+        }
+        if let appVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
+            where appVersionWhenLastUpdate != appVersion {
             return true
         }
         return NSCalendar.currentCalendar().differenceInDays(from: firstDate, to: NSDate()) > 5
@@ -231,9 +236,17 @@ private extension WeekMenuFetcher {
     }
     
     
+    var appVersionWhenLastUpdate: String? {
+        return sharedDefaults.objectForKey(DefaultsAppVersionWhenLastUpdate) as? String
+    }
+    
+    
     func saveMenu(menu: [DayMenu]) {
         sharedDefaults.setMenu(menu, forKey: DefaultsWeekMenuKey)
         sharedDefaults.setObject(NSDate(), forKey: DefaultsLastUpdateKey)
+        if let appVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+            sharedDefaults.setObject(appVersion, forKey: DefaultsAppVersionWhenLastUpdate)
+        }
     }
     
     
