@@ -73,6 +73,7 @@ class MenuTableViewController: UITableViewController {
         
         if fetcher.needsToUpdateMenu {
             if isFetchingForFirstTime {
+                refreshControl!.layoutIfNeeded()
                 refreshControl!.beginRefreshing()
                 tableView.contentOffset.y = -tableView.contentInset.top
             }
