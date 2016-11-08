@@ -154,36 +154,34 @@ private extension WeekMenuFetcher {
         let doc = HTMLDocument(string: html)
         
         // Menu
-        for table in doc.nodesMatchingSelector("table[class=inline]") as! [HTMLElement] {
+        if let table = doc.firstNodeMatchingSelector("table[class=inline]") {
             var date: String?
             var dishes: [String] = []
             var allergensUrl: String?
-            
             for td in table.nodesMatchingSelector("td") as! [HTMLElement] {
-                // Date row
-                if td.hasClass("centeralign") && td.objectForKeyedSubscript("rowspan") != nil {
+                if td.hasClass("centeralign") && td.objectForKeyedSubscript("rowspan") != nil { // date row
+                    // Save previous day menu
+                    if let date = date {
+                        weekMenu.append(DayMenu(date: date, dishes: dishes, allergensUrl: allergensUrl))
+                        dishes.removeAll(keepCapacity: true)
+                    }
+                    // Set date for next dishes
                     date = td.textContent
                         .stringByReplacingOccurrencesOfString("\n", withString: " ")
                         .stringByTrimmingExtraWhitespaces
                         .capitalizedString
-                // Allergens info row
-                } else if td.hasClass("rightalign") {
+                } else if td.hasClass("rightalign") {   // Allergens info row
                     if let url = td.firstNodeMatchingSelector("a")?.attributes["href"] as? String {
-                        allergensUrl = Defaults.url.relativeString + url + "/!"
+                        allergensUrl = Defaults.url.relativeString + url
                     }
-                // Dish row
-                } else {
+                } else {    // dish row
                     dishes.append(td.textContent
                         .stringByTrimmingExtraWhitespaces)
                 }
             }
-            
             if let date = date {
                 weekMenu.append(DayMenu(date: date, dishes: dishes, allergensUrl: allergensUrl))
             }
-            date = nil
-            dishes = []
-            allergensUrl = nil
         }
         
         // Dining hours and menu price
