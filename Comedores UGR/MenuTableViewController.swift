@@ -256,7 +256,7 @@ private extension MenuTableViewController {
     
     
     func allergensInfoRowAction(forMenu menu: DayMenu) -> UITableViewRowAction? {
-        if let allergens = menu.allergens {
+        if let _ = menu.allergens {
             // TODO: Implement
             return nil
         } else {
