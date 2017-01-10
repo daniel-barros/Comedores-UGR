@@ -153,34 +153,62 @@ private extension WeekMenuFetcher {
         var opening, closing: NSDate?
         let doc = HTMLDocument(string: html)
         
-        // Menu
+        // Menu table
         if let table = doc.firstNodeMatchingSelector("table[class=inline]") {
             var date: String?
             var dishes: [String] = []
-            var allergensUrl: String?
-            for td in table.nodesMatchingSelector("td") as! [HTMLElement] {
-                if td.hasClass("centeralign") && td.objectForKeyedSubscript("rowspan") != nil { // date row
-                    // Save previous day menu
-                    if let date = date {
-                        weekMenu.append(DayMenu(date: date, dishes: dishes, allergensUrl: allergensUrl))
-                        dishes.removeAll(keepCapacity: true)
+            var drinksAndDesserts: String?
+//            var allergens: String?
+            
+            for tr in table.nodesMatchingSelector("tr") as! [HTMLElement] {
+                var isDrinksOrDessertsRow = false
+                
+                for (i, td) in (tr.nodesMatchingSelector("td") as! [HTMLElement]).enumerate() {
+                    let text = td.textContent.stringByTrimmingExtraWhitespaces
+                    // first column (date and labels)
+                    if i == 0 {
+                        if stringStartsWithSpanishWeekDay(text) {   // date row
+                            // Save previous day menu
+                            if let date = date {
+                                if let dd = drinksAndDesserts {
+                                    dishes.append(dd)
+                                }
+                                weekMenu.append(DayMenu(date: date, dishes: dishes, allergens: nil))
+                                dishes.removeAll()
+                                drinksAndDesserts = nil
+//                                allergens = nil
+                            }
+                            date = text
+                            break
+                        } else if text == "Postre" || text == "Bebida" {    // drinks or desserts row
+                            isDrinksOrDessertsRow = true
+                        } else {    // other dishes row (primero, segundo, acompañamiento)
+                            isDrinksOrDessertsRow = false
+                        }
+                    // second column (dishes)
+                    } else if i == 1 {
+                        if isDrinksOrDessertsRow {
+                            if drinksAndDesserts != nil {
+                                drinksAndDesserts!.appendContentsOf(", " + text)
+                            } else {
+                                drinksAndDesserts = text
+                            }
+                        } else {
+                            dishes.append(text)
+                        }
+                    // third column (allergens)
+                    } else if i == 2 {
+//                        allergens = text
+                    } else {
+                        assertionFailure()
                     }
-                    // Set date for next dishes
-                    date = td.textContent
-                        .stringByReplacingOccurrencesOfString("\n", withString: " ")
-                        .stringByTrimmingExtraWhitespaces
-                        .capitalizedString
-                } else if td.hasClass("rightalign") {   // Allergens info row
-                    if let url = td.firstNodeMatchingSelector("a")?.attributes["href"] as? String {
-                        allergensUrl = Defaults.url.relativeString + url
-                    }
-                } else {    // dish row
-                    dishes.append(td.textContent
-                        .stringByTrimmingExtraWhitespaces)
                 }
             }
             if let date = date {
-                weekMenu.append(DayMenu(date: date, dishes: dishes, allergensUrl: allergensUrl))
+                if let dd = drinksAndDesserts {
+                    dishes.append(dd)
+                }
+                weekMenu.append(DayMenu(date: date, dishes: dishes, allergens: nil))
             }
         }
         
@@ -189,8 +217,8 @@ private extension WeekMenuFetcher {
             for div in info.nodesMatchingSelector("div[class=li]") {
                 
                 let text = div.textContent.stringByTrimmingExtraWhitespaces
-                if text.hasPrefix("Horario de Comedor") {
-                    let timeStrings = text.stringByReplacingOccurrencesOfString("Horario de Comedor ", withString: "").componentsSeparatedByString(" a ")
+                if text.hasPrefix("Horario del comedor") {
+                    let timeStrings = text.stringByReplacingOccurrencesOfString("Horario del comedor ", withString: "").componentsSeparatedByString(" a ")
                     let formatter = spanishDateFormatter()
                     opening = formatter.dateFromString(timeStrings.first ?? "")
                     closing = formatter.dateFromString(timeStrings.second ?? "")
@@ -222,6 +250,21 @@ private extension WeekMenuFetcher {
         f.locale = Defaults.spanishLocale
         f.numberStyle = .DecimalStyle
         return f
+    }
+    
+    
+    func spanishCalendar() -> NSCalendar {
+        let c = NSCalendar(calendarIdentifier: "gregorian")!
+        c.locale = NSLocale(localeIdentifier: "es_ES")
+        return c
+    }
+    
+    
+    /// It is case-insensitive.
+    func stringStartsWithSpanishWeekDay(text: String) -> Bool {
+        return spanishCalendar().weekdaySymbols.contains({
+            if text.characters.count < $0.characters.count { return false }
+            return $0.caseInsensitiveCompare(text.substringToIndex($0.endIndex)) == .OrderedSame })
     }
     
     

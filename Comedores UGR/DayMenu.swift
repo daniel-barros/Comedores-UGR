@@ -36,19 +36,20 @@ struct DayMenu: Equatable {
     let date: String
     let dishes: [String]
     let processedDate: NSDate?
-    let allergensUrl: String?
+    let allergens: String?  // TODO: Do allergens for individual dishes
     
     
-    init(date: String, dishes: [String], allergensUrl: String?) {
-        self.date = date
+    init(date: String, dishes: [String], allergens: String?) {
+        let fixedDate = date.lowercaseString.capitalizedString
+        self.date = fixedDate
         self.dishes = dishes
-        self.processedDate = DayMenu.dateFromRawString(date)
-        self.allergensUrl = allergensUrl
+        self.processedDate = DayMenu.dateFromRawString(fixedDate)
+        self.allergens = allergens
     }
     
     
     var month: String? {
-        return date.componentsSeparatedByString(" ").third
+        return date.componentsSeparatedByString(" ").fourth
     }
     
     
@@ -58,7 +59,10 @@ struct DayMenu: Equatable {
     
     
     var dayName: String? {
-        return date.componentsSeparatedByString(" ").first
+        if let day = date.componentsSeparatedByString(" ").first {
+            return day.substringToIndex(day.endIndex.predecessor())
+        }
+        return nil
     }
     
     
@@ -98,13 +102,15 @@ extension DayMenu {
     }
     
     
+    /// Date from a string like "LUNES, 9 DE ENERO DE 2017".
     static func dateFromRawString(dateString: String) -> NSDate? {
-        let components = dateString.componentsSeparatedByString(" ")
-        guard components.count == 3 else {
+        let capitalizedDate = dateString.lowercaseString.capitalizedString
+        let components = capitalizedDate.componentsSeparatedByString(" ")
+        guard components.count == 6 else {
             return nil
         }
         
-        if let month = monthsDict[components[2]],
+        if let month = monthsDict[components[3]],
             day = Int(components[1]) {
             let calendar = NSCalendar.currentCalendar()
             let year = calendar.component(.Year, fromDate: NSDate())

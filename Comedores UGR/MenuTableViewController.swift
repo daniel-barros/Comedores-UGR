@@ -256,14 +256,9 @@ private extension MenuTableViewController {
     
     
     func allergensInfoRowAction(forMenu menu: DayMenu) -> UITableViewRowAction? {
-        if let allergensUrlString = menu.allergensUrl,
-            url = NSURL(string: allergensUrlString) {
-            return UITableViewRowAction(style: .Normal,
-                                        title: NSLocalizedString("Allergens\nInformation"),
-                                        handler: { (action, indexPath) in
-                let webVC = SFSafariViewController(URL: url)
-                self.navigationController?.pushViewController(webVC, animated: true)
-            })
+        if let allergens = menu.allergens {
+            // TODO: Implement
+            return nil
         } else {
             return nil
         }
