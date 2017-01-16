@@ -154,7 +154,7 @@ private extension WeekMenuFetcher {
         let doc = HTMLDocument(string: html)
         
         // Menu table
-        if let table = doc.firstNodeMatchingSelector("table[class=inline]") {
+        for table in doc.nodesMatchingSelector("table[class=inline]") {
             var date: String?
             var dishes: [String] = []
             var drinksAndDesserts: String?
@@ -179,6 +179,8 @@ private extension WeekMenuFetcher {
 //                                allergens = nil
                             }
                             date = text
+                            break
+                        } else if text == "Pan" {   // bread row (ignored)
                             break
                         } else if text == "Postre" || text == "Bebida" {    // drinks or desserts row
                             isDrinksOrDessertsRow = true
@@ -210,6 +212,7 @@ private extension WeekMenuFetcher {
                 }
                 weekMenu.append(DayMenu(date: date, dishes: dishes, allergens: nil))
             }
+            if !weekMenu.isEmpty { break }  // found the correct table
         }
         
         // Dining hours and menu price
