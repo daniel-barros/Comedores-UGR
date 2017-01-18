@@ -32,19 +32,11 @@ import UIKit
 
 extension UIColor {
     
-    class func customRedColor() -> UIColor {
-        return UIColor(red: 0.996, green: 0.230, blue: 0.187, alpha: 1)
-    }
+    static let customRedColor = UIColor(red: 0.996, green: 0.230, blue: 0.187, alpha: 1)
     
-    class func customAlternateRedColor() -> UIColor {
-        return UIColor(red: 0.996, green: 0.330, blue: 0.287, alpha: 1)
-    }
+    static let customAlternateRedColor = UIColor(red: 0.996, green: 0.330, blue: 0.287, alpha: 1)
     
-    class func customDarkRedColor() -> UIColor {
-        return UIColor(red: 0.418, green: 0.043, blue: 0.023, alpha: 1)
-    }
+    static let customDarkRedColor = UIColor(red: 0.418, green: 0.043, blue: 0.023, alpha: 1)
     
-    class func mainTextColor() -> UIColor {
-        return .blackColor() //UIColor.darkGrayColor()
-    }
+    static let mainTextColor = UIColor.black //UIColor.darkGrayColor()
 }

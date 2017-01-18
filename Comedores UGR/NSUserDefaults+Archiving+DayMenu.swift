@@ -31,23 +31,23 @@ SOFTWARE.
 import Foundation
 
 
-extension NSUserDefaults {
+extension UserDefaults {
     
-    func menuForKey(key: String) -> [DayMenu]? {
-        if let menuData = self.dataForKey(key) {
-            return NSKeyedUnarchiver.unarchiveMenuWithData(menuData)
+    func menu(forKey key: String) -> [DayMenu]? {
+        if let menuData = self.data(forKey: key) {
+            return NSKeyedUnarchiver.unarchiveMenu(with: menuData)
         } else {
             return nil
         }
     }
     
     
-    func setMenu(menu: [DayMenu]?, forKey key: String) {
+    func setMenu(_ menu: [DayMenu]?, forKey key: String) {
         if let menu = menu {
             let menuData = NSKeyedArchiver.archivedMenu(menu)
-            self.setObject(menuData, forKey: key)
+            self.set(menuData, forKey: key)
         } else {
-            self.setObject(nil, forKey: key)
+            self.set(nil, forKey: key)
         }
     }
 }
@@ -55,12 +55,12 @@ extension NSUserDefaults {
 
 extension NSKeyedUnarchiver {
     
-    static func unarchiveMenuWithData(data: NSData) -> [DayMenu]? {
-        guard let archivedMenu = NSKeyedUnarchiver.unarchiveObjectWithData(data) as? [[String: AnyObject]] else {
+    static func unarchiveMenu(with data: Data) -> [DayMenu]? {
+        guard let archivedMenu = NSKeyedUnarchiver.unarchiveObject(with: data) as? [[String: Any]] else {
             return nil
         }
         var ok = true
-        let menu = archivedMenu.map { (dict: [String: AnyObject]) -> DayMenu in
+        let menu = archivedMenu.map { (dict: [String: Any]) -> DayMenu in
             if let menu = DayMenu(archivedMenu: dict) {
                 return menu
             } else {
@@ -76,29 +76,29 @@ extension NSKeyedUnarchiver {
 
 extension NSKeyedArchiver {
     
-    static func archivedMenu(menu: [DayMenu]) -> NSData {
+    static func archivedMenu(_ menu: [DayMenu]) -> Data {
         let archivedMenu = menu.map { $0.archivableVersion }
-        return archivedDataWithRootObject(archivedMenu)
+        return archivedData(withRootObject: archivedMenu)
     }
 }
 
 
 private extension DayMenu {
     
-    init?(archivedMenu: [String: AnyObject]) {
+    init?(archivedMenu: [String: Any]) {
         guard let date = archivedMenu["date"] as? String,
-            dishes = archivedMenu["dishes"] as? [String] else {
+            let dishes = archivedMenu["dishes"] as? [String] else {
                 return nil
         }
         self.date = date
         self.dishes = dishes
-        self.processedDate = DayMenu.dateFromRawString(date)
+        self.processedDate = DayMenu.date(fromRawString: date)
         self.allergens = archivedMenu["allergens"] as? String
     }
     
     
     /// A representation of the menu instance that can be archived using NSKeyedArchiver.
-    var archivableVersion: [String: AnyObject] {
+    var archivableVersion: [String: Any] {
         if let al = allergens {
             return ["date": date, "dishes": dishes, "allergens": al]
         } else {

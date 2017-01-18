@@ -38,7 +38,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
     let menuManager = MenuManager()
     
     var hasUpdatedUIToday: Bool {
-        if let date = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastUIUpdateKey) as? NSDate where NSCalendar.currentCalendar().isDateInToday(date) {
+        if let date = UserDefaults.standard.object(forKey: DefaultsLastUIUpdateKey) as? Date, Calendar.current.isDateInToday(date) {
             return true
         }
         return false
@@ -77,7 +77,7 @@ class ExtensionDelegate: NSObject, WKExtensionDelegate {
 
     
     @available(watchOSApplicationExtension 3.0, *)
-    func handleBackgroundTasks(backgroundTasks: Set<WKRefreshBackgroundTask>) {
+    func handle(_ backgroundTasks: Set<WKRefreshBackgroundTask>) {
         
         var tasks = backgroundTasks
         // Menu update. If no new menu available tries update again in 4 hours
@@ -116,28 +116,27 @@ private extension ExtensionDelegate {
     /// Updates app UI.
     func updateAppPages(with weekMenu: [DayMenu]) {
         print(#function)
-        NSUserDefaults.standardUserDefaults().setObject(NSDate(), forKey: DefaultsLastUIUpdateKey)
+        UserDefaults.standard.set(Date(), forKey: DefaultsLastUIUpdateKey)
 
         if weekMenu.isEmpty {
-            WKInterfaceController.reloadRootControllersWithNames([String(InterfaceController)], contexts: nil)
+            WKInterfaceController.reloadRootControllers(withNames: [String(describing: InterfaceController.self)], contexts: nil)
         } else {
-            WKInterfaceController.reloadRootControllersWithNames(Array(count: weekMenu.count, repeatedValue: String(InterfaceController)), contexts: weekMenu.map(DayMenuWrapper.init(menu:)))
+            WKInterfaceController.reloadRootControllers(withNames: Array(repeating: String(describing: InterfaceController.self), count: weekMenu.count), contexts: weekMenu)
         }
     }
     
-    
     /// Updates the menu and if there's a new one the UI is refreshed.
-    func updateMenuAndUI(completion handler: ((updated: Bool) -> ())? = nil) {
+    func updateMenuAndUI(completion handler: ((_ updated: Bool) -> ())? = nil) {
         print(#function)
         let previousMenu = menuManager.savedMenu
         menuManager.updateMenu { menu in
-            if let menu = menu where previousMenu == nil || previousMenu! != menu {
+            if let menu = menu, previousMenu == nil || previousMenu! != menu {
                 mainQueue {
                     self.updateAppPages(with: self.menuManager.relevantSavedMenu)
-                    handler?(updated: true)
+                    handler?(true)
                 }
             } else {
-                handler?(updated: false)
+                handler?(false)
             }
         }
     }
@@ -146,14 +145,14 @@ private extension ExtensionDelegate {
     @available(watchOSApplicationExtension 3.0, *)
     func scheduleAppUIRefreshTomorrow() {
         print(#function)
-        let tomorrow = NSCalendar.currentCalendar().startOfDayForDate(NSDate().dateByAddingTimeInterval(60*60*24+60))
-        WKExtension.sharedExtension().scheduleSnapshotRefreshWithPreferredDate(tomorrow, userInfo: nil, scheduledCompletion: {_ in })
+        let tomorrow = Calendar.current.startOfDay(for: Date().addingTimeInterval(60*60*24+60))
+        WKExtension.shared().scheduleSnapshotRefresh(withPreferredDate: tomorrow, userInfo: nil, scheduledCompletion: {_ in })
     }
     
     
     @available(watchOSApplicationExtension 3.0, *)
     func scheduleAppDataRefreshNow(addingHours hours: Double = 0) {
         print(#function)
-        WKExtension.sharedExtension().scheduleBackgroundRefreshWithPreferredDate(NSDate().dateByAddingTimeInterval(60*60*hours), userInfo: nil, scheduledCompletion: { _ in })
+        WKExtension.shared().scheduleBackgroundRefresh(withPreferredDate: Date().addingTimeInterval(60*60*hours), userInfo: nil, scheduledCompletion: { _ in })
     }
 }

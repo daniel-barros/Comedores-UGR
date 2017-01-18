@@ -42,8 +42,8 @@ class GlanceController: WKInterfaceController {
     @IBOutlet weak var dayNumberLabel: WKInterfaceLabel!
 
     
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
         
         let icon = StyleKit.imageOfIconUtensils(size: CGSize(width: 40, height: 40))
         image.setImage(icon)
@@ -57,7 +57,7 @@ class GlanceController: WKInterfaceController {
         super.willActivate()
         
         if let menu = menuManager.savedMenu {
-            updateUI(withMenu: menu.todayMenu)
+            updateUI(with: menu.todayMenu)
         }
         
         if menuManager.needsToUpdateMenu || menuManager.hasUpdatedDataToday == false {
@@ -66,7 +66,7 @@ class GlanceController: WKInterfaceController {
                     return
                 }
                 mainQueue {
-                    self?.updateUI(withMenu: menu.todayMenu)
+                    self?.updateUI(with: menu.todayMenu)
                 }
             }
         }
@@ -78,26 +78,26 @@ class GlanceController: WKInterfaceController {
     }
     
     
-    func updateUI(withMenu menu: DayMenu?) {
+    func updateUI(with menu: DayMenu?) {
         // Date
-        let todayComponents = NSCalendar.currentCalendar().components([.Day, .Weekday], fromDate: NSDate())
-        dayNumberLabel.setText(String(todayComponents.day))
-        let formatter = NSDateFormatter()
-        dayNameLabel.setText(formatter.shortWeekdaySymbols[todayComponents.weekday - 1])
+        let todayComponents = Calendar.current.dateComponents([.day, .weekday], from: Date())
+        dayNumberLabel.setText(String(describing: todayComponents.day))
+        let formatter = DateFormatter()
+        dayNameLabel.setText(formatter.shortWeekdaySymbols[todayComponents.weekday! - 1])
         
         // Dishes
         let text: String
         let paragraphStyle = NSMutableParagraphStyle()
         if let menu = menu {
             text = menu.allDishes
-            dishesLabel.setVerticalAlignment(.Top)
-            dishesLabel.setHorizontalAlignment(.Left)
-            paragraphStyle.alignment = .Left
+            dishesLabel.setVerticalAlignment(.top)
+            dishesLabel.setHorizontalAlignment(.left)
+            paragraphStyle.alignment = .left
         } else {
             text = NSLocalizedString("No Menu")
-            dishesLabel.setVerticalAlignment(.Center)
-            dishesLabel.setHorizontalAlignment(.Center)
-            paragraphStyle.alignment = .Center
+            dishesLabel.setVerticalAlignment(.center)
+            dishesLabel.setHorizontalAlignment(.center)
+            paragraphStyle.alignment = .center
         }
         
         paragraphStyle.paragraphSpacing = 6

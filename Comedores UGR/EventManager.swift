@@ -45,25 +45,25 @@ private let DefaultsEventSecondAlarmKey = "DefaultsEventSecondAlarmKey"
 struct EventManager {
     
     static var authorizationStatus: EKAuthorizationStatus {
-        return EKEventStore.authorizationStatusForEntityType(.Event)
+        return EKEventStore.authorizationStatus(for: .event)
     }
     
     
     /// - returns: `true` if access was granted, `false` otherwise.
-    static func requestAccessPermission(handler: (granted: Bool) -> ()) {
-        EKEventStore().requestAccessToEntityType(.Event) { result, error in
-            handler(granted: result)
+    static func requestAccessPermission(_ handler: @escaping (_ granted: Bool) -> ()) {
+        EKEventStore().requestAccess(to: .event) { result, error in
+            handler(result)
         }
     }
     
     
     /// Creates a new `EKEvent` object initialized with default information.
-    static func createEvent(inEventStore eventStore: EKEventStore, forMenu menu: DayMenu) -> EKEvent {
+    static func createEvent(in eventStore: EKEventStore, for menu: DayMenu) -> EKEvent {
         let event = EKEvent(eventStore: eventStore)
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         
         // Title
-        event.title = defaults.stringForKey(DefaultsEventTitleKey) ?? NSLocalizedString("Lunch")
+        event.title = defaults.string(forKey: DefaultsEventTitleKey) ?? NSLocalizedString("Lunch")
         
         // Notes
         if PreferencesManager.includeMenuInEventsNotes {
@@ -72,23 +72,22 @@ struct EventManager {
         
         // Date
         if let date = menu.processedDate {
-            let calendar = NSCalendar.currentCalendar()
-            let components = calendar.components([.Era, .Year, .Month, .Day], fromDate: date)
-
+            let calendar = Calendar.current
+            var components = calendar.dateComponents([.era, .year, .month, .day], from: date)
             
-            components.hour = defaults.objectForKey(DefaultsEventStartHourKey) as? Int ?? 14
-            components.minute = defaults.objectForKey(DefaultsEventStartMinuteKey) as? Int ?? 0
-            event.startDate = calendar.dateFromComponents(components)!
+            components.hour = defaults.object(forKey: DefaultsEventStartHourKey) as? Int ?? 14
+            components.minute = defaults.object(forKey: DefaultsEventStartMinuteKey) as? Int ?? 0
+            event.startDate = calendar.date(from: components)!
             
-            components.hour = defaults.objectForKey(DefaultsEventEndHourKey) as? Int ?? 15
-            components.minute = defaults.objectForKey(DefaultsEventEndMinuteKey) as? Int ?? 0
-            event.endDate = calendar.dateFromComponents(components)!
+            components.hour = defaults.object(forKey: DefaultsEventEndHourKey) as? Int ?? 15
+            components.minute = defaults.object(forKey: DefaultsEventEndMinuteKey) as? Int ?? 0
+            event.endDate = calendar.date(from: components)!
         }
         
         // Calendar
-        if let calendarID = defaults.stringForKey(DefaultsEventCalendarIdentifierKey) {
+        if let calendarID = defaults.string(forKey: DefaultsEventCalendarIdentifierKey) {
             // (Can't use calendarWithIdentifier() here, it fails)
-            for calendar in eventStore.calendarsForEntityType(.Event) {
+            for calendar in eventStore.calendars(for: .event) {
                 if calendar.calendarIdentifier == calendarID {
                     event.calendar = calendar
                 }
@@ -96,14 +95,14 @@ struct EventManager {
         }
         
         // Location
-        event.location = defaults.stringForKey(DefaultsEventLocationKey)
+        event.location = defaults.string(forKey: DefaultsEventLocationKey)
         
         // Alarms
         if PreferencesManager.useDefaultAlarmsForNewEvents {
-            if let alarmOffset = defaults.objectForKey(DefaultsEventFirstAlarmKey) as? NSTimeInterval {
+            if let alarmOffset = defaults.object(forKey: DefaultsEventFirstAlarmKey) as? TimeInterval {
                 event.addAlarm(EKAlarm(relativeOffset: alarmOffset))
             }
-            if let alarmOffset = defaults.objectForKey(DefaultsEventSecondAlarmKey) as? NSTimeInterval {
+            if let alarmOffset = defaults.object(forKey: DefaultsEventSecondAlarmKey) as? TimeInterval {
                 event.addAlarm(EKAlarm(relativeOffset: alarmOffset))
             }
         }
@@ -113,31 +112,31 @@ struct EventManager {
     
     
     /// Saves the info contained in the passed event and uses it for initializing new `EKEvent` objects created with `createEvent(inEventStore:forMenu)`.
-    static func saveDefaultInfoFromEvent(event event: EKEvent) {
-        let defaults = NSUserDefaults.standardUserDefaults()
-        let calendar = NSCalendar.currentCalendar()
+    static func saveDefaultInfo(from event: EKEvent) {
+        let defaults = UserDefaults.standard
+        let calendar = Calendar.current
         
-        defaults.setObject(event.title, forKey: DefaultsEventTitleKey)
+        defaults.set(event.title, forKey: DefaultsEventTitleKey)
         
         if event.notes == nil || event.notes == "" {
             PreferencesManager.includeMenuInEventsNotes = false
         }
         
-        let startDateComponents = calendar.components([.Hour, .Minute], fromDate: event.startDate)
-        defaults.setInteger(startDateComponents.hour, forKey: DefaultsEventStartHourKey)
-        defaults.setInteger(startDateComponents.minute, forKey: DefaultsEventStartMinuteKey)
+        let startDateComponents = calendar.dateComponents([.hour, .minute], from: event.startDate)
+        defaults.set(startDateComponents.hour, forKey: DefaultsEventStartHourKey)
+        defaults.set(startDateComponents.minute, forKey: DefaultsEventStartMinuteKey)
         
-        let endDateComponents = calendar.components([.Hour, .Minute], fromDate: event.endDate)
-        defaults.setInteger(endDateComponents.hour, forKey: DefaultsEventEndHourKey)
-        defaults.setInteger(endDateComponents.minute, forKey: DefaultsEventEndMinuteKey)
+        let endDateComponents = calendar.dateComponents([.hour, .minute], from: event.endDate)
+        defaults.set(endDateComponents.hour, forKey: DefaultsEventEndHourKey)
+        defaults.set(endDateComponents.minute, forKey: DefaultsEventEndMinuteKey)
         
-        defaults.setObject(event.calendar.calendarIdentifier, forKey: DefaultsEventCalendarIdentifierKey)
+        defaults.set(event.calendar.calendarIdentifier, forKey: DefaultsEventCalendarIdentifierKey)
         
-        defaults.setObject(event.location, forKey: DefaultsEventLocationKey)
+        defaults.set(event.location, forKey: DefaultsEventLocationKey)
         
         if PreferencesManager.useDefaultAlarmsForNewEvents {
-            defaults.setObject(event.alarms?.first?.relativeOffset, forKey: DefaultsEventFirstAlarmKey)
-            defaults.setObject(event.alarms?.second?.relativeOffset, forKey: DefaultsEventSecondAlarmKey)
+            defaults.set(event.alarms?.first?.relativeOffset, forKey: DefaultsEventFirstAlarmKey)
+            defaults.set(event.alarms?.second?.relativeOffset, forKey: DefaultsEventSecondAlarmKey)
         }
     }
 }

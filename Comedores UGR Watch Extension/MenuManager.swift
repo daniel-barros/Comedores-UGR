@@ -38,33 +38,33 @@ private let DefaultsLastDataUpdateKey = "DefaultsLastDataUpdateKey"
 
 class MenuManager: NSObject, WCSessionDelegate {
     
-    private var session = WCSession.defaultSession()
+    fileprivate var session = WCSession.default()
     
-    private var handler: ([DayMenu]? -> ())?
+    fileprivate var handler: (([DayMenu]?) -> ())?
     
     var savedMenu: [DayMenu]? {
-        return NSUserDefaults.standardUserDefaults().menuForKey(DefaultsWeekMenuKey)
+        return UserDefaults.standard.menu(forKey: DefaultsWeekMenuKey)
     }
     
     
-    func updateMenu(responseHandler handler: [DayMenu]? -> ()) {
+    func updateMenu(responseHandler handler: @escaping ([DayMenu]?) -> ()) {
         session.delegate = self
-        session.activateSession()
+        session.activate()
         self.handler = handler
     }
     
     
     /// `true` if savedMenu is nil or corrupt, or if it's next Sunday or later.
     var needsToUpdateMenu: Bool {
-        guard let menu = savedMenu, firstDate = menu.first?.processedDate else {
+        guard let menu = savedMenu, let firstDate = menu.first?.processedDate else {
             return true
         }
-        return NSCalendar.currentCalendar().differenceInDays(from: firstDate, to: NSDate()) > 5
+        return Calendar.current.differenceInDays(from: firstDate, to: Date()) > 5
     }
     
     
     var hasUpdatedDataToday: Bool {
-        if let date = NSUserDefaults.standardUserDefaults().objectForKey(DefaultsLastDataUpdateKey) as? NSDate where NSCalendar.currentCalendar().isDateInToday(date) {
+        if let date = UserDefaults.standard.object(forKey: DefaultsLastDataUpdateKey) as? Date, Calendar.current.isDateInToday(date) {
             return true
         }
         return false
@@ -73,11 +73,11 @@ class MenuManager: NSObject, WCSessionDelegate {
     
     // MARK: WCSessionDelegate
 
-    func session(session: WCSession, didReceiveMessageData messageData: NSData) {
-        if let menu = NSKeyedUnarchiver.unarchiveMenuWithData(messageData) {
-            let defaults = NSUserDefaults.standardUserDefaults()
+    func session(_ session: WCSession, didReceiveMessageData messageData: Data) {
+        if let menu = NSKeyedUnarchiver.unarchiveMenu(with: messageData) {
+            let defaults = UserDefaults.standard
             defaults.setMenu(menu, forKey: DefaultsWeekMenuKey)
-            defaults.setObject(NSDate(), forKey: DefaultsLastDataUpdateKey)
+            defaults.set(Date(), forKey: DefaultsLastDataUpdateKey)
             handler?(menu)
         } else {
             handler?(nil)
@@ -87,8 +87,8 @@ class MenuManager: NSObject, WCSessionDelegate {
     }
     
     
-    func session(session: WCSession, activationDidCompleteWithState activationState: WCSessionActivationState, error: NSError?) {
-        if activationState == .Activated {
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        if activationState == .activated {
             session.sendMessage([:], replyHandler: nil, errorHandler: nil)
         } else {
             handler?(nil)
@@ -104,7 +104,7 @@ extension MenuManager {
             return []
         }
         return weekMenu.flatMap { menu -> DayMenu? in
-            if let date = menu.processedDate where date.isTodayOrFuture {
+            if let date = menu.processedDate, date.isTodayOrFuture {
                 return menu
             }
             return nil

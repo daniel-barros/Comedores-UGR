@@ -51,40 +51,40 @@ class InfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        iconImage.image = StyleKit.imageOfIconBig(size: iconImage.bounds.size, resizing: .AspectFill)
-        menuInEventsSwitch.on = PreferencesManager.includeMenuInEventsNotes
-        if let version = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+        iconImage.image = StyleKit.imageOfIconBig(size: iconImage.bounds.size, resizing: .aspectFill)
+        menuInEventsSwitch.isOn = PreferencesManager.includeMenuInEventsNotes
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
             versionLabel.text = NSLocalizedString("UGR Menu") + " v\(version)"
         }
         
         let fetcher = WeekMenuFetcher()
-        let numberFormatter = NSNumberFormatter()
-        numberFormatter.numberStyle = .DecimalStyle
-        priceLabel.text = numberFormatter.stringFromNumber(fetcher.menuPrice)! + "€"
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        priceLabel.text = numberFormatter.string(from: NSNumber(value: fetcher.menuPrice))! + "€"
         
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateStyle = .NoStyle
-        dateFormatter.timeStyle = .ShortStyle
-        hoursLabel.text = dateFormatter.stringFromDate(fetcher.diningOpeningTime) + " – " +
-            dateFormatter.stringFromDate(fetcher.diningClosingTime)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .none
+        dateFormatter.timeStyle = .short
+        hoursLabel.text = dateFormatter.string(from: fetcher.diningOpeningTime) + " – " +
+            dateFormatter.string(from: fetcher.diningClosingTime)
         
         // Set appearance for small screens
-        if UIDevice.currentDevice().isSmalliPhone {
+        if UIDevice.current.isSmalliPhone {
             iconWidthConstraint.constant = min(view.frame.width, view.frame.height) * 0.44
-            appNameLabel.font = appNameLabel.font.fontWithSize(28)
+            appNameLabel.font = appNameLabel.font.withSize(28)
             infoGroup.spacing = 10
             priceAndHoursGroup.spacing = 10
             
-            if UIDevice.currentDevice().isiPhone4sOrPrevious {
+            if UIDevice.current.isiPhone4sOrPrevious {
                 iconWidthConstraint.constant = 0
-                iconImage.hidden = true
+                iconImage.isHidden = true
             }
         }
     }
     
     
     // TODO: This is a quick fix until you solve the constraints issues.
-    override func shouldAutorotate() -> Bool {
+    override var shouldAutorotate : Bool {
         if #available(iOS 10, *) {
             return false
         }
@@ -92,35 +92,35 @@ class InfoViewController: UIViewController {
     }
     
     
-    @IBAction func sendFeedback(sender: UIButton) {
+    @IBAction func sendFeedback(_ sender: UIButton) {
         
         if MFMailComposeViewController.canSendMail() {
             let composeVC = MFMailComposeViewController()
             composeVC.mailComposeDelegate = self
             composeVC.setToRecipients(["ugrmenu.feedback@icloud.com"])
-            composeVC.navigationBar.tintColor = UIColor.customRedColor()
+            composeVC.navigationBar.tintColor = .customRedColor
             
-            self.presentViewController(composeVC, animated: true, completion: nil)
+            self.present(composeVC, animated: true, completion: nil)
         } else {
-            let alertController = UIAlertController(title: NSLocalizedString("Email Not Available"), message: NSLocalizedString("You need to set up an email account first on your device."), preferredStyle: .Alert)
-            let action = UIAlertAction(title: NSLocalizedString("OK"), style: .Cancel, handler: { action in
-                self.dismissViewControllerAnimated(true, completion: nil)
+            let alertController = UIAlertController(title: NSLocalizedString("Email Not Available"), message: NSLocalizedString("You need to set up an email account first on your device."), preferredStyle: .alert)
+            let action = UIAlertAction(title: NSLocalizedString("OK"), style: .cancel, handler: { action in
+                self.dismiss(animated: true, completion: nil)
             })
             alertController.addAction(action)
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
         }
     }
     
     
-    @IBAction func switchToggleState(sender: UISwitch) {
-        PreferencesManager.includeMenuInEventsNotes = sender.on
+    @IBAction func switchToggleState(_ sender: UISwitch) {
+        PreferencesManager.includeMenuInEventsNotes = sender.isOn
     }
 }
 
 
 extension InfoViewController: MFMailComposeViewControllerDelegate {
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        dismiss(animated: true, completion: nil)
     }
 }

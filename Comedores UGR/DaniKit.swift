@@ -35,68 +35,44 @@ import Foundation
 #endif
 
 
-//// **************  OPERATORS  **************
-
-infix operator =? { associativity right precedence 90 }
+infix operator =? : AssignmentPrecedence
 
 /// Performs assignment only if the element on the right is not nil, otherwise it does nothing.
-func =? <T>(inout left: T, right: T?) {
+func =? <T>(left: inout T, right: T?) {
     if let right = right {
         left = right
     }
 }
 
 /// Performs assignment only if the element on the right is not nil, otherwise it does nothing.
-func =? <T>(inout left: T?, right: T?) {
+func =? <T>(left: inout T?, right: T?) {
     if let right = right {
         left = right
     }
 }
 
-
-infix operator ?> { precedence 90 }
-
-/// If the first element is not nil, it is unwrapped and passed to the closure as a parameter.
-func ?> <T>(left: T?, right: (T) -> ()) {
-    if let l = left {
-        right(l)
+/// Performs assignment only if the element on the right is not nil, otherwise it does nothing.
+func =? <T>(left: inout T!, right: T?) {
+    if let right = right {
+        left = right
     }
 }
-
 
 // **************  THREADS, DELAYS  **************
 
 /// Executes the given closure on the main thread after the specified time (in seconds)
-func delay(delay: Double, closure: dispatch_block_t) {
-    let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64(delay * Double(NSEC_PER_SEC)));
-    dispatch_after(popTime, dispatch_get_main_queue(), closure)
+func delay(_ delay: Double, closure: @escaping ()->()) {
+    let popTime = DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC);
+    DispatchQueue.main.asyncAfter(deadline: popTime, execute: closure)
 }
 
 /// Executes the given closure on the main queue
-func mainQueue(closure: dispatch_block_t) {
-    dispatch_async(dispatch_get_main_queue(), closure)
-}
-
-enum QueueQualityOfService {
-    case UserInteractive, UserInitiated, Utility, Background
-    
-    var GCDValue: qos_class_t {
-        switch self {
-        case .UserInteractive: return QOS_CLASS_USER_INTERACTIVE
-        case .UserInitiated: return QOS_CLASS_USER_INITIATED
-        case .Utility: return QOS_CLASS_UTILITY
-        case .Background: return QOS_CLASS_BACKGROUND
-        }
-    }
-}
-
-/// Executes the given closure concurrently on a queue of the specified QOS (Quality of Service)
-func concurrentQueue(qos: QueueQualityOfService, closure: dispatch_block_t) {
-    dispatch_async(dispatch_get_global_queue(qos.GCDValue, 0), closure)
+func mainQueue(_ closure: @escaping ()->()) {
+    DispatchQueue.main.async(execute: closure)
 }
 
 /// Executes the given closure with mutual exclusion
-func synced(lock: AnyObject, closure: () -> ()) {
+func synced(_ lock: AnyObject, closure: () -> ()) {
     objc_sync_enter(lock)
     closure()
     objc_sync_exit(lock)
@@ -107,21 +83,21 @@ func synced(lock: AnyObject, closure: () -> ()) {
 
 extension Array {
     
-    var second: Generator.Element? {
+    var second: Iterator.Element? {
         guard count >= 2 else {
             return nil
         }
         return self[1]
     }
     
-    var third: Generator.Element? {
+    var third: Iterator.Element? {
         guard count >= 3 else {
             return nil
         }
         return self[2]
     }
     
-    var fourth: Generator.Element? {
+    var fourth: Iterator.Element? {
         guard count >= 4 else {
             return nil
         }
@@ -150,7 +126,7 @@ extension String {
     /// Use one or more parameters to create an attributed string with certain properties.
     ///
     /// A nil parameter will be ignored.
-    func with(font font: UIFont? = nil,
+    func with(font: UIFont? = nil,
               color: UIColor? = nil,
               lineSpacing: CGFloat? = nil,
               paragraphSpacing: CGFloat? = nil,
@@ -178,16 +154,16 @@ extension String {
 extension CGSize {
     
     static var max: CGSize {
-        return CGSize(width: CGFloat.max, height: CGFloat.max)
+        return CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)
     }
     
     
-    func with(height height: CGFloat) -> CGSize {
+    func with(height: CGFloat) -> CGSize {
         return CGSize(width: self.width, height: height)
     }
     
     
-    func with(width width: CGFloat) -> CGSize {
+    func with(width: CGFloat) -> CGSize {
         return CGSize(width: width, height: self.height)
     }
 }
@@ -201,24 +177,24 @@ extension Bool {
 }
 
 
-extension NSDate {
+extension Date {
     
     var isInPast: Bool {
         return timeIntervalSinceNow < 0
     }
     
     var isTodayOrFuture: Bool {
-        return NSCalendar.currentCalendar().isDateInToday(self) || self.timeIntervalSinceNow > 0
+        return Calendar.current.isDateInToday(self) || self.timeIntervalSinceNow > 0
     }
 }
 
 
-extension NSCalendar {
+extension Calendar {
     
-    func differenceInDays(from firstDate: NSDate, to secondDate: NSDate) -> Int {
-        let date1 = startOfDayForDate(firstDate)
-        let date2 = startOfDayForDate(secondDate)
-        return components(.Day, fromDate: date1, toDate: date2, options: []).day
+    func differenceInDays(from firstDate: Date, to secondDate: Date) -> Int {
+        let date1 = startOfDay(for: firstDate)
+        let date2 = startOfDay(for: secondDate)
+        return dateComponents([.day], from: date1, to: date2).day!
     }
 }
 
@@ -230,12 +206,12 @@ extension NSCalendar {
 extension UIDevice {
     /// - returns: `true` if screen is smaller than iPhone 6
     var isSmalliPhone: Bool {
-        let screenSize = UIScreen.mainScreen().bounds
+        let screenSize = UIScreen.main.bounds
         return min(screenSize.width, screenSize.height) < 375
     }
     
     var isiPhone4sOrPrevious: Bool {
-        let screenSize = UIScreen.mainScreen().bounds
+        let screenSize = UIScreen.main.bounds
         return max(screenSize.width, screenSize.height) < 568
     }
 }
@@ -245,7 +221,7 @@ extension UIDevice {
 
 // **************  FUNCTIONS  **************
 
-func NSLocalizedString(string: String) -> String {
+func NSLocalizedString(_ string: String) -> String {
     return NSLocalizedString(string, comment: "")
 }
 

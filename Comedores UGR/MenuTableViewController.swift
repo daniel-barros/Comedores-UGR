@@ -41,12 +41,12 @@ class MenuTableViewController: UITableViewController {
 
     var error: FetcherError?
     
-    var lastTimeTableViewReloaded: NSDate?
+    var lastTimeTableViewReloaded: Date?
     
     /// `false` when there's a saved menu or the vc has already fetched since viewDidLoad().
     var isFetchingForFirstTime = true
     
-    private let lastUpdateRowHeight: CGFloat = 46.45
+    fileprivate let lastUpdateRowHeight: CGFloat = 46.45
     
     
     // MARK: -
@@ -56,7 +56,7 @@ class MenuTableViewController: UITableViewController {
         
         weekMenu = fetcher.savedMenu ?? []
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplicationDidBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: Notification.Name.UIApplicationDidBecomeActive, object: nil)
                 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 150
@@ -67,9 +67,9 @@ class MenuTableViewController: UITableViewController {
         }
         
         refreshControl = UIRefreshControl()
-        refreshControl!.addTarget(self, action: #selector(fetchData), forControlEvents: .ValueChanged)
+        refreshControl!.addTarget(self, action: #selector(fetchData), for: .valueChanged)
         
-        updateSeparatorsInset(forSize: tableView.frame.size)
+        updateSeparatorsInset(for: tableView.frame.size)
         
         if fetcher.needsToUpdateMenu {
             if isFetchingForFirstTime {
@@ -83,20 +83,19 @@ class MenuTableViewController: UITableViewController {
     
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     
-    func appDidBecomeActive(notification: NSNotification) {
+    func appDidBecomeActive(_ notification: Notification) {
         // Menu was updated externally and changes need to be reflected in UI
-        if let savedMenu = fetcher.savedMenu where savedMenu != weekMenu {
+        if let savedMenu = fetcher.savedMenu, savedMenu != weekMenu {
             self.error = nil
             weekMenu = savedMenu
             tableView.reloadData()
         } else {
             // This makes sure that only the date for today's menu is highlighted
-            if let lastReload = lastTimeTableViewReloaded
-                where NSCalendar.currentCalendar().isDateInToday(lastReload) == false {
+            if let lastReload = lastTimeTableViewReloaded, Calendar.current.isDateInToday(lastReload) == false {
                 tableView.reloadData()
             }
             // Menu needs to be updated
@@ -113,35 +112,35 @@ class MenuTableViewController: UITableViewController {
                 self.error = nil
                 let menuChanged = self.weekMenu != menu
                 self.weekMenu = menu
-                self.lastTimeTableViewReloaded = NSDate()
+                self.lastTimeTableViewReloaded = Date()
                 self.isFetchingForFirstTime = false
                 mainQueue {
                     if menuChanged {
                         self.tableView.reloadData()
                     } else {
-                        self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)   // Updates "last updated" row
+                        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.none)   // Updates "last updated" row
                     }
-                    UIView.animateWithDuration(0.5) {
-                        if self.refreshControl!.refreshing {
+                    UIView.animate(withDuration: 0.5) {
+                        if self.refreshControl!.isRefreshing {
                             self.refreshControl!.endRefreshing()
                         }
                     }
                 }
             }, errorHandler: { error in
                 self.error = error
-                self.lastTimeTableViewReloaded = NSDate()
+                self.lastTimeTableViewReloaded = Date()
                 self.isFetchingForFirstTime = false
                 mainQueue {
                     if self.weekMenu.isEmpty {
                         self.tableView.reloadData()
                     } else {
-                        self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 0, inSection: 0)], withRowAnimation: UITableViewRowAnimation.None)   // Updates "last updated" row showing error message temporarily
+                        self.tableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: UITableViewRowAnimation.none)   // Updates "last updated" row showing error message temporarily
                         delay(1) {
                             self.error = nil    // Next time first cell is loaded it will show last update date instead of error message
                         }
                     }
-                    UIView.animateWithDuration(0.5) {
-                        if self.refreshControl!.refreshing {
+                    UIView.animate(withDuration: 0.5) {
+                        if self.refreshControl!.isRefreshing {
                             self.refreshControl!.endRefreshing()
                         }
                     }
@@ -151,20 +150,20 @@ class MenuTableViewController: UITableViewController {
     }
     
     
-    @IBAction func prepareForUnwind(segue: UIStoryboardSegue) {
+    @IBAction func prepareForUnwind(_ segue: UIStoryboardSegue) {
         
     }
     
     
-    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
-        updateSeparatorsInset(forSize: size)
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        updateSeparatorsInset(for: size)
     }
     
     
     // MARK: - UITableViewDataSource
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if weekMenu.isEmpty {
             return isFetchingForFirstTime ? 0 : 1
         }
@@ -172,34 +171,34 @@ class MenuTableViewController: UITableViewController {
     }
     
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if weekMenu.isEmpty == false {
             // First row shows error message if any (eventually dismissed, see fetchData()), or last update date
             if indexPath.row == 0 {
                 if let error = error {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("ErrorCell", forIndexPath: indexPath) as! ErrorTableViewCell
-                    cell.configure(error: error)
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "ErrorCell", for: indexPath) as! ErrorTableViewCell
+                    cell.configure(with: error)
                     return cell
                 } else {
-                    let cell = tableView.dequeueReusableCellWithIdentifier("LastUpdateCell", forIndexPath: indexPath) as! LastUpdateTableViewCell
-                    cell.configure(date: fetcher.lastUpdate)
+                    let cell = tableView.dequeueReusableCell(withIdentifier: "LastUpdateCell", for: indexPath) as! LastUpdateTableViewCell
+                    cell.configure(with: fetcher.lastUpdate)
                     return cell
                 }
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuTableViewCell
-                cell.configure(menu: weekMenu[indexPath.row - 1])
+                let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuTableViewCell
+                cell.configure(with: weekMenu[indexPath.row - 1])
                 return cell
             }
         } else {
-            let cell = tableView.dequeueReusableCellWithIdentifier("ErrorCell", forIndexPath: indexPath) as! ErrorTableViewCell
-            cell.configure(error: error)
+            let cell = tableView.dequeueReusableCell(withIdentifier: "ErrorCell", for: indexPath) as! ErrorTableViewCell
+            cell.configure(with: error)
             return cell
         }
     }
     
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         if indexPath.row == 0 { return false }
         if self.weekMenu[indexPath.row - 1].isClosedMenu { return false }
         return true
@@ -208,15 +207,15 @@ class MenuTableViewController: UITableViewController {
     
     // MARK: - UITableViewDelegate
     
-    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         
         if weekMenu.isEmpty || indexPath.row == 0 {
             return nil
         }
         
         let menu = self.weekMenu[indexPath.row - 1]
-        let calendarAction = addToCalendarRowAction(forMenu: menu)
-        if let allergensRowAction = allergensInfoRowAction(forMenu: menu) {
+        let calendarAction = addToCalendarRowAction(for: menu)
+        if let allergensRowAction = allergensInfoRowAction(for: menu) {
             return [calendarAction, allergensRowAction]
         } else {
             return [calendarAction]
@@ -227,9 +226,9 @@ class MenuTableViewController: UITableViewController {
     // MARK: - UIScrollViewDelegate
     
     // Avoids "last update" row scrolling down to first dish row
-    override func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if lastUpdateRowIsVisible {
-            self.tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 0), atScrollPosition: .Top, animated: true)
+            self.tableView.scrollToRow(at: IndexPath(row: 1, section: 0), at: .top, animated: true)
         }
     }
 }
@@ -239,23 +238,23 @@ class MenuTableViewController: UITableViewController {
 
 private extension MenuTableViewController {
     
-    func addToCalendarRowAction(forMenu menu: DayMenu) -> UITableViewRowAction {
-        let rowAction = UITableViewRowAction(style: .Normal,
+    func addToCalendarRowAction(for menu: DayMenu) -> UITableViewRowAction {
+        let rowAction = UITableViewRowAction(style: .normal,
                                              title: NSLocalizedString("Add to\nCalendar"),
                                              handler: { action, indexPath in
             switch EventManager.authorizationStatus {
-            case .Authorized: self.presentEventEditViewController(menu: menu)
-            case .Denied: self.presentAlertController(title: NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
-            case .NotDetermined: self.requestEventAccessPermission(menu: menu)
-            case .Restricted: self.presentAlertController(title: NSLocalizedString("Access Restricted"), message: NSLocalizedString("Access to calendars is restricted, possibly due to parental controls being in place."), showsGoToSettings: false)
+            case .authorized: self.presentEventEditViewController(for: menu)
+            case .denied: self.presentAlertController(title: NSLocalizedString("Access Denied"), message: NSLocalizedString("Please go to the app's settings and allow us to access your calendars."), showsGoToSettings: true)
+            case .notDetermined: self.requestEventAccessPermission(for: menu)
+            case .restricted: self.presentAlertController(title: NSLocalizedString("Access Restricted"), message: NSLocalizedString("Access to calendars is restricted, possibly due to parental controls being in place."), showsGoToSettings: false)
             }
         })
-        rowAction.backgroundColor = UIColor.customAlternateRedColor()
+        rowAction.backgroundColor = .customAlternateRedColor
         return rowAction
     }
     
     
-    func allergensInfoRowAction(forMenu menu: DayMenu) -> UITableViewRowAction? {
+    func allergensInfoRowAction(for menu: DayMenu) -> UITableViewRowAction? {
         if let _ = menu.allergens {
             // TODO: Implement
             return nil
@@ -265,43 +264,43 @@ private extension MenuTableViewController {
     }
     
     
-    func presentEventEditViewController(menu menu: DayMenu) {
+    func presentEventEditViewController(for menu: DayMenu) {
         let eventVC = EKEventEditViewController()
         let eventStore = EKEventStore()
         eventVC.eventStore = eventStore
         eventVC.editViewDelegate = self
-        eventVC.event = EventManager.createEvent(inEventStore: eventStore, forMenu: menu)
-        self.presentViewController(eventVC, animated: true, completion: nil)
+        eventVC.event = EventManager.createEvent(in: eventStore, for: menu)
+        self.present(eventVC, animated: true, completion: nil)
     }
     
     
-    func presentAlertController(title title: String, message: String, showsGoToSettings: Bool) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+    func presentAlertController(title: String, message: String, showsGoToSettings: Bool) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
-        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel"), style: .Cancel, handler: { action in
-            self.dismissViewControllerAnimated(true, completion: nil)
-            self.tableView.editing = false
+        let cancelAction = UIAlertAction(title: NSLocalizedString("Cancel"), style: .cancel, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+            self.tableView.isEditing = false
         })
         alertController.addAction(cancelAction)
         
         if showsGoToSettings {
-            let settingsAction = UIAlertAction(title: NSLocalizedString("Go to Settings"), style: .Default, handler: { action in
-                UIApplication.sharedApplication().openURL(NSURL(string:  UIApplicationOpenSettingsURLString)!)
+            let settingsAction = UIAlertAction(title: NSLocalizedString("Go to Settings"), style: .default, handler: { action in
+                UIApplication.shared.openURL(URL(string:  UIApplicationOpenSettingsURLString)!)
             })
             alertController.addAction(settingsAction)
             alertController.preferredAction = settingsAction
         }
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
     
-    func requestEventAccessPermission(menu menu: DayMenu) {
+    func requestEventAccessPermission(for menu: DayMenu) {
         EventManager.requestAccessPermission { granted in
             mainQueue {
                 if granted {
-                    self.presentEventEditViewController(menu: menu)
+                    self.presentEventEditViewController(for: menu)
                 } else {
-                    self.tableView.editing = false
+                    self.tableView.isEditing = false
                 }
             }
         }
@@ -309,13 +308,13 @@ private extension MenuTableViewController {
     
     
     var lastUpdateRowIsVisible: Bool {
-        let offset = navigationController!.navigationBar.frame.height + UIApplication.sharedApplication().statusBarFrame.height
+        let offset = navigationController!.navigationBar.frame.height + UIApplication.shared.statusBarFrame.height
         return weekMenu.isEmpty == false && tableView.contentOffset.y < lastUpdateRowHeight - offset
     }
     
     
     /// Updates the table view's separators left inset according to the given size.
-    func updateSeparatorsInset(forSize size: CGSize) {
+    func updateSeparatorsInset(for size: CGSize) {
         tableView.separatorInset.left = size.width * 0.2 - 60
     }
     
@@ -326,11 +325,11 @@ private extension MenuTableViewController {
 
 extension MenuTableViewController: EKEventEditViewDelegate {
     
-    func eventEditViewController(controller: EKEventEditViewController, didCompleteWithAction action: EKEventEditViewAction) {
-        if let event = controller.event where action == .Saved {
-            EventManager.saveDefaultInfoFromEvent(event: event)
+    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+        if let event = controller.event, action == .saved {
+            EventManager.saveDefaultInfo(from: event)
         }
-        dismissViewControllerAnimated(true, completion: nil)
-        self.tableView.editing = false
+        dismiss(animated: true, completion: nil)
+        self.tableView.isEditing = false
     }
 }

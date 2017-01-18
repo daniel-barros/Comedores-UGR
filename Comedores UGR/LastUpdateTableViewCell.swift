@@ -34,14 +34,14 @@ class LastUpdateTableViewCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
     
-    func configure(date date: NSDate?) {
+    func configure(with date: Date?) {
         var string = NSLocalizedString("Last Update:") + " "
         if let lastUpdate = date {
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = .ShortStyle
-            formatter.timeStyle = .ShortStyle
+            let formatter = DateFormatter()
+            formatter.dateStyle = .short
+            formatter.timeStyle = .short
             formatter.doesRelativeDateFormatting = true
-            string += formatter.stringFromDate(lastUpdate)
+            string += formatter.string(from: lastUpdate)
         } else {
             string += NSLocalizedString("Never")
         }

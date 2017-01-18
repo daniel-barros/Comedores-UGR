@@ -37,10 +37,10 @@ extension String {
         if self == "" { return self }
         var string = self
         if self[startIndex] == "\n" || self[startIndex] == " " {
-            string = self.substringFromIndex(startIndex.advancedBy(1))
+            string = self.substring(from: characters.index(startIndex, offsetBy: 1))
         }
         
-        let components = string.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceCharacterSet()).filter { !$0.isEmpty }
-        return components.joinWithSeparator(" ")
+        let components = string.components(separatedBy: CharacterSet.whitespaces).filter { !$0.isEmpty }
+        return components.joined(separator: " ")
     }
 }

@@ -34,13 +34,13 @@ class ErrorTableViewCell: UITableViewCell {
     
     @IBOutlet weak var label: UILabel!
     
-    func configure(error error: FetcherError?) {
+    func configure(with error: FetcherError?) {
         let errorMessage: String
         if let error = error {
             switch error {
-            case .NoInternetConnection:
+            case .noInternetConnection:
                 errorMessage = "No Internet Connection"
-            case .Other:
+            case .other:
                 errorMessage = "Uknown error. Please try again later."
             }
         } else {

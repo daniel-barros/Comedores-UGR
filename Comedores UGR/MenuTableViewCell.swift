@@ -37,38 +37,38 @@ class MenuTableViewCell: UITableViewCell {
     @IBOutlet weak var dayNameLabel: UILabel!
     @IBOutlet weak var dishesLabel: UILabel!
         
-    private var dateLabels: [UILabel!] {
+    fileprivate var dateLabels: [UILabel] {
         return [monthLabel, dayNumberLabel, dayNameLabel]
     }
     
     
-    func configure(menu menu: DayMenu) {
+    func configure(with menu: DayMenu) {
         // Text
         monthLabel.text = menu.month
         dayNumberLabel.text = menu.dayNumber
         dayNameLabel.text = menu.dayName
         
-        let color = menu.isClosedMenu ? UIColor.grayColor() : UIColor.mainTextColor()
+        let color = menu.isClosedMenu ? UIColor.gray : UIColor.mainTextColor
         dishesLabel.attributedText = menu.allDishes.with(color: color, paragraphSpacing: 13.25)
         
         // Today's date highlight
         if menu.isTodayMenu {
             dateLabels.forEach {
-                $0.textColor = .customRedColor()
+                $0.textColor = .customRedColor
                 let weight = $0 == dayNumberLabel ? UIFontWeightLight : UIFontWeightMedium
-                $0.font = .systemFontOfSize($0.font.pointSize, weight: weight)
+                $0.font = .systemFont(ofSize: $0.font.pointSize, weight: weight)
             }
         } else if menu.isClosedMenu {
             dateLabels.forEach {
-                $0.textColor = .grayColor()
+                $0.textColor = .gray
                 let weight = $0 == dayNumberLabel ? UIFontWeightLight : UIFontWeightRegular
-                $0.font = .systemFontOfSize($0.font.pointSize, weight: weight)
+                $0.font = .systemFont(ofSize: $0.font.pointSize, weight: weight)
             }
         } else {
             dateLabels.forEach {
-                $0.textColor = .blackColor()
+                $0.textColor = .black
                 let weight = $0 == dayNumberLabel ? UIFontWeightLight : UIFontWeightRegular
-                $0.font = .systemFontOfSize($0.font.pointSize, weight: weight)
+                $0.font = .systemFont(ofSize: $0.font.pointSize, weight: weight)
             }
         }
     }

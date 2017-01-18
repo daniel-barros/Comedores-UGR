@@ -37,10 +37,10 @@ enum PreferencesManager {
     
     static var includeMenuInEventsNotes: Bool {
         get {
-            return NSUserDefaults.standardUserDefaults().objectForKey(DefaultsEventIncludesNotesKey) as? Bool ?? false
+            return UserDefaults.standard.object(forKey: DefaultsEventIncludesNotesKey) as? Bool ?? false
         }
         set {
-            NSUserDefaults.standardUserDefaults().setBool(newValue, forKey: DefaultsEventIncludesNotesKey)
+            UserDefaults.standard.set(newValue, forKey: DefaultsEventIncludesNotesKey)
         }
     }
     

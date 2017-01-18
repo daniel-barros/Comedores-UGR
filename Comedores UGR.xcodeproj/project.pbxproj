@@ -29,7 +29,6 @@
 		33276B751CB145FE00AE2721 /* NSUserDefaults+Archiving+DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 339D79501CA7DC780068AFA7 /* NSUserDefaults+Archiving+DayMenu.swift */; };
 		33276B7A1CB15E7000AE2721 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EAA41CA7970F004E9645 /* Colors.swift */; };
 		33276B7D1CB1778A00AE2721 /* MenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33276B7C1CB1778A00AE2721 /* MenuManager.swift */; };
-		332777091D860F2200AB8030 /* DayMenuWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 332777081D860F2200AB8030 /* DayMenuWrapper.swift */; };
 		336E35D21CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		336E35D31CA5AECA00093C3C /* DayMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336E35D11CA5AECA00093C3C /* DayMenu.swift */; };
 		3374DF2D1D62082E0084ED64 /* DaniKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33A9EA9C1CA77FE8004E9645 /* DaniKit.swift */; };
@@ -150,7 +149,6 @@
 		33276B701CAEE1B500AE2721 /* PreferencesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesManager.swift; sourceTree = "<group>"; };
 		33276B7C1CB1778A00AE2721 /* MenuManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuManager.swift; sourceTree = "<group>"; };
 		332777071D8559A800AB8030 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Interface.strings; sourceTree = "<group>"; };
-		332777081D860F2200AB8030 /* DayMenuWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMenuWrapper.swift; sourceTree = "<group>"; };
 		336E35D11CA5AECA00093C3C /* DayMenu.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayMenu.swift; sourceTree = "<group>"; };
 		3374DF2E1D6216B50084ED64 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		33808C251CA7CFC300AB4912 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
@@ -223,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				33276B501CABE72D00AE2721 /* InterfaceController.swift */,
-				332777081D860F2200AB8030 /* DayMenuWrapper.swift */,
 				33276B3F1CABE72D00AE2721 /* Interface.storyboard */,
 				33276B691CAD739100AE2721 /* Supporting Files */,
 			);
@@ -470,6 +467,7 @@
 					3303C0AF1CA59FFC006363AD = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = A66AUV6B49;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -489,6 +487,7 @@
 					33276B481CABE72D00AE2721 = {
 						CreatedOnToolsVersion = 7.3;
 						DevelopmentTeam = A66AUV6B49;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -498,6 +497,7 @@
 					33837D2C1C9066540095E395 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = A66AUV6B49;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -651,7 +651,6 @@
 				33276B7D1CB1778A00AE2721 /* MenuManager.swift in Sources */,
 				33276B571CABE72D00AE2721 /* GlanceController.swift in Sources */,
 				3374DF311D6216B50084ED64 /* StringExtensions.swift in Sources */,
-				332777091D860F2200AB8030 /* DayMenuWrapper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -790,7 +789,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.Comedores-UGR-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -807,7 +806,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR.Comedores-UGR-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -822,7 +821,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -839,7 +838,7 @@
 				PRODUCT_NAME = "${TARGET_NAME}";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 2.2;
 			};
@@ -997,7 +996,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1018,7 +1017,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "daniel-barros.Comedores-UGR";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_VERSION = 2.3;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

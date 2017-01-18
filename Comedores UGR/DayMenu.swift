@@ -35,44 +35,44 @@ struct DayMenu: Equatable {
     
     let date: String
     let dishes: [String]
-    let processedDate: NSDate?
+    let processedDate: Date?
     let allergens: String?  // TODO: Do allergens for individual dishes
     
     
     init(date: String, dishes: [String], allergens: String?) {
-        let fixedDate = date.lowercaseString.capitalizedString
+        let fixedDate = date.lowercased().capitalized
         self.date = fixedDate
         self.dishes = dishes
-        self.processedDate = DayMenu.dateFromRawString(fixedDate)
+        self.processedDate = DayMenu.date(fromRawString: fixedDate)
         self.allergens = allergens
     }
     
     
     var month: String? {
-        return date.componentsSeparatedByString(" ").fourth
+        return date.components(separatedBy: " ").fourth
     }
     
     
     var dayNumber: String? {
-        return date.componentsSeparatedByString(" ").second
+        return date.components(separatedBy: " ").second
     }
     
     
     var dayName: String? {
-        if let day = date.componentsSeparatedByString(" ").first {
-            return day.substringToIndex(day.endIndex.predecessor())
+        if let day = date.components(separatedBy: " ").first {
+            return day.substring(to: day.characters.index(before: day.endIndex))
         }
         return nil
     }
     
     
     var allDishes: String {
-        return DayMenu.dishesStringFrom(dishes)
+        return DayMenu.dishesString(from: dishes)
     }
     
     
     var isTodayMenu: Bool {
-        if let date = processedDate where NSCalendar.currentCalendar().isDateInToday(date) {
+        if let date = processedDate, Calendar.current.isDateInToday(date) {
             return true
         } else {
             return false
@@ -91,31 +91,30 @@ struct DayMenu: Equatable {
 
 extension DayMenu {
     
-    static func dishesStringFrom(dishesArray: [String]) -> String {
-        let string = dishesArray.reduce("", combine: { (total: String, dish: String) -> String in
+    static func dishesString(from dishesArray: [String]) -> String {
+        let string = dishesArray.reduce("", { (total: String, dish: String) -> String in
             total + dish + "\n"
         })
         if string.characters.count > 1 {
-            return string.substringToIndex(string.endIndex.advancedBy(-1))
+            return string.substring(to: string.characters.index(string.endIndex, offsetBy: -1))
         }
         return string
     }
     
     
     /// Date from a string like "LUNES, 9 DE ENERO DE 2017".
-    static func dateFromRawString(dateString: String) -> NSDate? {
-        let capitalizedDate = dateString.lowercaseString.capitalizedString
-        let components = capitalizedDate.componentsSeparatedByString(" ")
+    static func date(fromRawString dateString: String) -> Date? {
+        let capitalizedDate = dateString.lowercased().capitalized
+        let components = capitalizedDate.components(separatedBy: " ")
         guard components.count == 6 else {
             return nil
         }
         
         if let month = monthsDict[components[3]],
-            day = Int(components[1]) {
-            let calendar = NSCalendar.currentCalendar()
-            let year = calendar.component(.Year, fromDate: NSDate())
-            
-            return calendar.dateWithEra(1, year: year, month: month, day: day, hour: 0, minute: 0, second: 0, nanosecond: 0)
+            let day = Int(components[1]) {
+            let calendar = Calendar.current
+            let year = calendar.component(.year, from: Date())
+            return calendar.date(from: DateComponents(year: year, month: month, day: day))
         }
         
         return nil
@@ -130,7 +129,7 @@ func ==(lhs: DayMenu, rhs: DayMenu) -> Bool {
 
 // MARK: DayMenu collections
 
-extension CollectionType where Generator.Element == DayMenu {
+extension Collection where Iterator.Element == DayMenu {
     
     var todayMenu: DayMenu? {
         for menu in self {

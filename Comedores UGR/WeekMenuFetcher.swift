@@ -41,76 +41,75 @@ private let DefaultsAppVersionWhenLastUpdate = "DefaultsAppVersionWhenLastUpdate
 private let SharedDefaultsName = "group.danielbarros.comedoresUGR"
 
 
-enum FetcherError: ErrorType {
-    case NoInternetConnection
-    case Other
+enum FetcherError: Error {
+    case noInternetConnection
+    case other
 }
 
 
 /// Fetching the menu persists it locally, and it can be accessed via the `savedMenu` property.
 class WeekMenuFetcher {
     
-    private struct Defaults {
-        static let url = NSURL(string: "http://scu.ugr.es")!
-        static let encoding = NSUTF8StringEncoding
-        static let spanishLocale = NSLocale(localeIdentifier: "es_ES")
+    fileprivate struct Defaults {
+        static let url = URL(string: "http://scu.ugr.es")!
+        static let encoding = String.Encoding.utf8
+        static let spanishLocale = Locale(identifier: "es_ES")
         static let defaultMenuPrice = 3.5
-        static let defaultOpeningTime = NSDate(timeIntervalSinceReferenceDate: 12*60*60)
-        static let defaultClosingTime = NSDate(timeIntervalSinceReferenceDate: 14*60*60 + 30*60)
+        static let defaultOpeningTime = Date(timeIntervalSinceReferenceDate: 12*60*60)
+        static let defaultClosingTime = Date(timeIntervalSinceReferenceDate: 14*60*60 + 30*60)
     }
     
     var isFetching = false
     
     
     var savedMenu: [DayMenu]? {
-        return sharedDefaults.menuForKey(DefaultsWeekMenuKey)
+        return sharedDefaults.menu(forKey: DefaultsWeekMenuKey)
     }
     
     
     /// `true` if savedMenu is nil or corrupt, if it's next Sunday or later, or if a new app version was just installed.
     var needsToUpdateMenu: Bool {
-        guard let menu = savedMenu, firstDate = menu.first?.processedDate else {
+        guard let menu = savedMenu, let firstDate = menu.first?.processedDate else {
             return true
         }
-        if let appVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String
-            where appVersionWhenLastUpdate != appVersion {
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, appVersionWhenLastUpdate != appVersion {
             return true
         }
-        return NSCalendar.currentCalendar().differenceInDays(from: firstDate, to: NSDate()) > 5
+        return Calendar.current.differenceInDays(from: firstDate, to: Date()) > 5
     }
     
     
     /// Last time savedMenu was updated.
-    var lastUpdate: NSDate? {
-        return sharedDefaults.objectForKey(DefaultsLastUpdateKey) as? NSDate
+    var lastUpdate: Date? {
+        return sharedDefaults.object(forKey: DefaultsLastUpdateKey) as? Date
     }
     
     
     var menuPrice: Double {
-        return sharedDefaults.objectForKey(DefaultsPriceKey) as? Double ?? Defaults.defaultMenuPrice
+        return sharedDefaults.object(forKey: DefaultsPriceKey) as? Double ?? Defaults.defaultMenuPrice
     }
     
     
-    var diningOpeningTime: NSDate {
-        return sharedDefaults.objectForKey(DefaultsOpeningTimeKey) as? NSDate ?? Defaults.defaultOpeningTime
+    var diningOpeningTime: Date {
+        return sharedDefaults.object(forKey: DefaultsOpeningTimeKey) as? Date ?? Defaults.defaultOpeningTime
     }
     
     
-    var diningClosingTime: NSDate {
-        return sharedDefaults.objectForKey(DefaultsClosingTimeKey) as? NSDate ?? Defaults.defaultClosingTime
+    var diningClosingTime: Date {
+        return sharedDefaults.object(forKey: DefaultsClosingTimeKey) as? Date ?? Defaults.defaultClosingTime
     }
     
     
     /// Fetches week menu **asynchronously**.
-    func fetchMenu(completionHandler completionHandler: [DayMenu] -> (), errorHandler: FetcherError -> ()) {
+    func fetchMenu(completionHandler: @escaping ([DayMenu]) -> (), errorHandler: @escaping (FetcherError) -> ()) {
         
         isFetching = true
-        NSURLSession.sharedSession().dataTaskWithURL(Defaults.url, completionHandler: {
+        URLSession.shared.dataTask(with: Defaults.url, completionHandler: {
             data, response, error in
             
             defer { self.isFetching = false }
             
-            if let data = data, htmlString = String(data: data, encoding: Defaults.encoding) {
+            if let data = data, let htmlString = String(data: data, encoding: Defaults.encoding) {
                 
                 let (newMenu, price, openingTime, closingTime) = self.parseHTML(htmlString)
                 
@@ -118,7 +117,7 @@ class WeekMenuFetcher {
                     self.savePrice(price)
                 }
                 
-                if let opening = openingTime, closing = closingTime {
+                if let opening = openingTime, let closing = closingTime {
                     self.saveTime(opening: opening, closing: closing)
                 }
                 
@@ -126,14 +125,14 @@ class WeekMenuFetcher {
                     self.saveMenu(menu)
                     completionHandler(menu)
                 } else {
-                    errorHandler(.Other)
+                    errorHandler(.other)
                 }
                 
             } else if let error = error {
-                if error.code == NSURLErrorNotConnectedToInternet {
-                    errorHandler(.NoInternetConnection)
+                if (error as NSError).code == NSURLErrorNotConnectedToInternet {
+                    errorHandler(.noInternetConnection)
                 } else {
-                    errorHandler(.Other)
+                    errorHandler(.other)
                 }
             }
         }).resume()
@@ -147,23 +146,23 @@ private extension WeekMenuFetcher {
     
     // MARK: Parsing
     
-    func parseHTML(html: String) -> (menu: [DayMenu]?, price: Double?, opening: NSDate?, closing: NSDate?) {
+    func parseHTML(_ html: String) -> (menu: [DayMenu]?, price: Double?, opening: Date?, closing: Date?) {
         var weekMenu = [DayMenu]()
         var price: Double?
-        var opening, closing: NSDate?
+        var opening, closing: Date?
         let doc = HTMLDocument(string: html)
         
         // Menu table
-        for table in doc.nodesMatchingSelector("table[class=inline]") {
+        for table in doc.nodes(matchingSelector: "table[class=inline]") as! [HTMLElement] {
             var date: String?
             var dishes: [String] = []
             var drinksAndDesserts: String?
 //            var allergens: String?
             
-            for tr in table.nodesMatchingSelector("tr") as! [HTMLElement] {
+            for tr in table.nodes(matchingSelector: "tr") as! [HTMLElement] {
                 var isDrinksOrDessertsRow = false
                 
-                for (i, td) in (tr.nodesMatchingSelector("td") as! [HTMLElement]).enumerate() {
+                for (i, td) in (tr.nodes(matchingSelector: "td") as! [HTMLElement]).enumerated() {
                     let text = td.textContent.stringByTrimmingExtraWhitespaces
                     // first column (date and labels)
                     if i == 0 {
@@ -191,7 +190,7 @@ private extension WeekMenuFetcher {
                     } else if i == 1 {
                         if isDrinksOrDessertsRow {
                             if drinksAndDesserts != nil {
-                                drinksAndDesserts!.appendContentsOf(", " + text)
+                                drinksAndDesserts!.append(", " + text)
                             } else {
                                 drinksAndDesserts = text
                             }
@@ -216,21 +215,21 @@ private extension WeekMenuFetcher {
         }
         
         // Dining hours and menu price
-        if let info = doc.firstNodeMatchingSelector("ul[class=departamento]") {
-            for div in info.nodesMatchingSelector("div[class=li]") {
+        if let info = doc.firstNode(matchingSelector: "ul[class=departamento]") {
+            for div in info.nodes(matchingSelector: "div[class=li]") as! [HTMLElement] {
                 
                 let text = div.textContent.stringByTrimmingExtraWhitespaces
                 if text.hasPrefix("Horario del comedor") {
-                    let timeStrings = text.stringByReplacingOccurrencesOfString("Horario del comedor ", withString: "").componentsSeparatedByString(" a ")
+                    let timeStrings = text.replacingOccurrences(of: "Horario del comedor ", with: "").components(separatedBy: " a ")
                     let formatter = spanishDateFormatter()
-                    opening = formatter.dateFromString(timeStrings.first ?? "")
-                    closing = formatter.dateFromString(timeStrings.second ?? "")
+                    opening = formatter.date(from: timeStrings.first ?? "")
+                    closing = formatter.date(from: timeStrings.second ?? "")
                 }
                 
                 if text.hasPrefix("Precio por menú") {
-                    let priceString = text.stringByReplacingOccurrencesOfString("Precio por menú ", withString: "").stringByReplacingOccurrencesOfString("€", withString: "")
+                    let priceString = text.replacingOccurrences(of: "Precio por menú ", with: "").replacingOccurrences(of: "€", with: "")
                     let formatter = spanishNumberFormatter()
-                    price = formatter.numberFromString(priceString)?.doubleValue
+                    price = formatter.number(from: priceString)?.doubleValue
                 }
             }
         }
@@ -239,35 +238,35 @@ private extension WeekMenuFetcher {
     }
     
     
-    func spanishDateFormatter() -> NSDateFormatter {
-        let f = NSDateFormatter()
+    func spanishDateFormatter() -> DateFormatter {
+        let f = DateFormatter()
         f.locale = Defaults.spanishLocale
-        f.dateStyle = .NoStyle
-        f.timeStyle = .ShortStyle
+        f.dateStyle = .none
+        f.timeStyle = .short
         return f
     }
     
     
-    func spanishNumberFormatter() -> NSNumberFormatter {
-        let f = NSNumberFormatter()
+    func spanishNumberFormatter() -> NumberFormatter {
+        let f = NumberFormatter()
         f.locale = Defaults.spanishLocale
-        f.numberStyle = .DecimalStyle
+        f.numberStyle = .decimal
         return f
     }
     
     
-    func spanishCalendar() -> NSCalendar {
-        let c = NSCalendar(calendarIdentifier: "gregorian")!
-        c.locale = NSLocale(localeIdentifier: "es_ES")
+    func spanishCalendar() -> Calendar {
+        var c = Calendar(identifier: .gregorian)
+        c.locale = Locale(identifier: "es_ES")
         return c
     }
     
     
     /// It is case-insensitive.
-    func stringStartsWithSpanishWeekDay(text: String) -> Bool {
-        return spanishCalendar().weekdaySymbols.contains({
+    func stringStartsWithSpanishWeekDay(_ text: String) -> Bool {
+        return spanishCalendar().weekdaySymbols.contains(where: {
             if text.characters.count < $0.characters.count { return false }
-            return $0.caseInsensitiveCompare(text.substringToIndex($0.endIndex)) == .OrderedSame })
+            return $0.caseInsensitiveCompare(text.substring(to: $0.endIndex)) == .orderedSame })
     }
     
     
@@ -275,32 +274,32 @@ private extension WeekMenuFetcher {
     
     /// NSUserDefaults instance shared between members of the app group.
     /// - warning: Proper named app group should be activated in the target's capabilities.
-    var sharedDefaults: NSUserDefaults {
-        return NSUserDefaults(suiteName: SharedDefaultsName)!
+    var sharedDefaults: UserDefaults {
+        return UserDefaults(suiteName: SharedDefaultsName)!
     }
     
     
     var appVersionWhenLastUpdate: String? {
-        return sharedDefaults.objectForKey(DefaultsAppVersionWhenLastUpdate) as? String
+        return sharedDefaults.object(forKey: DefaultsAppVersionWhenLastUpdate) as? String
     }
     
     
-    func saveMenu(menu: [DayMenu]) {
+    func saveMenu(_ menu: [DayMenu]) {
         sharedDefaults.setMenu(menu, forKey: DefaultsWeekMenuKey)
-        sharedDefaults.setObject(NSDate(), forKey: DefaultsLastUpdateKey)
-        if let appVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
-            sharedDefaults.setObject(appVersion, forKey: DefaultsAppVersionWhenLastUpdate)
+        sharedDefaults.set(Date(), forKey: DefaultsLastUpdateKey)
+        if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            sharedDefaults.set(appVersion, forKey: DefaultsAppVersionWhenLastUpdate)
         }
     }
     
     
-    func savePrice(price: Double) {
-        sharedDefaults.setObject(price, forKey: DefaultsPriceKey)
+    func savePrice(_ price: Double) {
+        sharedDefaults.set(price, forKey: DefaultsPriceKey)
     }
     
     
-    func saveTime(opening opening: NSDate, closing: NSDate) {
-        sharedDefaults.setObject(opening, forKey: DefaultsOpeningTimeKey)
-        sharedDefaults.setObject(closing, forKey: DefaultsClosingTimeKey)
+    func saveTime(opening: Date, closing: Date) {
+        sharedDefaults.set(opening, forKey: DefaultsOpeningTimeKey)
+        sharedDefaults.set(closing, forKey: DefaultsClosingTimeKey)
     }
 }
