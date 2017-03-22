@@ -69,13 +69,13 @@ class WeekMenuFetcher {
     
     /// `true` if savedMenu is nil or corrupt, if it's next Sunday or later, or if a new app version was just installed.
     var needsToUpdateMenu: Bool {
-        guard let menu = savedMenu, let firstDate = menu.first?.processedDate else {
+        guard let menu = savedMenu, let lastDate = menu.last?.processedDate else {
             return true
         }
         if let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String, appVersionWhenLastUpdate != appVersion {
             return true
         }
-        return Calendar.current.differenceInDays(from: firstDate, to: Date()) > 5
+        return Calendar.current.differenceInDays(from: lastDate, to: Date()) >= 1
     }
     
     
